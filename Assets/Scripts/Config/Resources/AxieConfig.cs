@@ -16,9 +16,10 @@ public class AxieConfig : ScriptableObject
 {
     [Header("Animations")]
     public SkeletonDataAsset skinData;
-    public AnimationReferenceAsset idle;
-    public AnimationReferenceAsset run;
-    public List<AnimationReferenceAsset> randomIdles;
+    public AnimationReferenceAsset animIdle;
+    public AnimationReferenceAsset animRun;
+    public AnimationReferenceAsset animHit;
+    public List<AnimationReferenceAsset> animRandomIdles;
 
     [Header("Skin")]
     public Sprite bombSprite;

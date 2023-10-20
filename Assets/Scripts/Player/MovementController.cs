@@ -4,8 +4,6 @@ using Spine.Unity;
 [RequireComponent(typeof(Rigidbody))]
 public class MovementController : MonoBehaviour
 {
-    public float speed = 5f;
-
     [Header("Input")]
     public KeyCode inputUp = KeyCode.W;
     public KeyCode inputDown = KeyCode.S;
@@ -14,16 +12,19 @@ public class MovementController : MonoBehaviour
 
     [Header("Visual")]
     public SkeletonAnimation characterAnimation;
-    public AnimationReferenceAsset idle, move;
+    public AxieConfigReader config;
 
     private new Rigidbody rigidbody;
     private Vector3 direction = Vector3.right;
     private string currentState = "idle";
     private float facing = 1;
+    private StatsModifier stats;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        stats = GetComponent<StatsModifier>();
+        config = GetComponent<AxieConfigReader>();
     }
 
     private void Update()
@@ -44,7 +45,7 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 position = rigidbody.position;
-        Vector3 translation = direction * speed * Time.fixedDeltaTime;
+        Vector3 translation = direction * stats.axieStats.speed * Time.fixedDeltaTime;
 
         rigidbody.MovePosition(position + translation);
     }
@@ -100,11 +101,11 @@ public class MovementController : MonoBehaviour
 
         if (state.Equals("idle"))
         {
-            SetAnimation(idle, true, 1f);
+            SetAnimation(config.Axie.animIdle, true, 1f);
         }
         else if (state.Equals("move"))
         {
-            SetAnimation(move, true, 0.5f * speed);
+            SetAnimation(config.Axie.animRun, true, 0.25f * stats.axieStats.speed);
         }
 
         currentState = state;

@@ -8,4 +8,5 @@ public class AxieStats : ScriptableObject
     public int bombMagazine;
     public int health;
     public float speed;
+    public float recoveryTimeAfterDamage = 1f;
 }

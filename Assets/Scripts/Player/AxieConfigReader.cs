@@ -20,8 +20,4 @@ public class AxieConfigReader : MonoBehaviour
 
         aura.color = axie.auraColor;
     }
-
-    private void Awake()
-    {
-    }
 }

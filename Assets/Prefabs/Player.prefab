@@ -133,9 +133,10 @@ GameObject:
   - component: {fileID: 3691038777985609604}
   - component: {fileID: 1061060860249864829}
   - component: {fileID: 1988761712901673047}
+  - component: {fileID: 2878728743684143185}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -245,14 +246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bb3e232039d94a478a080dd8db0e10a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
   inputUp: 119
   inputDown: 115
   inputLeft: 97
   inputRight: 100
   characterAnimation: {fileID: 7684370153621896473}
-  idle: {fileID: 11400000, guid: ebb1e183628fe462786e9ebe0fe780ad, type: 2}
-  move: {fileID: 11400000, guid: e5dbe05486e6e47aab5e44bbad5ddb0b, type: 2}
+  config: {fileID: 0}
 --- !u!114 &1988761712901673047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +270,19 @@ MonoBehaviour:
   explosionLayerMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &2878728743684143185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2787602095110623959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d07b225116548c59bf58ffe554e91d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeleton: {fileID: 7684370153621896473}
 --- !u!1 &5339606241814522456
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: AxieBirdConfig
   m_EditorClassIdentifier: 
   skinData: {fileID: 11400000, guid: 2452835e0b8254737b358ef2238d1a10, type: 2}
-  idle: {fileID: 11400000, guid: 751453bbb991c454e9b11855bc35cdf5, type: 2}
-  run: {fileID: 11400000, guid: 98950d81fc5ce41b79eb5f43119a8122, type: 2}
-  randomIdles: []
+  animIdle: {fileID: 11400000, guid: 751453bbb991c454e9b11855bc35cdf5, type: 2}
+  animRun: {fileID: 11400000, guid: 98950d81fc5ce41b79eb5f43119a8122, type: 2}
+  animHit: {fileID: 11400000, guid: 0100cfed9351844c480a5e4ec5bbd498, type: 2}
+  animRandomIdles: []
   bombSprite: {fileID: 670668742, guid: e1df03f9f8c2a40a4a19e6a7ca2d2d04, type: 3}
   auraColor: {r: 1, g: 0.6084906, b: 0.7291612, a: 1}
   axieName: Bird

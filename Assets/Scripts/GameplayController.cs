@@ -19,13 +19,15 @@ public class GameplayController : MonoBehaviour
     private void Awake()
     {
         EventBus.onBombFuse += PlayShake;
+
+        playerConfig.Load(axieConfig);
+        statsModifier.axieStats = axieBaseStats;
+        statsModifier.bombStats = bombBaseStats;
     }
 
     private void Start()
     {
-        playerConfig.Load(axieConfig);
-        statsModifier.axieStats = axieBaseStats;
-        statsModifier.bombStats = bombBaseStats;
+        
     }
 
     public void PlayShake()
