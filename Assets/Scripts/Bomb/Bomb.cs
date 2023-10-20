@@ -63,7 +63,16 @@ public class Bomb : MonoBehaviour
         Collider[] colliders = Physics.OverlapBox(new Vector3(position.x, position.y + 0.5f, position.z), Vector3.one * 0.25f, Quaternion.identity, explosionLayerMask);
         Debug.Log(colliders.Length);
         if (colliders.Length > 0)
+        {
+            foreach (Collider collider in colliders)
+            {
+                if (collider.gameObject.CompareTag("Destructible"))
+                {
+                    collider.GetComponent<Destructible>().RaiseOnHit(1);
+                }
+            }
             return;
+        }
 
         Instantiate(explosionPrefab, position, Quaternion.identity);
         Explode(position, direction, length - 1);
