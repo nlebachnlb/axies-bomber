@@ -10,6 +10,7 @@ public class AxieConfigReader : MonoBehaviour
 
     [SerializeField] private SkeletonAnimation skin;
     [SerializeField] private Light aura;
+    [SerializeField] private ParticleSystem spawnRayLight;
 
     public void Load(AxieConfig axie)
     {
@@ -19,5 +20,6 @@ public class AxieConfigReader : MonoBehaviour
         skin.Initialize(true);
 
         aura.color = axie.auraColor;
+        spawnRayLight.Play();
     }
 }

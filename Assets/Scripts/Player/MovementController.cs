@@ -40,6 +40,8 @@ public class MovementController : MonoBehaviour
         } else {
             SetDirection(Vector3.zero);
         }
+
+        UpdateAnimation();
     }
 
     private void FixedUpdate()
@@ -54,15 +56,6 @@ public class MovementController : MonoBehaviour
     {
         direction = newDirection;
 
-        if (newDirection != Vector3.zero)
-        {
-            SetState("move");
-        }
-        else
-        {
-            SetState("idle");
-        }
-
         if (direction.x != 0)
             facing = direction.x;
 
@@ -74,6 +67,18 @@ public class MovementController : MonoBehaviour
         //if (other.gameObject.layer == LayerMask.NameToLayer("Explosion")) {
         //    DeathSequence();
         //}
+    }
+
+    private void UpdateAnimation()
+    {
+        if (direction != Vector3.zero)
+        {
+            SetState("move");
+        }
+        else
+        {
+            SetState("idle");
+        }
     }
 
     private void DeathSequence()
