@@ -29,4 +29,5 @@ public class AxieConfig : ScriptableObject
     public string axieName;
     public AxieClass axieClass;
     public string description;
+    public Sprite icon;
 }

@@ -20,6 +20,9 @@ public class GameplayController : MonoBehaviour
     [Header("Camera")]
     [SerializeField] private CameraShake cameraShaker;
 
+    [Header("HUD")]
+    [SerializeField] private AxieHeroHUD axieHeroHUD;
+
     private int currentSlot = 0;
 
     private void Awake()
@@ -32,6 +35,7 @@ public class GameplayController : MonoBehaviour
     {
         SwitchAxieHero(0);
 
+        axieHeroHUD.InitHUD(slots, inputSlotMap);
         foreach (AxieHeroData slot in slots)
             slot.ReloadInGameData();
     }

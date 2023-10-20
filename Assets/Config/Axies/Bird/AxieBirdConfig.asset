@@ -22,3 +22,4 @@ MonoBehaviour:
   axieName: Bird
   axieClass: 2
   description: 
+  icon: {fileID: -2098425190, guid: d61406cdea6f04f9396a442220d1798b, type: 3}
