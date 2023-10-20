@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c301d5cd2b3b849e3b857a8899d40d31, type: 3}
+  m_Name: AxieReptileConfig
+  m_EditorClassIdentifier: 
+  skinData: {fileID: 11400000, guid: 5e6bc02efa6c543a68cb6e2ed6d78347, type: 2}
+  animIdle: {fileID: 11400000, guid: 63fba161aba284be2b684e9313059ce5, type: 2}
+  animRun: {fileID: 11400000, guid: e836a8a0df14b4e279a082db5f24e0b0, type: 2}
+  animHit: {fileID: 11400000, guid: bc3238fed01fe452cb867df805a8c692, type: 2}
+  animRandomIdles: []
+  bombSprite: {fileID: 670668742, guid: e1df03f9f8c2a40a4a19e6a7ca2d2d04, type: 3}
+  auraColor: {r: 0.67394835, g: 0.3537736, b: 1, a: 1}
+  axieName: Reptile
+  axieClass: 1
+  description: 

@@ -4748,10 +4748,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerConfig: {fileID: 1640919998}
-  statsModifier: {fileID: 1640919997}
   axieConfig: {fileID: 11400000, guid: 31da111efa11b487c830b364af85818b, type: 2}
   axieBaseStats: {fileID: 11400000, guid: d29a2aa3ab09043768cf6329d3c2c197, type: 2}
   bombBaseStats: {fileID: 11400000, guid: 0efee0f714bea4a528b4ec0ccc00d3a6, type: 2}
+  slots:
+  - axieConfig: {fileID: 11400000, guid: 31da111efa11b487c830b364af85818b, type: 2}
+    axieStats: {fileID: 11400000, guid: d29a2aa3ab09043768cf6329d3c2c197, type: 2}
+    bombStats: {fileID: 11400000, guid: 0efee0f714bea4a528b4ec0ccc00d3a6, type: 2}
+    health: 0
+    bombsRemaining: 0
+  - axieConfig: {fileID: 11400000, guid: 370c57ecf1bea4619b6421f53194f43b, type: 2}
+    axieStats: {fileID: 11400000, guid: f3db209d9ca99455b924ebbca2afa7b9, type: 2}
+    bombStats: {fileID: 11400000, guid: c22b7a04e7812427193e938aca0b694d, type: 2}
+    health: 0
+    bombsRemaining: 0
+  - axieConfig: {fileID: 11400000, guid: bed49f4034e14438c99d520aee8e510b, type: 2}
+    axieStats: {fileID: 11400000, guid: 494e9fd63c3ad4e2db0c29405503da83, type: 2}
+    bombStats: {fileID: 11400000, guid: a1233dcf731b6484bbf2d1d5e0a1db53, type: 2}
+    health: 0
+    bombsRemaining: 0
+  inputSlotMap: 310000003200000033000000
   cameraShaker: {fileID: 1211171617}
 --- !u!4 &1533466146
 Transform:
@@ -4990,18 +5006,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 200257429}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1640919997 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3691038777985609604, guid: 4fc55d22c1690487fb7c93ef57f2d1ab,
-    type: 3}
-  m_PrefabInstance: {fileID: 390811915}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42d84a7faf4354cdfae4dd846f8c3494, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1640919998 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3868202461473630865, guid: 4fc55d22c1690487fb7c93ef57f2d1ab,

@@ -8,8 +8,7 @@ using Spine;
 public class HealthController : MonoBehaviour
 {
     private AxieConfigReader config;
-    private StatsModifier stats;
-    private int health;
+    private AxieHeroData axieHeroData;
     private float recoveryTime = 0f;
 
     [SerializeField] private SkeletonAnimation skeleton;
@@ -21,8 +20,8 @@ public class HealthController : MonoBehaviour
             return;
         }
 
-        health -= damage;
-        if (health <= 0)
+        axieHeroData.health -= damage;
+        if (axieHeroData.health <= 0)
         {
             // Game over flow here
         }
@@ -39,7 +38,7 @@ public class HealthController : MonoBehaviour
             };
         }
 
-        recoveryTime = stats.axieStats.recoveryTimeAfterDamage;
+        recoveryTime = axieHeroData.axieStats.recoveryTimeAfterDamage;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -53,8 +52,12 @@ public class HealthController : MonoBehaviour
     private void Awake()
     {
         config = GetComponent<AxieConfigReader>();
-        stats = GetComponent<StatsModifier>();
+        EventBus.onSwitchAxieHero += OnSwitchHero;
+    }
 
+    private void OnDestroy()
+    {
+        EventBus.onSwitchAxieHero -= OnSwitchHero;
     }
 
     private void Update()
@@ -67,7 +70,11 @@ public class HealthController : MonoBehaviour
 
     private void Start()
     {
-        health = stats.axieStats.health;
         recoveryTime = 0f;
+    }
+
+    private void OnSwitchHero(AxieHeroData heroData)
+    {
+        axieHeroData = heroData;
     }
 }

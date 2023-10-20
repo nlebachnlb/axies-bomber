@@ -6,7 +6,6 @@ public class GameplayController : MonoBehaviour
 {
     [Header("Player")]
     public AxieConfigReader playerConfig;
-    public StatsModifier statsModifier;
 
     [Header("Config & Stats")]
     public AxieConfig axieConfig;
@@ -14,8 +13,9 @@ public class GameplayController : MonoBehaviour
     public BombStats bombBaseStats;
 
     [Header("Axie Heroes Slots")]
-    public List<AxieHeroConfig> slots;
+    public List<AxieHeroData> slots;
     public List<KeyCode> inputSlotMap;
+    public AxieHeroData CurrentAxieHeroData { get => slots[currentSlot]; }
 
     [Header("Camera")]
     [SerializeField] private CameraShake cameraShaker;
@@ -30,7 +30,10 @@ public class GameplayController : MonoBehaviour
 
     private void Start()
     {
-        
+        SwitchAxieHero(0);
+
+        foreach (AxieHeroData slot in slots)
+            slot.ReloadInGameData();
     }
 
     public void PlayShake()
@@ -45,21 +48,20 @@ public class GameplayController : MonoBehaviour
             return;
         }
 
-        AxieHeroConfig hero = slots[slotIndex];
-        axieBaseStats = hero.axieStats;
-        bombBaseStats = hero.bombStats;
-        axieConfig = hero.axieConfig;
+        AxieHeroData hero = slots[slotIndex];
+        axieBaseStats = Instantiate(hero.axieStats);
+        bombBaseStats = Instantiate(hero.bombStats);
+        axieConfig = Instantiate(hero.axieConfig);
 
         ReloadAxieHeroConfig();
 
         currentSlot = slotIndex;
+        EventBus.RaiseOnSwitchAxieHero(hero);
     }
 
     private void ReloadAxieHeroConfig()
     {
         playerConfig.Load(axieConfig);
-        statsModifier.axieStats = axieBaseStats;
-        statsModifier.bombStats = bombBaseStats;
     }
 
     private void Update()

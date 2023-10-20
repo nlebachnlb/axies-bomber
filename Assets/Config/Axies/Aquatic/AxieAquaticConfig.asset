@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c301d5cd2b3b849e3b857a8899d40d31, type: 3}
+  m_Name: AxieAquaticConfig
+  m_EditorClassIdentifier: 
+  skinData: {fileID: 11400000, guid: 2a89d1af931834141894887296cc5cb9, type: 2}
+  animIdle: {fileID: 11400000, guid: 431c736f7ccaf4bf1ada59e71765ee55, type: 2}
+  animRun: {fileID: 11400000, guid: 6c52ecf810d894d98b9078d2e297875a, type: 2}
+  animHit: {fileID: 11400000, guid: 074a0bb4e8bde4effa3d7566e213fc0b, type: 2}
+  animRandomIdles: []
+  bombSprite: {fileID: 1248559770, guid: e1df03f9f8c2a40a4a19e6a7ca2d2d04, type: 3}
+  auraColor: {r: 0.3254717, g: 0.8399866, b: 1, a: 1}
+  axieName: Aquatic
+  axieClass: 0
+  description: 

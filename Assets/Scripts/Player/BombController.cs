@@ -11,28 +11,29 @@ public class BombController : MonoBehaviour
     [Header("Explosion")]
     public LayerMask explosionLayerMask;
 
-    //[Header("Destructible")]
-    //public Tilemap destructibleTiles;
-    //public Destructible destructiblePrefab;
-
     private AxieConfigReader config;
-    private StatsModifier stats;
-    private int bombsRemaining;
+    private AxieHeroData axieHeroData;
 
     private void Awake()
     {
-        stats = GetComponent<StatsModifier>();
         config = GetComponent<AxieConfigReader>();
+
+        EventBus.onSwitchAxieHero += OnSwitchHero;
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.onSwitchAxieHero -= OnSwitchHero;
     }
 
     private void Start()
     {
-        bombsRemaining = stats.axieStats.bombMagazine;
+        //axieHeroData.bombsRemaining = stats.axieStats.bombMagazine;
     }
 
     private void Update()
     {
-        if (bombsRemaining > 0 && Input.GetKeyDown(inputKey))
+        if (axieHeroData.bombsRemaining > 0 && Input.GetKeyDown(inputKey))
         {
             PlaceBomb();
         }
@@ -44,22 +45,19 @@ public class BombController : MonoBehaviour
         position.x = Mathf.Round(position.x);
         position.z = Mathf.Round(position.z);
 
-        bombsRemaining--;
+        axieHeroData.bombsRemaining--;
 
         Bomb bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-        bomb.OnBombFuse = () =>
-        {
-            bombsRemaining++;
-        };
-        bomb.bombFuseTime = stats.bombStats.bombFuseTime;
-        bomb.explosionLength = stats.bombStats.length;
+        bomb.bombOwner = axieHeroData;
+
+        bomb.bombFuseTime = axieHeroData.bombStats.bombFuseTime;
+        bomb.explosionLength = axieHeroData.bombStats.length;
         bomb.LoadSkin(config.Axie.bombSprite);
         bomb.color = config.Axie.auraColor;
-    }
-
-    public void AddBomb()
-    {
-        bombsRemaining++;
+        bomb.OnBombFuse = () =>
+        {
+            bomb.bombOwner.bombsRemaining++;
+        };
     }
 
     private void OnTriggerExit(Collider other)
@@ -68,5 +66,10 @@ public class BombController : MonoBehaviour
         {
             other.isTrigger = false;
         }
+    }
+
+    private void OnSwitchHero(AxieHeroData heroData)
+    {
+        axieHeroData = heroData;
     }
 }

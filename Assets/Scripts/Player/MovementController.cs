@@ -18,13 +18,19 @@ public class MovementController : MonoBehaviour
     private Vector3 direction = Vector3.right;
     private string currentState = "idle";
     private float facing = 1;
-    private StatsModifier stats;
+    private AxieStats stats;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
-        stats = GetComponent<StatsModifier>();
         config = GetComponent<AxieConfigReader>();
+
+        EventBus.onSwitchAxieHero += OnSwitchHero;
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.onSwitchAxieHero -= OnSwitchHero;
     }
 
     private void Update()
@@ -47,7 +53,7 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 position = rigidbody.position;
-        Vector3 translation = direction * stats.axieStats.speed * Time.fixedDeltaTime;
+        Vector3 translation = direction * stats.speed * Time.fixedDeltaTime;
 
         rigidbody.MovePosition(position + translation);
     }
@@ -110,9 +116,15 @@ public class MovementController : MonoBehaviour
         }
         else if (state.Equals("move"))
         {
-            SetAnimation(config.Axie.animRun, true, 0.25f * stats.axieStats.speed);
+            SetAnimation(config.Axie.animRun, true, 0.25f * stats.speed);
         }
 
         currentState = state;
+    }
+
+    private void OnSwitchHero(AxieHeroData heroData)
+    {
+        stats = heroData.axieStats;
+        currentState = "";
     }
 }

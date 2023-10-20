@@ -11,6 +11,7 @@ public class Bomb : MonoBehaviour
     public GameObject lightFx;
     public LayerMask explosionLayerMask;
     public Color color;
+    public AxieHeroData bombOwner;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
 
