@@ -16,4 +16,4 @@ MonoBehaviour:
   bombMagazine: 3
   health: 3
   speed: 3
-  recoveryTimeAfterDamage: 1
+  recoveryTimeAfterDamage: 2

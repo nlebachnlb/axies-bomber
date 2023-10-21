@@ -23,6 +23,9 @@ public class EventBus
     public delegate void OnSwitchAxieHero(AxieHeroData axieHeroData);
     public static event OnSwitchAxieHero onSwitchAxieHero;
 
+    public delegate void OnAxieHeroDeath(AxieHeroData axieHeroData);
+    public static event OnAxieHeroDeath onAxieHeroDeath;
+
     public static void RaiseOnBombFuse()
     {
         onBombFuse?.Invoke();
@@ -32,6 +35,11 @@ public class EventBus
     {
         onSwitchAxieHero?.Invoke(axieHeroData);
     }
-    
+
+    public static void RaiseOnAxieHeroDeath(AxieHeroData axieHeroData)
+    {
+        onAxieHeroDeath?.Invoke(axieHeroData);
+    }
+
     private static EventBus instance = null;
 }

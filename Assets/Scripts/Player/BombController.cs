@@ -33,7 +33,7 @@ public class BombController : MonoBehaviour
 
     private void Update()
     {
-        if (axieHeroData.bombsRemaining > 0 && Input.GetKeyDown(inputKey))
+        if (axieHeroData.bombsRemaining > 0 && (Input.GetKeyDown(inputKey) || Input.GetMouseButtonDown(0)))
         {
             PlaceBomb();
         }

@@ -10,8 +10,10 @@ public class HealthController : MonoBehaviour
     private AxieConfigReader config;
     private AxieHeroData axieHeroData;
     private float recoveryTime = 0f;
+    private Animator animator;
 
     [SerializeField] private SkeletonAnimation skeleton;
+    [SerializeField] private ParticleSystem death;
 
     public void TakeDamage(int damage)
     {
@@ -23,7 +25,8 @@ public class HealthController : MonoBehaviour
         axieHeroData.health -= damage;
         if (axieHeroData.health <= 0)
         {
-            // Game over flow here
+            death.Play();
+            EventBus.RaiseOnAxieHeroDeath(axieHeroData);
         }
         else
         {
@@ -52,6 +55,7 @@ public class HealthController : MonoBehaviour
     private void Awake()
     {
         config = GetComponent<AxieConfigReader>();
+        animator = GetComponent<Animator>();
         EventBus.onSwitchAxieHero += OnSwitchHero;
     }
 
@@ -66,6 +70,8 @@ public class HealthController : MonoBehaviour
         {
             recoveryTime -= Time.deltaTime;
         }
+
+        animator.SetFloat("RecoveryTime", recoveryTime);
     }
 
     private void Start()

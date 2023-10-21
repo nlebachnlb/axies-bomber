@@ -23,36 +23,41 @@ public class GameplayController : MonoBehaviour
     [Header("HUD")]
     [SerializeField] private AxieHeroHUD axieHeroHUD;
 
-    private int currentSlot = 0;
+    private int currentSlot = -1;
 
     private void Awake()
     {
         EventBus.onBombFuse += PlayShake;
-        ReloadAxieHeroConfig();
+        EventBus.onAxieHeroDeath += OnAxieHeroDeath;
     }
 
     private void Start()
     {
-        SwitchAxieHero(0);
-
         axieHeroHUD.InitHUD(slots, inputSlotMap);
         foreach (AxieHeroData slot in slots)
             slot.ReloadInGameData();
+
+        SwitchAxieHero(0);
     }
 
     public void PlayShake()
     {
-        cameraShaker.Shake(0.2f, 0.2f);
+        cameraShaker.Shake(0.2f, 0.3f);
     }
 
     public void SwitchAxieHero(int slotIndex)
     {
-        if (slotIndex >= slots.Count)
+        if (slotIndex >= slots.Count || currentSlot == slotIndex)
         {
             return;
         }
 
         AxieHeroData hero = slots[slotIndex];
+        if (hero.IsDead)
+        {
+            return;
+        }
+
         axieBaseStats = Instantiate(hero.axieStats);
         bombBaseStats = Instantiate(hero.bombStats);
         axieConfig = Instantiate(hero.axieConfig);
@@ -76,6 +81,36 @@ public class GameplayController : MonoBehaviour
             {
                 SwitchAxieHero(i);
             }
+        }
+    }
+
+    private int GetFirstAliveSlotFromCurrent()
+    {
+        int slot = currentSlot;
+        int cnt = 0;
+        while (cnt < slots.Count)
+        {
+            if (!slots[slot].IsDead)
+            {
+                return slot;
+            }
+            slot = (slot + 1) % slots.Count;
+            cnt++;
+        }
+
+        return -1;
+    }
+
+    private void OnAxieHeroDeath(AxieHeroData axieHeroData)
+    {
+        int aliveSlot = GetFirstAliveSlotFromCurrent();
+        if (aliveSlot > 0)
+        {
+            SwitchAxieHero(aliveSlot);
+        }
+        else
+        {
+            Debug.Log("Game Over");
         }
     }
 }

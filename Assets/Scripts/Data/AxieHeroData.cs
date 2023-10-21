@@ -43,6 +43,8 @@ public class AxieHeroData
     public delegate void OnInfoChanged(int health, int bombsRemaining);
     public event OnInfoChanged onInfoChanged;
 
+    public bool IsDead { get => _health <= 0; }
+
     public void ReloadInGameData()
     {
         health = axieStats.health;
