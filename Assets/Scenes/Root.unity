@@ -236,11 +236,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5921764797231690497, guid: 59757188a1caa4d32bd2b5f4cb267afe,
-        type: 3}
-      propertyPath: circleSize
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6247611077782859814, guid: 59757188a1caa4d32bd2b5f4cb267afe,
         type: 3}
       propertyPath: m_Name
@@ -413,10 +408,10 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &1989787077
 GameObject:

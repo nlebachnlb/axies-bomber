@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
 public class TransitionController : MonoBehaviour
 {
     private readonly int _circleSizeId = Shader.PropertyToID("_Circle_Size");

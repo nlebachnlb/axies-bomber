@@ -111,4 +111,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03f59745ad48545e09028955e3bf08df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circleSize: 0
+  circleSize: 1
