@@ -1,5 +1,7 @@
 using UnityEngine;
 using Spine.Unity;
+using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Rigidbody))]
 public class MovementController : MonoBehaviour
@@ -20,12 +22,18 @@ public class MovementController : MonoBehaviour
     private float facing = 1;
     private AxieStats stats;
 
+    private List<KeyCode> movementInput;
+    private List<bool> pressedKeys;
+    private List<System.Action> moveActions;
+    private Stack<int> inputStack;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         config = GetComponent<AxieConfigReader>();
 
         EventBus.onSwitchAxieHero += OnSwitchHero;
+        InitInput();
     }
 
     private void OnDestroy()
@@ -35,15 +43,14 @@ public class MovementController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(inputUp)) {
-            SetDirection(Vector3.forward);
-        } else if (Input.GetKey(inputDown)) {
-            SetDirection(Vector3.back);
-        } else if (Input.GetKey(inputLeft)) {
-            SetDirection(Vector3.left);
-        } else if (Input.GetKey(inputRight)) {
-            SetDirection(Vector3.right);
-        } else {
+        UpdateInput();
+        int pressedKeyIndex = GetPressedKeyIndex();
+        if (pressedKeyIndex != -1)
+        {
+            moveActions[pressedKeyIndex]();
+        }
+        else
+        {
             SetDirection(Vector3.zero);
         }
 
@@ -73,6 +80,74 @@ public class MovementController : MonoBehaviour
         //if (other.gameObject.layer == LayerMask.NameToLayer("Explosion")) {
         //    DeathSequence();
         //}
+    }
+
+    private void InitInput()
+    {
+        movementInput = new List<KeyCode>()
+        {
+            inputUp, inputDown, inputLeft, inputRight
+        };
+
+        pressedKeys = new List<bool>()
+        {
+            false, false, false, false
+        };
+
+        moveActions = new List<System.Action>()
+        {
+            () => SetDirection(Vector3.forward),
+            () => SetDirection(Vector3.back),
+            () => SetDirection(Vector3.left),
+            () => SetDirection(Vector3.right)
+        };
+
+        inputStack = new Stack<int>();
+    }
+
+    private void UpdateInput()
+    {
+        for (int i = 0; i < movementInput.Count; ++i)
+        {
+            if (Input.GetKeyDown(movementInput[i]) && !pressedKeys[i])
+            {
+                for (int j = 0; j < pressedKeys.Count; ++j)
+                {
+                    if (pressedKeys[j])
+                    {
+                        pressedKeys[j] = false;
+                        inputStack.Push(j);
+                    }
+                }
+
+                pressedKeys[i] = true;
+                break;
+            }
+
+            if (Input.GetKeyUp(movementInput[i]))
+            {
+                if (pressedKeys[i])
+                    pressedKeys[i] = false;
+
+                if (inputStack.Count > 0)
+                {
+                    int lastInput = inputStack.Pop();
+                    if (GetPressedKeyIndex() == -1 && Input.GetKey(movementInput[lastInput]))
+                        pressedKeys[lastInput] = true;
+                }
+            }
+        }
+    }
+
+    private int GetPressedKeyIndex()
+    {
+        for (int i = 0; i < movementInput.Count; ++i)
+        {
+            if (pressedKeys[i])
+                return i;
+        }
+
+        return -1;
     }
 
     private void UpdateAnimation()
