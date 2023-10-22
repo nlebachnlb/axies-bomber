@@ -7,6 +7,7 @@ public class BombController : MonoBehaviour
     [Header("Bomb")]
     public KeyCode inputKey = KeyCode.Space;
     public Bomb bombPrefab;
+    public LayerMask bombLayerMask;
 
     [Header("Explosion")]
     public LayerMask explosionLayerMask;
@@ -44,6 +45,12 @@ public class BombController : MonoBehaviour
         Vector3 position = transform.position;
         position.x = Mathf.Round(position.x);
         position.z = Mathf.Round(position.z);
+
+        Collider[] colliders = Physics.OverlapBox(position, Vector3.one * 0.25f, Quaternion.identity, bombLayerMask);
+        if (colliders.Length > 0)
+        {
+            return;
+        }
 
         axieHeroData.bombsRemaining--;
 

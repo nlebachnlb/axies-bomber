@@ -158,7 +158,7 @@ Transform:
   - {fileID: 914397851915865949}
   - {fileID: 8471732679458721895}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &8007257411264251923
 Rigidbody:
@@ -256,6 +256,9 @@ MonoBehaviour:
   inputKey: 32
   bombPrefab: {fileID: 2631833291757102977, guid: 83deb750bcb624de0a47f5dac469e364,
     type: 3}
+  bombLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
   explosionLayerMask:
     serializedVersion: 2
     m_Bits: 64

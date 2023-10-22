@@ -98,6 +98,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   color: {r: 0, g: 0, b: 0, a: 0}
+  bombOwner:
+    axieConfig: {fileID: 0}
+    axieStats: {fileID: 0}
+    bombStats: {fileID: 0}
   spriteRenderer: {fileID: 6091454820242364596}
 --- !u!1 &4489134433151916544
 GameObject:
@@ -108,7 +112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8509694491074226313}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: VisualRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 473707573362036412}
   - component: {fileID: 6091454820242364596}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

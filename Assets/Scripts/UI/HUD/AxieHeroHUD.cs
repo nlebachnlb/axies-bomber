@@ -17,6 +17,7 @@ public class AxieHeroHUD : MonoBehaviour
             axieHeroData.onInfoChanged += (int health, int bombsRemaining) =>
             {
                 hud.SetInfo(bombsRemaining, health);
+                hud.SetEnabled(health > 0);
             };
         }
     }

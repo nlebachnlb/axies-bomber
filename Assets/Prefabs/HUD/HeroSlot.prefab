@@ -509,7 +509,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 102.666664}
+  m_SizeDelta: {x: 200, y: 102.666664}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1303589856028539783
 CanvasRenderer:
@@ -564,6 +564,7 @@ MonoBehaviour:
   textBomb: {fileID: 7748892765172536749}
   textHealth: {fileID: 3334734903399184548}
   axieIcon: {fileID: 6719225476800028167}
+  buttonKey: {fileID: 325204016421304505}
   textKey: {fileID: 4961039708125882618}
 --- !u!1 &5975359326751551771
 GameObject:
