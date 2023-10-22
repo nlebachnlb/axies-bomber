@@ -7,6 +7,9 @@ public class AppRoot : MonoBehaviour
 {
     public static AppRoot Instance { get; private set; }
     public TransitionController transitionController;
+    public AppRootConfig Config { get => config; }
+
+    [SerializeField] private AppRootConfig config;
 
     private void Awake()
     {
@@ -16,7 +19,7 @@ public class AppRoot : MonoBehaviour
 
     private void Start()
     {
-        TransitionToScene("Room");
+        TransitionToScene(config.startSceneName);
     }
 
     public void TransitionToScene(string sceneName)

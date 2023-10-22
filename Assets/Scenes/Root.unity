@@ -236,6 +236,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5618848169518193429, guid: 59757188a1caa4d32bd2b5f4cb267afe,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6247611077782859814, guid: 59757188a1caa4d32bd2b5f4cb267afe,
         type: 3}
       propertyPath: m_Name
@@ -311,6 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionController: {fileID: 227111823}
+  config: {fileID: 11400000, guid: 7655a0c2bc11f48a789e3821e5d9e186, type: 2}
 --- !u!1 &1641430554
 GameObject:
   m_ObjectHideFlags: 0

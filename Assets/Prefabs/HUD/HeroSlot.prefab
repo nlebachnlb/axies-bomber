@@ -566,6 +566,7 @@ MonoBehaviour:
   axieIcon: {fileID: 6719225476800028167}
   buttonKey: {fileID: 325204016421304505}
   textKey: {fileID: 4961039708125882618}
+  infoPanel: {fileID: 1590844196657549471}
 --- !u!1 &5975359326751551771
 GameObject:
   m_ObjectHideFlags: 0
