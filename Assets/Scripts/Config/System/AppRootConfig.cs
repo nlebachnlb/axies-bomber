@@ -8,4 +8,5 @@ public class AppRootConfig : ScriptableObject
     public string startSceneName;
     public string playScene;
     public string homeScene;
+    public AvailableAxieHeroesConfig availableAxies;
 }

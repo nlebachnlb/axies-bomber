@@ -15,6 +15,6 @@ public class HomeUI : MonoBehaviour
 
     private void OnSelectPlay()
     {
-        AppRoot.Instance.TransitionToScene(AppRoot.Instance.Config.playScene);
+        AppRoot.Instance.TransitionToScene(AppRoot.Instance.Config.playScene, true);
     }
 }

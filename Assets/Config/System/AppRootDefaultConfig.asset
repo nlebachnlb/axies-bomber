@@ -15,3 +15,4 @@ MonoBehaviour:
   startSceneName: Home
   playScene: Room
   homeScene: Home
+  availableAxies: {fileID: 11400000, guid: bb1161db249dc419c8d9e96d7fb11331, type: 2}

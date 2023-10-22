@@ -11,6 +11,8 @@ public class TransitionController : MonoBehaviour
     private Animator animator;
     public float circleSize = 0;
 
+    [SerializeField] private CanvasGroup loadingFigure;
+
     private void Awake()
     {
         _image = gameObject.GetComponent<Image>();
@@ -30,5 +32,10 @@ public class TransitionController : MonoBehaviour
     public void TransitionOut()
     {
         animator.SetTrigger("Out");
+    }
+
+    public void ShowLoading(bool show)
+    {
+        loadingFigure.gameObject.SetActive(show);
     }
 }
