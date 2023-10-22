@@ -1069,7 +1069,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.38679248, g: 0.28374818, b: 0.2536045, a: 0}
+  m_BackGroundColor: {r: 0.3773585, g: 0.2402467, b: 0.20469919, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3529,7 +3529,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1389684792}
   m_Direction: 2
   m_Value: 1.000004
-  m_Size: 0.9748878
+  m_Size: 0.9746587
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3689,6 +3689,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093378844860627853, guid: d63ff758caa184222b93ca1a0038d32a,
+        type: 3}
+      propertyPath: slotIndex
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4019,6 +4024,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093378844860627853, guid: d63ff758caa184222b93ca1a0038d32a,
+        type: 3}
+      propertyPath: slotIndex
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

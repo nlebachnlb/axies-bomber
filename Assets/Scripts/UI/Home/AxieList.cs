@@ -28,6 +28,13 @@ public class AxieList : MonoBehaviour
                 AxieCard card = Instantiate(axieCard, content.transform);
                 card.config = config;
                 card.ReloadConfig();
+                card.onSelect += (AxieCard card) =>
+                {
+                    AxieCard[] cards = GetComponentsInChildren<AxieCard>();
+                    foreach (var c in cards)
+                        if (c != card)
+                            card.HideAction();
+                };
             }
             else
             {

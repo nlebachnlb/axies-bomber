@@ -123,6 +123,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   occuppiedGroup: {fileID: 7916257872491016216}
   emptyGroup: {fileID: 4760115280023081573}
+  skin: {fileID: 8652920311159357934}
+  slotIndex: 0
 --- !u!1 &1059724361438716206
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4820821376722685151
 RectTransform:
   m_ObjectHideFlags: 0
@@ -595,7 +597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7381683350082578247
 RectTransform:
   m_ObjectHideFlags: 0

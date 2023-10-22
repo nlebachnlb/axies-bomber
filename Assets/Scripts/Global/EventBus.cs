@@ -26,6 +26,9 @@ public class EventBus
     public delegate void OnAxieHeroDeath(AxieHeroData axieHeroData);
     public static event OnAxieHeroDeath onAxieHeroDeath;
 
+    public delegate void OnPickAxie(int slot, AxiePackedConfig config);
+    public static event OnPickAxie onPickAxie;
+
     public static void RaiseOnBombFuse()
     {
         onBombFuse?.Invoke();
@@ -39,6 +42,11 @@ public class EventBus
     public static void RaiseOnAxieHeroDeath(AxieHeroData axieHeroData)
     {
         onAxieHeroDeath?.Invoke(axieHeroData);
+    }
+
+    public static void RaiseOnPickAxie(int slot, AxiePackedConfig config)
+    {
+        onPickAxie?.Invoke(slot, config);
     }
 
     private static EventBus instance = null;
