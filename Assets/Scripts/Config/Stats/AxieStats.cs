@@ -30,6 +30,11 @@ public class AxieStats : ScriptableObject
             buffs.Remove(buff);
     }
 
+    public void ResetBuffs()
+    {
+        buffs.Clear();
+    }
+
     public AxieStats Calculate()
     {
         AxieStats result = new AxieStats();

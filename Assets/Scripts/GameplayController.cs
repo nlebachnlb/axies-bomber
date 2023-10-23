@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameplayController : MonoBehaviour
 {
@@ -23,6 +24,9 @@ public class GameplayController : MonoBehaviour
     [Header("HUD")]
     [SerializeField] private AxieHeroHUD axieHeroHUD;
 
+    [Header("Test mode")]
+    [SerializeField] private bool testMap;
+
     private int currentSlot = -1;
 
     private void Awake()
@@ -33,11 +37,30 @@ public class GameplayController : MonoBehaviour
 
     private void Start()
     {
-        axieHeroHUD.InitHUD(slots, inputSlotMap);
+        if (!testMap)
+            InitAxieHeroDataSlots();
+
         foreach (AxieHeroData slot in slots)
             slot.ReloadInGameData();
 
+        axieHeroHUD.InitHUD(slots, inputSlotMap);
         SwitchAxieHero(0);
+    }
+
+    private void InitAxieHeroDataSlots()
+    {
+        slots = new List<AxieHeroData>();
+        UserData model = AppRoot.Instance.UserDataModel.User;
+        List<AxiePackedConfig> configs = model.currentPickedAxies.Select(id => AppRoot.Instance.Config.availableAxies.GetAxiePackedConfigById(id)).ToList();
+
+        for (int i = 0; i < configs.Count; ++i)
+        {
+            AxieHeroData axie = new AxieHeroData();
+            axie.axieConfig = configs[i].axieConfig;
+            axie.axieStats = configs[i].axieStats;
+            axie.bombStats = configs[i].bombStats;
+            slots.Add(axie);
+        }
     }
 
     public void PlayShake()
