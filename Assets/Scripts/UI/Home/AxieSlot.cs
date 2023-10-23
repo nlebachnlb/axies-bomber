@@ -31,6 +31,14 @@ public class AxieSlot : MonoBehaviour
 
     private void OnPickAxie(int slot, AxiePackedConfig config)
     {
+        UserData model = AppRoot.Instance.UserDataModel.User;
+        if (model.currentPickedAxies[slotIndex] == -1)
+        {
+            chosenAxie = null;
+            Reload();
+            return;
+        }
+
         if (slot != slotIndex)
             return;
 

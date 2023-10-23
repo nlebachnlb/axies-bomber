@@ -7,6 +7,7 @@ public class AxieCard : MonoBehaviour
 {
     [SerializeField] private RectTransform root;
     [SerializeField] private CanvasGroup actionGroup;
+    [SerializeField] private Image bgSelect;
     [Header("Figure")]
     [SerializeField] private Image axieIcon;
     [SerializeField] private TMPro.TextMeshProUGUI textAxieName;
@@ -61,6 +62,8 @@ public class AxieCard : MonoBehaviour
 
     private void OnPickAxie(int slot, AxiePackedConfig config)
     {
+        UserDataModel model = AppRoot.Instance.UserDataModel;
+        bgSelect.gameObject.SetActive(model.IsAxiePicked(this.config.id));
         HideAction();
     }
 
@@ -83,6 +86,7 @@ public class AxieCard : MonoBehaviour
         if (config == null)
             return;
 
+        bgSelect.gameObject.SetActive(false);
         axieIcon.sprite = config.axieConfig.icon;
         textAxieName.text = config.axieConfig.axieName;
         textSpeed.text = "" + config.axieStats.speed;
