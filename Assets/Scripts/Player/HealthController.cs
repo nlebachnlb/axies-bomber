@@ -44,6 +44,11 @@ public class HealthController : MonoBehaviour
         recoveryTime = axieHeroData.axieStats.recoveryTimeAfterDamage;
     }
 
+    public void SetInvincible(float duration)
+    {
+        recoveryTime = duration;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))

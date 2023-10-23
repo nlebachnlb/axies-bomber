@@ -15,4 +15,4 @@ MonoBehaviour:
   skillName: Patient Hunter
   description: 
   killsNeeded: 5
-  dismissDuration: 1
+  dismissDuration: 3

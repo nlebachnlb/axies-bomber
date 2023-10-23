@@ -7,6 +7,7 @@ using Spine.Collections;
 public class AxieConfigReader : MonoBehaviour
 {
     public AxieConfig Axie { get; private set; }
+    public SkeletonAnimation Skin { get => skin; }
 
     [SerializeField] private SkeletonAnimation skin;
     [SerializeField] private Light aura;
