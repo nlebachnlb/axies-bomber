@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class AxieCard : MonoBehaviour
 {
+    [SerializeField] private RectTransform root;
+    [SerializeField] private CanvasGroup actionGroup;
     [Header("Figure")]
     [SerializeField] private Image axieIcon;
     [SerializeField] private TMPro.TextMeshProUGUI textAxieName;
@@ -19,9 +21,9 @@ public class AxieCard : MonoBehaviour
     [SerializeField] private Button buttonSlot1;
     [SerializeField] private Button buttonSlot2;
     [SerializeField] private Button buttonSlot3;
+    [SerializeField] private Button button;
 
     private Animator animator;
-    private Button button;
 
     [HideInInspector]
     public AxiePackedConfig config;
@@ -37,18 +39,43 @@ public class AxieCard : MonoBehaviour
         buttonSlot3.onClick.AddListener(() => EventBus.RaiseOnPickAxie(2, config));
 
         animator = GetComponent<Animator>();
-        button = GetComponent<Button>();
 
         button.onClick.AddListener(() =>
         {
             onSelect?.Invoke(this);
-            animator.SetTrigger("Action");
+            ShowAction();
         });
+
+        EventBus.onPickAxie += OnPickAxie;
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.onPickAxie -= OnPickAxie;
+    }
+
+    private void Start()
+    {
+        HideAction();
+    }
+
+    private void OnPickAxie(int slot, AxiePackedConfig config)
+    {
+        HideAction();
+    }
+
+    public void ShowAction()
+    {
+        actionGroup.gameObject.SetActive(true);
+        actionGroup.DOFade(1f, 0.15f);
+        actionGroup.interactable = true;
     }
 
     public void HideAction()
     {
-        animator.SetTrigger("Normal");
+        actionGroup.gameObject.SetActive(false);
+        actionGroup.DOFade(0f, 0.15f);
+        actionGroup.interactable = false;
     }
 
     public void ReloadConfig()
@@ -62,5 +89,17 @@ public class AxieCard : MonoBehaviour
         textHp.text = "" + config.axieStats.health;
         textBomb.text = "" + config.axieStats.bombMagazine;
         textLength.text = "" + config.axieStats.bombExplosionRadius;
+    }
+
+    public void OnPointerEnter(BaseEventData data)
+    {
+        Debug.Log("Mouse enter");
+        root.DOLocalMoveY(32f, 0.3f).SetEase(Ease.OutCirc);
+    }
+
+    public void OnPointerExit(BaseEventData data)
+    {
+        Debug.Log("Mouse exit");
+        root.DOLocalMoveY(0f, 0.3f).SetEase(Ease.OutCirc);
     }
 }
