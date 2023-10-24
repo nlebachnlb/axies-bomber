@@ -40,10 +40,10 @@ public class GameplayController : MonoBehaviour
         if (!testMap)
             InitAxieHeroDataSlots();
 
+        axieHeroHUD.InitHUD(slots, inputSlotMap);
         foreach (AxieHeroData slot in slots)
             slot.ReloadInGameData();
 
-        axieHeroHUD.InitHUD(slots, inputSlotMap);
         SwitchAxieHero(0);
     }
 

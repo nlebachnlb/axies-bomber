@@ -21,9 +21,4 @@ public class AxieHeroHUD : MonoBehaviour
             };
         }
     }
-
-    private void OnInfoChanged(int health, int bombsRemaining)
-    {
-
-    }
 }
