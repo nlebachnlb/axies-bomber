@@ -4769,6 +4769,7 @@ MonoBehaviour:
   inputSlotMap: 310000003200000033000000
   cameraShaker: {fileID: 1211171617}
   axieHeroHUD: {fileID: 1398546208}
+  testMap: 0
 --- !u!4 &1533466146
 Transform:
   m_ObjectHideFlags: 0

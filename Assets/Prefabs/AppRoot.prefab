@@ -277,6 +277,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4532513091963342019}
     m_Modifications:
+    - target: {fileID: 264061061479339774, guid: 59757188a1caa4d32bd2b5f4cb267afe,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.010012458
+      objectReference: {fileID: 0}
+    - target: {fileID: 264061061479339774, guid: 59757188a1caa4d32bd2b5f4cb267afe,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.23588765
+      objectReference: {fileID: 0}
+    - target: {fileID: 264061061479339774, guid: 59757188a1caa4d32bd2b5f4cb267afe,
+        type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.4245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 264061061479339774, guid: 59757188a1caa4d32bd2b5f4cb267afe,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278402156
+      objectReference: {fileID: 0}
     - target: {fileID: 5445825551888063642, guid: 59757188a1caa4d32bd2b5f4cb267afe,
         type: 3}
       propertyPath: m_Pivot.x
@@ -387,6 +407,12 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6211671357156380433, guid: 59757188a1caa4d32bd2b5f4cb267afe,
+        type: 3}
+      propertyPath: skeletonDataAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 2452835e0b8254737b358ef2238d1a10,
+        type: 2}
     - target: {fileID: 6247611077782859814, guid: 59757188a1caa4d32bd2b5f4cb267afe,
         type: 3}
       propertyPath: m_Name
