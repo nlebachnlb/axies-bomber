@@ -6,4 +6,14 @@ using UnityEngine;
 public class TailSlapStats : SkillConfig
 {
     public int placedBombsNeeded;
+
+    public override string GenerateDescription(int level = 0)
+    {
+        return description;
+    }
+
+    public override string GenerateMinorDescription(int level = 0)
+    {
+        return minorDescription.Replace("{placedBombsNeeded}", "" + placedBombsNeeded);
+    }
 }

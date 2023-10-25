@@ -33,4 +33,14 @@ public class StatsBuff : SkillConfig
 
         return baseValue;
     }
+
+    public override string GenerateDescription(int level = 0)
+    {
+        return description.Replace("{value}", "" + buffValue[level]);
+    }
+
+    public override string GenerateMinorDescription(int level = 0)
+    {
+        return "";
+    }
 }

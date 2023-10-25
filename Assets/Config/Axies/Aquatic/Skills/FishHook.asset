@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: FishHook
   m_EditorClassIdentifier: 
   skillName: Fish Hook
-  description: 
+  description: Increase bomb explosion length by {value} unit(s).
+  minorDescription: 
+  isAbility: 0
+  visual: {fileID: 21300000, guid: ccca5392c1ac54a5dad7b9bb3a2601c2, type: 3}
+  targetAxie: {fileID: -1844338862, guid: d61406cdea6f04f9396a442220d1798b, type: 3}
   buffType: 3
   buffUnit: 0
   buffValue:

@@ -13,5 +13,12 @@ MonoBehaviour:
   m_Name: TailSlapStats
   m_EditorClassIdentifier: 
   skillName: Tail Slap
-  description: 
+  description: 'Slap the bomb forward like a projectile.
+
+    The moving bomb explodes
+    on any collision.'
+  minorDescription: 'Cooldown: every {placedBombsNeeded} placed bomb(s).'
+  isAbility: 1
+  visual: {fileID: 21300000, guid: 5acf528054a61475dbbd75ceadd24f09, type: 3}
+  targetAxie: {fileID: -1844338862, guid: d61406cdea6f04f9396a442220d1798b, type: 3}
   placedBombsNeeded: 5
