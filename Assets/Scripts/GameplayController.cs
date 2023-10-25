@@ -22,7 +22,9 @@ public class GameplayController : MonoBehaviour
     [SerializeField] private CameraShake cameraShaker;
 
     [Header("HUD")]
+    [SerializeField] private Canvas canvas;
     [SerializeField] private AxieHeroHUD axieHeroHUD;
+    [SerializeField] private SkillPickUI skillPickUI;
 
     [Header("Test mode")]
     [SerializeField] private bool testMap;
@@ -35,8 +37,16 @@ public class GameplayController : MonoBehaviour
     {
         EventBus.onBombFuse += PlayShake;
         EventBus.onAxieHeroDeath += OnAxieHeroDeath;
+        EventBus.onEnterSkillPool += OnEnterSkillPool;
 
         mapController = GetComponent<MapController>();
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.onBombFuse -= PlayShake;
+        EventBus.onAxieHeroDeath -= OnAxieHeroDeath;
+        EventBus.onEnterSkillPool -= OnEnterSkillPool;
     }
 
     private void Start()
@@ -141,5 +151,10 @@ public class GameplayController : MonoBehaviour
         {
             Debug.Log("Game Over");
         }
+    }
+
+    private void OnEnterSkillPool()
+    {
+        Instantiate(skillPickUI, canvas.transform);
     }
 }

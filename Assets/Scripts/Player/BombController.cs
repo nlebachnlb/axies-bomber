@@ -20,11 +20,13 @@ public class BombController : MonoBehaviour
         config = GetComponent<AxieConfigReader>();
 
         EventBus.onSwitchAxieHero += OnSwitchHero;
+        EventBus.onEnterSkillPool += OnEnterSkillPool;
     }
 
     private void OnDestroy()
     {
         EventBus.onSwitchAxieHero -= OnSwitchHero;
+        EventBus.onEnterSkillPool -= OnEnterSkillPool;
     }
 
     private void Start()
@@ -78,5 +80,10 @@ public class BombController : MonoBehaviour
     private void OnSwitchHero(AxieHeroData heroData)
     {
         axieHeroData = heroData;
+    }
+
+    private void OnEnterSkillPool()
+    {
+        enabled = false;
     }
 }

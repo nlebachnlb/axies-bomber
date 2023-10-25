@@ -29,6 +29,9 @@ public class EventBus
     public delegate void OnPickAxie(int slot, AxiePackedConfig config);
     public static event OnPickAxie onPickAxie;
 
+    public delegate void OnEnterSkillPool();
+    public static event OnEnterSkillPool onEnterSkillPool;
+
     public static void RaiseOnBombFuse()
     {
         onBombFuse?.Invoke();
@@ -47,6 +50,11 @@ public class EventBus
     public static void RaiseOnPickAxie(int slot, AxiePackedConfig config)
     {
         onPickAxie?.Invoke(slot, config);
+    }
+
+    public static void RaiseOnEnterSkillPool()
+    {
+        onEnterSkillPool?.Invoke();
     }
 
     private static EventBus instance = null;

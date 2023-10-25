@@ -202,4 +202,13 @@ public class MovementController : MonoBehaviour
         stats = heroData.axieStats;
         currentState = "";
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            EventBus.RaiseOnEnterSkillPool();
+            enabled = false;
+        }
+    }
 }
