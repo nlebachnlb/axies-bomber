@@ -26,13 +26,17 @@ public class GameplayController : MonoBehaviour
 
     [Header("Test mode")]
     [SerializeField] private bool testMap;
+    [SerializeField] private string testMapId;
 
     private int currentSlot = -1;
+    private MapController mapController;
 
     private void Awake()
     {
         EventBus.onBombFuse += PlayShake;
         EventBus.onAxieHeroDeath += OnAxieHeroDeath;
+
+        mapController = GetComponent<MapController>();
     }
 
     private void Start()
@@ -45,6 +49,8 @@ public class GameplayController : MonoBehaviour
             slot.ReloadInGameData();
 
         SwitchAxieHero(0);
+
+        mapController.Reload("1-2");
     }
 
     private void InitAxieHeroDataSlots()

@@ -16,3 +16,49 @@ MonoBehaviour:
   playScene: Room
   homeScene: Home
   availableAxies: {fileID: 11400000, guid: bb1161db249dc419c8d9e96d7fb11331, type: 2}
+  mapConfigs:
+  - id: 1-1
+    tilemap: {fileID: 1533593398214807208, guid: eab654f01ee849844b4c20419ed5034c,
+      type: 3}
+  - id: 1-2
+    tilemap: {fileID: 6285782331383528716, guid: 0bf14110219c57b479558e9dcf33a137,
+      type: 3}
+  - id: 1-3
+    tilemap: {fileID: 7890420965986976410, guid: f032b7198a978814089f29b1a81c693d,
+      type: 3}
+  - id: 1-4
+    tilemap: {fileID: 7817008065674403903, guid: 5b66bcba338531c4d96dcafc9f9fe502,
+      type: 3}
+  - id: 1-5
+    tilemap: {fileID: 1135328452803428728, guid: b45ff13bb55c5f644a99c968c8da9f5e,
+      type: 3}
+  - id: 2-1
+    tilemap: {fileID: 7758057751848237104, guid: 7f28e045c9a3345408baef0fdd885097,
+      type: 3}
+  - id: 2-2
+    tilemap: {fileID: 5979740474003627182, guid: f938a014f9576a243bb686c288046ec6,
+      type: 3}
+  - id: 2-3
+    tilemap: {fileID: 7612161495500652870, guid: 6af82099d17b71e4493098deef1d2e91,
+      type: 3}
+  - id: 2-4
+    tilemap: {fileID: 1987125502293000761, guid: cb23a248737e49b4bb5a8d1833ecc4c0,
+      type: 3}
+  - id: 2-5
+    tilemap: {fileID: 3661621322939479009, guid: 8d3cdda00fc0bb74984a3966be98a771,
+      type: 3}
+  - id: 3-1
+    tilemap: {fileID: 1625917555502822421, guid: 329e398819bb9c8459644d4745bbe723,
+      type: 3}
+  - id: 3-2
+    tilemap: {fileID: 2366096513749958812, guid: 8e28b06ae0688424babd36dcee939d94,
+      type: 3}
+  - id: 3-3
+    tilemap: {fileID: 4172088286465944375, guid: 477de5d63cbeff040890cd0c75ff908c,
+      type: 3}
+  - id: 3-4
+    tilemap: {fileID: 9204611019693396417, guid: ac2682aa699424944a5dcfced396ece6,
+      type: 3}
+  - id: 3-5
+    tilemap: {fileID: 5828305884576650255, guid: 15e16a932298711498d70d90add22198,
+      type: 3}
