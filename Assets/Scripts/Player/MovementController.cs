@@ -107,6 +107,14 @@ public class MovementController : MonoBehaviour
         inputStack = new Stack<int>();
     }
 
+    private void ResetInput()
+    {
+        for (int i = 0; i < pressedKeys.Count; ++i)
+            pressedKeys[i] = false;
+
+        inputStack.Clear();
+    }
+
     private void UpdateInput()
     {
         for (int i = 0; i < movementInput.Count; ++i)
@@ -211,6 +219,7 @@ public class MovementController : MonoBehaviour
         {
             EventBus.RaiseOnEnterSkillPool();
             SetDirection(Vector3.zero);
+            ResetInput();
             enabled = false;
         }
     }

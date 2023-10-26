@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using DG.Tweening;
 
 public class GameplayController : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class GameplayController : MonoBehaviour
 
     [Header("Camera")]
     [SerializeField] private CameraShake cameraShaker;
+
+    [Header("Environment")]
+    [SerializeField] private Light globalLight;
 
     [Header("HUD")]
     [SerializeField] private Canvas canvas;
@@ -155,6 +159,19 @@ public class GameplayController : MonoBehaviour
 
     private void OnEnterSkillPool()
     {
+        StartCoroutine(OnEnterSkillPoolProcess());
+    }
+
+    private IEnumerator OnEnterSkillPoolProcess()
+    {
+        cameraShaker.Shake(0.5f, 0.3f);
+        globalLight.DOIntensity(0f, 0.15f).OnComplete(() =>
+        {
+            globalLight.DOIntensity(1f, 0.45f);
+        });
+
+        yield return new WaitForSeconds(0.5f);
+
         Instantiate(skillPickUI, canvas.transform);
     }
 }
