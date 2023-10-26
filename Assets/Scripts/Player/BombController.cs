@@ -13,8 +13,8 @@ public class BombController : MonoBehaviour
     [Header("Explosion")]
     public LayerMask explosionLayerMask;
 
-    private AxieConfigReader config;
-    private AxieHeroData axieHeroData;
+    public AxieHeroData axieHeroData;
+    public AxieConfigReader config;
 
     private void Awake()
     {

@@ -6,6 +6,7 @@ using UnityEngine;
 public class TailSlapStats : SkillConfig
 {
     public int placedBombsNeeded;
+    public float speed = 5f;
 
     public override string GenerateDescription(int level = 0)
     {

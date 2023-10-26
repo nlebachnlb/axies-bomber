@@ -22,6 +22,8 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 1a4b25e4344614f928c6ba02404c4bed, type: 2}
     ability:
     - {fileID: 11400000, guid: e03f4de97ea81488b99d08b02a3c0da7, type: 2}
+    abilityPrefab: {fileID: 4564667999815439112, guid: 34a383ee6e82f49e6a899c50863dc7bc,
+      type: 3}
   - id: 1
     axieConfig: {fileID: 11400000, guid: 31da111efa11b487c830b364af85818b, type: 2}
     axieStats: {fileID: 11400000, guid: d29a2aa3ab09043768cf6329d3c2c197, type: 2}
@@ -32,6 +34,8 @@ MonoBehaviour:
       - {fileID: 11400000, guid: e29c39c6a431a40c2ac93b54b26afead, type: 2}
     ability:
     - {fileID: 11400000, guid: a9123958c1d9e43f7ae3d46266c016f5, type: 2}
+    abilityPrefab: {fileID: 7165475212485695643, guid: 60dd5fcb695dc493593e59cb88e33365,
+      type: 3}
   - id: 2
     axieConfig: {fileID: 11400000, guid: bed49f4034e14438c99d520aee8e510b, type: 2}
     axieStats: {fileID: 11400000, guid: 494e9fd63c3ad4e2db0c29405503da83, type: 2}
@@ -42,3 +46,5 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 8bdcc5927568d46ab80c942e5cbb3464, type: 2}
     ability:
     - {fileID: 11400000, guid: 21a92011e36ad440eb2cd772ec8459e2, type: 2}
+    abilityPrefab: {fileID: 7165475212485695643, guid: 60dd5fcb695dc493593e59cb88e33365,
+      type: 3}

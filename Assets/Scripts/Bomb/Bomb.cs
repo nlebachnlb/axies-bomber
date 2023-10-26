@@ -13,16 +13,37 @@ public class Bomb : MonoBehaviour
     public Color color;
     public AxieHeroData bombOwner;
 
+    private Rigidbody rigidbody;
+    private Vector3 vel = Vector3.zero;
+
     [SerializeField] private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        rigidbody = GetComponent<Rigidbody>();
+    }
 
     public void LoadSkin(Sprite sprite)
     {
         spriteRenderer.sprite = sprite;
     }
 
+    public void SetMoving(Vector3 velocity)
+    {
+        vel = velocity;
+    }
+
     private void Start()
     {
         Destroy(gameObject, bombFuseTime);
+    }
+
+    private void FixedUpdate()
+    {
+        if (vel != Vector3.zero)
+        {
+            rigidbody.MovePosition(rigidbody.position + vel * Time.fixedDeltaTime);
+        }
     }
 
     private void OnDestroy()
@@ -77,5 +98,13 @@ public class Bomb : MonoBehaviour
 
         Instantiate(explosionPrefab, position, Quaternion.identity);
         Explode(position, direction, length - 1);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (vel != Vector3.zero)
+        {
+            Destroy(gameObject);
+        }
     }
 }

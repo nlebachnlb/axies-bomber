@@ -16,6 +16,8 @@ public class MovementController : MonoBehaviour
     public SkeletonAnimation characterAnimation;
     public AxieConfigReader config;
 
+    public Vector3 LastDirection { get; set; } = Vector3.right;
+
     private new Rigidbody rigidbody;
     private Vector3 direction = Vector3.right;
     private string currentState = "idle";
@@ -72,7 +74,14 @@ public class MovementController : MonoBehaviour
         direction = newDirection;
 
         if (direction.x != 0)
+        {
             facing = direction.x;
+        }
+
+        if (direction != Vector3.zero)
+        {
+            LastDirection = direction;
+        }
 
         characterAnimation.gameObject.transform.localScale = new Vector3(-facing, 1f, 1f);
     }

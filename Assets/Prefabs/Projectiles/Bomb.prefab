@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2945844528104523874}
   - component: {fileID: 3046522670206376493}
+  - component: {fileID: 4535888581196650623}
   - component: {fileID: 7143686229393726428}
   - component: {fileID: 2631833291757102977}
   m_Layer: 7
@@ -56,6 +57,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!54 &4535888581196650623
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4010170348540224192}
+  serializedVersion: 4
+  m_Mass: 100
+  m_Drag: 100
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
 --- !u!135 &7143686229393726428
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -99,9 +127,12 @@ MonoBehaviour:
     m_Bits: 64
   color: {r: 0, g: 0, b: 0, a: 0}
   bombOwner:
+    identity: 0
     axieConfig: {fileID: 0}
     axieStats: {fileID: 0}
     bombStats: {fileID: 0}
+    ability: {fileID: 0}
+    abilityPrefab: {fileID: 0}
   spriteRenderer: {fileID: 6091454820242364596}
 --- !u!1 &4489134433151916544
 GameObject:
