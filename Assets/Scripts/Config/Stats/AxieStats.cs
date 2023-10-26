@@ -12,12 +12,7 @@ public class AxieStats : ScriptableObject
     public float speed;
     public float recoveryTimeAfterDamage = 1f;
 
-    public List<StatsBuff> buffs { get; private set; }
-
-    public AxieStats()
-    {
-        buffs = new List<StatsBuff>();
-    }
+    public List<StatsBuff> buffs { get; private set; } = new List<StatsBuff>();
 
     public void AddBuff(StatsBuff buff)
     {
@@ -37,25 +32,35 @@ public class AxieStats : ScriptableObject
 
     public AxieStats Calculate()
     {
-        AxieStats result = new AxieStats();
+        AxieStats result = Instantiate(this);
+        //Debug.Log("Before: " + result);
         foreach (StatsBuff buff in buffs)
         {
             switch (buff.buffType)
             {
                 case StatsBuff.BuffType.Speed:
-                    result.speed = buff.GetValueFromBase(speed);
+                    //Debug.Log("Speed buff: " + result.speed + " + " + buff.GetDeltaValueFromBase(speed));
+                    result.speed += buff.GetDeltaValueFromBase(speed);
                     break;
                 case StatsBuff.BuffType.BombMagazine:
-                    result.bombMagazine = (int)buff.GetValueFromBase(bombMagazine);
+                    //Debug.Log("Bomb buff: " + result.bombMagazine + " + " + buff.GetDeltaValueFromBase(bombMagazine));
+                    result.bombMagazine += (int)buff.GetDeltaValueFromBase(bombMagazine);
                     break;
                 case StatsBuff.BuffType.Health:
-                    result.health = (int)buff.GetValueFromBase(health);
+                    result.health += (int)buff.GetDeltaValueFromBase(health);
                     break;
                 case StatsBuff.BuffType.BombExplosionRadius:
-                    result.bombExplosionRadius = (int)buff.GetValueFromBase(bombExplosionRadius);
+                    result.bombExplosionRadius += (int)buff.GetDeltaValueFromBase(bombExplosionRadius);
                     break;
             }
         }
+        //Debug.Log("After: " + result);
+        return result;
+    }
+
+    public override string ToString()
+    {
+        string result = "{speed: " + speed + ", bombMagazine: " + bombMagazine + ", health: " + health + ", radius: " + bombExplosionRadius + "}";
         return result;
     }
 }

@@ -34,6 +34,17 @@ public class StatsBuff : SkillConfig
         return baseValue;
     }
 
+    public float GetDeltaValueFromBase(float baseValue, int level = 0)
+    {
+        if (buffUnit == BuffUnit.Percentage)
+            return baseValue * (buffValue[level] / 100f);
+
+        if (buffUnit == BuffUnit.Unit)
+            return buffValue[level];
+
+        return 0f;
+    }
+
     public override string GenerateDescription(int level = 0)
     {
         return description.Replace("{value}", "" + buffValue[level]);

@@ -1116,13 +1116,16 @@ MonoBehaviour:
   axieBaseStats: {fileID: 11400000, guid: d29a2aa3ab09043768cf6329d3c2c197, type: 2}
   bombBaseStats: {fileID: 11400000, guid: 0efee0f714bea4a528b4ec0ccc00d3a6, type: 2}
   slots:
-  - axieConfig: {fileID: 11400000, guid: 31da111efa11b487c830b364af85818b, type: 2}
+  - identity: 0
+    axieConfig: {fileID: 11400000, guid: 31da111efa11b487c830b364af85818b, type: 2}
     axieStats: {fileID: 11400000, guid: d29a2aa3ab09043768cf6329d3c2c197, type: 2}
     bombStats: {fileID: 11400000, guid: 0efee0f714bea4a528b4ec0ccc00d3a6, type: 2}
-  - axieConfig: {fileID: 11400000, guid: 370c57ecf1bea4619b6421f53194f43b, type: 2}
+  - identity: 0
+    axieConfig: {fileID: 11400000, guid: 370c57ecf1bea4619b6421f53194f43b, type: 2}
     axieStats: {fileID: 11400000, guid: f3db209d9ca99455b924ebbca2afa7b9, type: 2}
     bombStats: {fileID: 11400000, guid: c22b7a04e7812427193e938aca0b694d, type: 2}
-  - axieConfig: {fileID: 11400000, guid: bed49f4034e14438c99d520aee8e510b, type: 2}
+  - identity: 0
+    axieConfig: {fileID: 11400000, guid: bed49f4034e14438c99d520aee8e510b, type: 2}
     axieStats: {fileID: 11400000, guid: 494e9fd63c3ad4e2db0c29405503da83, type: 2}
     bombStats: {fileID: 11400000, guid: a1233dcf731b6484bbf2d1d5e0a1db53, type: 2}
   inputSlotMap: 310000003200000033000000
@@ -1133,7 +1136,7 @@ MonoBehaviour:
   axieHeroHUD: {fileID: 1398546208}
   skillPickUI: {fileID: 8001414281099262444, guid: 81ca89d5e16214f63a8f13427b751bde,
     type: 3}
-  testMap: 1
+  testMap: 0
   testMapId: 
 --- !u!4 &1533466146
 Transform:

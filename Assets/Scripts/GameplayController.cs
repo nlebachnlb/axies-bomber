@@ -45,6 +45,7 @@ public class GameplayController : MonoBehaviour
         EventBus.onAxieHeroDeath += OnAxieHeroDeath;
         EventBus.onEnterSkillPool += OnEnterSkillPool;
         EventBus.onOpenSkillPool += OnOpenSkillPool;
+        EventBus.onPickSkill += OnPickSkill;
 
         mapController = GetComponent<MapController>();
         skillController = GetComponent<SkillPoolController>();
@@ -56,6 +57,7 @@ public class GameplayController : MonoBehaviour
         EventBus.onAxieHeroDeath -= OnAxieHeroDeath;
         EventBus.onEnterSkillPool -= OnEnterSkillPool;
         EventBus.onOpenSkillPool -= OnOpenSkillPool;
+        EventBus.onPickSkill -= OnPickSkill;
     }
 
     private void Start()
@@ -69,7 +71,7 @@ public class GameplayController : MonoBehaviour
 
         SwitchAxieHero(0);
 
-        mapController.Reload("1-2");
+        mapController.Reload("1-1");
     }
 
     private void InitAxieHeroDataSlots()
@@ -78,12 +80,16 @@ public class GameplayController : MonoBehaviour
         UserData model = AppRoot.Instance.UserDataModel.User;
         List<AxiePackedConfig> configs = model.currentPickedAxies.Select(id => AppRoot.Instance.Config.availableAxies.GetAxiePackedConfigById(id)).ToList();
 
+        Debug.Log("Initiating...");
         for (int i = 0; i < configs.Count; ++i)
         {
             AxieHeroData axie = new AxieHeroData();
-            axie.axieConfig = configs[i].axieConfig;
-            axie.axieStats = configs[i].axieStats;
-            axie.bombStats = configs[i].bombStats;
+            axie.identity = (AxieIdentity)configs[i].id;
+            axie.axieConfig = Instantiate(configs[i].axieConfig);
+            axie.axieStats = Instantiate(configs[i].axieStats);
+            axie.bombStats = Instantiate(configs[i].bombStats);
+            Debug.Log("Init: " + axie.identity);
+            axie.axieStats.ResetBuffs();
             slots.Add(axie);
         }
     }
@@ -188,5 +194,29 @@ public class GameplayController : MonoBehaviour
 
         SkillPickUI ui = Instantiate(skillPickUI, canvas.transform);
         ui.skills = skills;
+    }
+
+    private void OnPickSkill(SkillConfig skill)
+    {
+        if (skill.isAbility)
+        {
+
+        }
+        else
+        {
+            StatsBuff buff = (StatsBuff)skill;
+            Debug.Log("Skill is for " + buff.axieIdentity + ", buff type is " + buff.buffType);
+            foreach (AxieHeroData axie in slots)
+            {
+                if (axie.identity == buff.axieIdentity)
+                {
+                    axie.axieStats.AddBuff(buff);
+                    Debug.Log("After buff for: " + axie.identity + ": " + axie.axieStats.Calculate().ToString());
+                    axie.bombsRemaining = axie.axieStats.Calculate().bombMagazine;
+                    axie.RaiseUpdateInfo();
+                    break;
+                }
+            }
+        }
     }
 }

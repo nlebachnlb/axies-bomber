@@ -11,10 +11,10 @@ public class AxieSlotHUD : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI textKey;
     [SerializeField] private GameObject infoPanel;
 
-    public void SetInfo(int bomb, int health)
+    public void SetInfo(AxieHeroData.InfoPacket info)
     {
-        textBomb.text = "" + bomb;
-        textHealth.text = "" + health;
+        textBomb.text = "" + info.bombsRemaining + "/" + info.bombMagazine;
+        textHealth.text = "" + info.health + "/" + info.healthLimit;
     }
 
     public void SetAxieIcon(Sprite axie)

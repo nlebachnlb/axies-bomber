@@ -209,7 +209,7 @@ public class MovementController : MonoBehaviour
 
     private void OnSwitchHero(AxieHeroData heroData)
     {
-        stats = heroData.axieStats;
+        stats = heroData.axieStats.Calculate();
         currentState = "";
     }
 

@@ -14,10 +14,10 @@ public class AxieHeroHUD : MonoBehaviour
             AxieSlotHUD hud = Instantiate(axieSlotHUD, transform);
             hud.SetAxieIcon(axieHeroData.axieConfig.icon);
             hud.SetKeyInput(inputMap[i]);
-            axieHeroData.onInfoChanged += (int health, int bombsRemaining) =>
+            axieHeroData.onInfoChanged += (AxieHeroData.InfoPacket info) =>
             {
-                hud.SetInfo(bombsRemaining, health);
-                hud.SetEnabled(health > 0);
+                hud.SetInfo(info);
+                hud.SetEnabled(info.health > 0);
             };
         }
     }

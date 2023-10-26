@@ -63,7 +63,7 @@ public class BombController : MonoBehaviour
         bomb.bombOwner = axieHeroData;
 
         bomb.bombFuseTime = axieHeroData.bombStats.bombFuseTime;
-        bomb.explosionLength = axieHeroData.bombStats.length;
+        bomb.explosionLength = axieHeroData.axieStats.Calculate().bombExplosionRadius;
         bomb.LoadSkin(config.Axie.bombSprite);
         bomb.color = config.Axie.auraColor;
         bomb.OnBombFuse = () =>
