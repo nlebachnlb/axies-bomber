@@ -217,10 +217,11 @@ public class MovementController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            EventBus.RaiseOnEnterSkillPool();
+            EventBus.RaiseOnOpenSkillPool();
             SetDirection(Vector3.zero);
             ResetInput();
             enabled = false;
+            other.enabled = false;
         }
     }
 

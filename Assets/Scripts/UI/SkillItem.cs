@@ -30,13 +30,13 @@ public class SkillItem : MonoBehaviour
         textSkillDesc.text = Config.GenerateDescription();
         textSkillMinorDesc.text = Config.GenerateMinorDescription();
         abilityMark.SetActive(Config.isAbility);
-        axie.sprite = Config.visual;
+        axie.sprite = Config.ownerAxie.icon;
         abilityExplanation.SetActive(Config.isAbility);
     }
 
     public void OnPointerEnter(BaseEventData data)
     {
-        select.CrossFadeAlpha(0.5f, 0.15f, true);
+        select.CrossFadeAlpha(0.8f, 0.15f, true);
         card.rectTransform.DOLocalMoveX(-337.32f - 16f, 0.15f);
     }
 

@@ -17,7 +17,7 @@ MonoBehaviour:
     damage. \nShade activation in {dismissDuration} seconds."
   minorDescription: 'Cooldown: every {killsNeeded} kills.'
   isAbility: 1
-  visual: {fileID: -2098425190, guid: d61406cdea6f04f9396a442220d1798b, type: 3}
   targetAxie: {fileID: 21300000, guid: 646b362c2220a4fa99f5ad996ff94bd5, type: 3}
+  ownerAxie: {fileID: 11400000, guid: 31da111efa11b487c830b364af85818b, type: 2}
   killsNeeded: 5
   dismissDuration: 3

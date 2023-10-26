@@ -24,6 +24,7 @@ public class GameplayController : MonoBehaviour
 
     [Header("Environment")]
     [SerializeField] private Light globalLight;
+    [SerializeField] private SkillPoolEntrance item;
 
     [Header("HUD")]
     [SerializeField] private Canvas canvas;
@@ -36,14 +37,17 @@ public class GameplayController : MonoBehaviour
 
     private int currentSlot = -1;
     private MapController mapController;
+    private SkillPoolController skillController;
 
     private void Awake()
     {
         EventBus.onBombFuse += PlayShake;
         EventBus.onAxieHeroDeath += OnAxieHeroDeath;
         EventBus.onEnterSkillPool += OnEnterSkillPool;
+        EventBus.onOpenSkillPool += OnOpenSkillPool;
 
         mapController = GetComponent<MapController>();
+        skillController = GetComponent<SkillPoolController>();
     }
 
     private void OnDestroy()
@@ -51,6 +55,7 @@ public class GameplayController : MonoBehaviour
         EventBus.onBombFuse -= PlayShake;
         EventBus.onAxieHeroDeath -= OnAxieHeroDeath;
         EventBus.onEnterSkillPool -= OnEnterSkillPool;
+        EventBus.onOpenSkillPool -= OnOpenSkillPool;
     }
 
     private void Start()
@@ -125,6 +130,9 @@ public class GameplayController : MonoBehaviour
                 SwitchAxieHero(i);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+            Instantiate(item);
     }
 
     private int GetFirstAliveSlotFromCurrent()
@@ -157,12 +165,18 @@ public class GameplayController : MonoBehaviour
         }
     }
 
-    private void OnEnterSkillPool()
+    private void OnOpenSkillPool()
     {
-        StartCoroutine(OnEnterSkillPoolProcess());
+        List<SkillConfig> skills = skillController.GetRandomizedSkillPool(1);
+        EventBus.RaiseOnEnterSkillPool(skills);
     }
 
-    private IEnumerator OnEnterSkillPoolProcess()
+    private void OnEnterSkillPool(List<SkillConfig> skills)
+    {
+        StartCoroutine(OnEnterSkillPoolProcess(skills));
+    }
+
+    private IEnumerator OnEnterSkillPoolProcess(List<SkillConfig> skills)
     {
         cameraShaker.Shake(0.5f, 0.3f);
         globalLight.DOIntensity(0f, 0.15f).OnComplete(() =>
@@ -172,6 +186,7 @@ public class GameplayController : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        Instantiate(skillPickUI, canvas.transform);
+        SkillPickUI ui = Instantiate(skillPickUI, canvas.transform);
+        ui.skills = skills;
     }
 }

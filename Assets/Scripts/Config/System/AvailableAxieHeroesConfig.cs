@@ -24,4 +24,10 @@ public class AvailableAxieHeroesConfig : ScriptableObject
             return configMap[id];
         return null;
     }
+
+    public List<SkillConfig> GetAxieSkillConfigsById(int id, int level = 0)
+    {
+        AxiePackedConfig config = GetAxiePackedConfigById(id);
+        return config.skillConfigs[level].skills;
+    }
 }

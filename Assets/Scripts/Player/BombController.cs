@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -84,7 +85,7 @@ public class BombController : MonoBehaviour
         axieHeroData = heroData;
     }
 
-    private void OnEnterSkillPool()
+    private void OnEnterSkillPool(List<SkillConfig> skills)
     {
         enabled = false;
     }

@@ -25,9 +25,9 @@ public class UserDataModel : MonoBehaviour
     public UserData GenerateDefaultUserData()
     {
         UserData user = new UserData();
-        user.ownedAxieIds.Add(0);
-        user.ownedAxieIds.Add(1);
-        user.ownedAxieIds.Add(2);
+        user.ownedAxieIds.Add((int)AxieIdentity.Aquatic);
+        user.ownedAxieIds.Add((int)AxieIdentity.Bird);
+        user.ownedAxieIds.Add((int)AxieIdentity.Reptile);
 
         return user;
     }
@@ -51,6 +51,28 @@ public class UserDataModel : MonoBehaviour
 
         // Put Axie into new slot
         User.currentPickedAxies[slot] = axieId;
+    }
+
+    public List<SkillConfig> GetAllSkillsFromPickedAxies()
+    {
+        List<SkillConfig> result = new List<SkillConfig>();
+        foreach (var axie in User.currentPickedAxies)
+        {
+            result.AddRange(AppRoot.Instance.Config.availableAxies.GetAxieSkillConfigsById(axie));
+        }
+        return result;
+    }
+
+    public List<SkillConfig> GetPickedAxieAbilities(int level = 0)
+    {
+        List<SkillConfig> result = new List<SkillConfig>();
+        foreach (var axie in User.currentPickedAxies)
+        {
+            AxiePackedConfig axieConfig = AppRoot.Instance.Config.availableAxies.GetAxiePackedConfigById(axie);
+            result.Add(axieConfig.ability[level]);
+        }
+
+        return result;
     }
 
     public bool IsAxiePicked(int axieId)

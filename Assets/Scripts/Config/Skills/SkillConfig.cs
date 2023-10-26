@@ -11,8 +11,9 @@ public class SkillConfig : ScriptableObject
     [TextArea]
     public string minorDescription;
     public bool isAbility = false;
-    public Sprite visual;
     public Sprite targetAxie;
+    public AxieConfig ownerAxie;
+    public AxieIdentity axieIdentity;
 
     public virtual string GenerateDescription(int level = 0)
     {

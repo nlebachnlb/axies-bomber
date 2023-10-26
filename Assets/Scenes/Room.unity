@@ -1091,6 +1091,7 @@ GameObject:
   - component: {fileID: 1533466146}
   - component: {fileID: 1533466145}
   - component: {fileID: 1533466147}
+  - component: {fileID: 1533466148}
   m_Layer: 0
   m_Name: GameplayController
   m_TagString: Untagged
@@ -1126,6 +1127,8 @@ MonoBehaviour:
     bombStats: {fileID: 11400000, guid: a1233dcf731b6484bbf2d1d5e0a1db53, type: 2}
   inputSlotMap: 310000003200000033000000
   cameraShaker: {fileID: 1211171617}
+  globalLight: {fileID: 410087040}
+  item: {fileID: 12123213872727703, guid: 6ad9e82eb16e7430990c1e832c0971e7, type: 3}
   canvas: {fileID: 1229217463}
   axieHeroHUD: {fileID: 1398546208}
   skillPickUI: {fileID: 8001414281099262444, guid: 81ca89d5e16214f63a8f13427b751bde,
@@ -1160,6 +1163,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 2068155581}
+--- !u!114 &1533466148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533466144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3737608d950434d96025f97a698977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1640919998 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3868202461473630865, guid: 4fc55d22c1690487fb7c93ef57f2d1ab,

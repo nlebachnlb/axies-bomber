@@ -19,6 +19,7 @@ MonoBehaviour:
     on any collision.'
   minorDescription: 'Cooldown: every {placedBombsNeeded} placed bomb(s).'
   isAbility: 1
-  visual: {fileID: 21300000, guid: 5acf528054a61475dbbd75ceadd24f09, type: 3}
-  targetAxie: {fileID: -1844338862, guid: d61406cdea6f04f9396a442220d1798b, type: 3}
+  targetAxie: {fileID: 21300000, guid: b0d4a6922cf8647e8880ad81b9aa4d69, type: 3}
+  ownerAxie: {fileID: 11400000, guid: 370c57ecf1bea4619b6421f53194f43b, type: 2}
+  axieIdentity: 0
   placedBombsNeeded: 5

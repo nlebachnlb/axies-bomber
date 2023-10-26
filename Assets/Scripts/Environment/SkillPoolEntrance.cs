@@ -43,7 +43,7 @@ public class SkillPoolEntrance : MonoBehaviour
         Destroy(gameObject, 0.35f);
     }
 
-    private void OnEnterSkillPool()
+    private void OnEnterSkillPool(List<SkillConfig> skills)
     {
         PlayAuraLightIntensity();
     }

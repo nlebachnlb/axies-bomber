@@ -17,11 +17,28 @@ MonoBehaviour:
     axieConfig: {fileID: 11400000, guid: 370c57ecf1bea4619b6421f53194f43b, type: 2}
     axieStats: {fileID: 11400000, guid: f3db209d9ca99455b924ebbca2afa7b9, type: 2}
     bombStats: {fileID: 11400000, guid: c22b7a04e7812427193e938aca0b694d, type: 2}
+    skillConfigs:
+    - skills:
+      - {fileID: 11400000, guid: 1a4b25e4344614f928c6ba02404c4bed, type: 2}
+    ability:
+    - {fileID: 11400000, guid: e03f4de97ea81488b99d08b02a3c0da7, type: 2}
   - id: 1
     axieConfig: {fileID: 11400000, guid: 31da111efa11b487c830b364af85818b, type: 2}
     axieStats: {fileID: 11400000, guid: d29a2aa3ab09043768cf6329d3c2c197, type: 2}
     bombStats: {fileID: 11400000, guid: 0efee0f714bea4a528b4ec0ccc00d3a6, type: 2}
+    skillConfigs:
+    - skills:
+      - {fileID: 11400000, guid: 67eb017db84f34013a5025bc8ece5f54, type: 2}
+      - {fileID: 11400000, guid: e29c39c6a431a40c2ac93b54b26afead, type: 2}
+    ability:
+    - {fileID: 11400000, guid: a9123958c1d9e43f7ae3d46266c016f5, type: 2}
   - id: 2
     axieConfig: {fileID: 11400000, guid: bed49f4034e14438c99d520aee8e510b, type: 2}
     axieStats: {fileID: 11400000, guid: 494e9fd63c3ad4e2db0c29405503da83, type: 2}
     bombStats: {fileID: 11400000, guid: a1233dcf731b6484bbf2d1d5e0a1db53, type: 2}
+    skillConfigs:
+    - skills:
+      - {fileID: 11400000, guid: e45f90b28fab14106bc04754e5a56299, type: 2}
+      - {fileID: 11400000, guid: 8bdcc5927568d46ab80c942e5cbb3464, type: 2}
+    ability:
+    - {fileID: 11400000, guid: 21a92011e36ad440eb2cd772ec8459e2, type: 2}

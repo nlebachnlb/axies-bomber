@@ -29,7 +29,10 @@ public class EventBus
     public delegate void OnPickAxie(int slot, AxiePackedConfig config);
     public static event OnPickAxie onPickAxie;
 
-    public delegate void OnEnterSkillPool();
+    public delegate void OnOpenSkillPool();
+    public static event OnOpenSkillPool onOpenSkillPool;
+
+    public delegate void OnEnterSkillPool(List<SkillConfig> skills);
     public static event OnEnterSkillPool onEnterSkillPool;
 
     public delegate void OnPickSkill(SkillConfig skill);
@@ -55,14 +58,19 @@ public class EventBus
         onPickAxie?.Invoke(slot, config);
     }
 
-    public static void RaiseOnEnterSkillPool()
+    public static void RaiseOnEnterSkillPool(List<SkillConfig> skills)
     {
-        onEnterSkillPool?.Invoke();
+        onEnterSkillPool?.Invoke(skills);
     }
 
     public static void RaiseOnPickSkill(SkillConfig skill)
     {
         onPickSkill?.Invoke(skill);
+    }
+
+    public static void RaiseOnOpenSkillPool()
+    {
+        onOpenSkillPool?.Invoke();
     }
 
 
