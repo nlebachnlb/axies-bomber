@@ -21,12 +21,14 @@ public class BombController : MonoBehaviour
 
         EventBus.onSwitchAxieHero += OnSwitchHero;
         EventBus.onEnterSkillPool += OnEnterSkillPool;
+        EventBus.onPickSkill += OnPickSkill;
     }
 
     private void OnDestroy()
     {
         EventBus.onSwitchAxieHero -= OnSwitchHero;
         EventBus.onEnterSkillPool -= OnEnterSkillPool;
+        EventBus.onPickSkill -= OnPickSkill;
     }
 
     private void Start()
@@ -85,5 +87,10 @@ public class BombController : MonoBehaviour
     private void OnEnterSkillPool()
     {
         enabled = false;
+    }
+
+    private void OnPickSkill(SkillConfig skill)
+    {
+        enabled = true;
     }
 }

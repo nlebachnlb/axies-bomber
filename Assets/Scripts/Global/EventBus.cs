@@ -32,6 +32,9 @@ public class EventBus
     public delegate void OnEnterSkillPool();
     public static event OnEnterSkillPool onEnterSkillPool;
 
+    public delegate void OnPickSkill(SkillConfig skill);
+    public static event OnPickSkill onPickSkill;
+
     public static void RaiseOnBombFuse()
     {
         onBombFuse?.Invoke();
@@ -56,6 +59,12 @@ public class EventBus
     {
         onEnterSkillPool?.Invoke();
     }
+
+    public static void RaiseOnPickSkill(SkillConfig skill)
+    {
+        onPickSkill?.Invoke(skill);
+    }
+
 
     private static EventBus instance = null;
 }

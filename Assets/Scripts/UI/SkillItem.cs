@@ -48,6 +48,6 @@ public class SkillItem : MonoBehaviour
 
     public void OnPointerClick(BaseEventData data)
     {
-
+        EventBus.RaiseOnPickSkill(Config);
     }
 }

@@ -7,6 +7,19 @@ public class SkillPickUI : MonoBehaviour
     public List<SkillConfig> skills;
 
     [SerializeField] private List<SkillItem> skillItems;
+    private Animator animator;
+
+    private void Awake()
+    {
+        EventBus.onPickSkill += OnPickSkill;
+
+        animator = GetComponent<Animator>();
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.onPickSkill -= OnPickSkill;
+    }
 
     private IEnumerator Start()
     {
@@ -17,5 +30,17 @@ public class SkillPickUI : MonoBehaviour
             skillItems[i].Config = skills[i];
             skillItems[i].Reload();
         }
+    }
+
+    private void OnPickSkill(SkillConfig skill)
+    {
+        StartCoroutine(PickSkillProcess(skill));
+    }
+
+    private IEnumerator PickSkillProcess(SkillConfig skill)
+    {
+        animator.SetTrigger("Exit");
+        yield return new WaitForSeconds(0.8f);
+        Destroy(gameObject);
     }
 }

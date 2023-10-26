@@ -33,12 +33,14 @@ public class MovementController : MonoBehaviour
         config = GetComponent<AxieConfigReader>();
 
         EventBus.onSwitchAxieHero += OnSwitchHero;
+        EventBus.onPickSkill += OnPickSkill;
         InitInput();
     }
 
     private void OnDestroy()
     {
         EventBus.onSwitchAxieHero -= OnSwitchHero;
+        EventBus.onPickSkill -= OnPickSkill;
     }
 
     private void Update()
@@ -208,7 +210,13 @@ public class MovementController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             EventBus.RaiseOnEnterSkillPool();
+            SetDirection(Vector3.zero);
             enabled = false;
         }
+    }
+
+    private void OnPickSkill(SkillConfig skill)
+    {
+        enabled = true;
     }
 }
