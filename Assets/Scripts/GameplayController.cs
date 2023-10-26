@@ -122,6 +122,7 @@ public class GameplayController : MonoBehaviour
         ReloadAxieHeroConfig();
 
         currentSlot = slotIndex;
+        axieHeroHUD.SelectSlot(slotIndex);
         EventBus.RaiseOnSwitchAxieHero(hero);
     }
 
