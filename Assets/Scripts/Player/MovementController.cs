@@ -62,7 +62,7 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 position = rigidbody.position;
-        Vector3 translation = direction * stats.speed * Time.fixedDeltaTime;
+        Vector3 translation = direction * stats.Calculate().speed * Time.fixedDeltaTime;
 
         rigidbody.MovePosition(position + translation);
     }

@@ -23,4 +23,5 @@ public class AxiePackedConfig
     public BombStats bombStats;
     public List<SkillConfigWithLevel> skillConfigs;
     public List<SkillConfig> ability;
+    public AxieAbility abilityPrefab;
 }

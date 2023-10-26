@@ -18,6 +18,7 @@ MonoBehaviour:
   isAbility: 0
   targetAxie: {fileID: 21300000, guid: 58942894e6f7b42cf8bf95a83c273941, type: 3}
   ownerAxie: {fileID: 11400000, guid: bed49f4034e14438c99d520aee8e510b, type: 2}
+  axieIdentity: 2
   buffType: 0
   buffUnit: 1
   buffValue:

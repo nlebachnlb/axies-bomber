@@ -19,6 +19,8 @@ public class AxieHeroData
     public AxieConfig axieConfig;
     public AxieStats axieStats;
     public BombStats bombStats;
+    public SkillConfig ability;
+    public AxieAbility abilityPrefab;
 
     public int health
     {

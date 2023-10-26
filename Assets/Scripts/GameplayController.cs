@@ -88,6 +88,9 @@ public class GameplayController : MonoBehaviour
             axie.axieConfig = Instantiate(configs[i].axieConfig);
             axie.axieStats = Instantiate(configs[i].axieStats);
             axie.bombStats = Instantiate(configs[i].bombStats);
+            axie.abilityPrefab = configs[i].abilityPrefab;
+            axie.ability = null;
+
             Debug.Log("Init: " + axie.identity);
             axie.axieStats.ResetBuffs();
             slots.Add(axie);
@@ -173,7 +176,7 @@ public class GameplayController : MonoBehaviour
 
     private void OnOpenSkillPool()
     {
-        List<SkillConfig> skills = skillController.GetRandomizedSkillPool(1);
+        List<SkillConfig> skills = skillController.GetRandomizedSkillPool(0);
         EventBus.RaiseOnEnterSkillPool(skills);
     }
 
@@ -200,7 +203,15 @@ public class GameplayController : MonoBehaviour
     {
         if (skill.isAbility)
         {
-
+            foreach (AxieHeroData axie in slots)
+            {
+                if (axie.identity == skill.axieIdentity)
+                {
+                    axie.ability = skill;
+                    EventBus.RaiseOnSwitchAxieHero(slots[currentSlot]);
+                    break;
+                }
+            }
         }
         else
         {
