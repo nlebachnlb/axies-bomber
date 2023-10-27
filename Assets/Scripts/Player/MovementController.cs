@@ -88,9 +88,13 @@ public class MovementController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if (other.gameObject.layer == LayerMask.NameToLayer("Explosion")) {
-        //    DeathSequence();
-        //}
+        if (other.CompareTag("MapChanger"))
+        {
+            Debug.Log("Change map");
+            Destroy(other.gameObject);
+            string nextMap = other.GetComponent<MapChanger>().targetMapId;
+            EventBus.RaiseOnMapChange(nextMap);
+        }
     }
 
     private void InitInput()
@@ -116,7 +120,7 @@ public class MovementController : MonoBehaviour
         inputStack = new Stack<int>();
     }
 
-    private void ResetInput()
+    public void ResetInput()
     {
         for (int i = 0; i < pressedKeys.Count; ++i)
             pressedKeys[i] = false;

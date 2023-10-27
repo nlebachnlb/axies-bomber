@@ -70,8 +70,7 @@ public class GameplayController : MonoBehaviour
             slot.ReloadInGameData();
 
         SwitchAxieHero(0);
-
-        mapController.Reload("1-2");
+        mapController.Reload("1-1");
     }
 
     private void InitAxieHeroDataSlots()
@@ -230,5 +229,10 @@ public class GameplayController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnChangeMap(string mapId)
+    {
+
     }
 }

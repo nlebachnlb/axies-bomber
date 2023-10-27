@@ -38,6 +38,9 @@ public class EventBus
     public delegate void OnPickSkill(SkillConfig skill);
     public static event OnPickSkill onPickSkill;
 
+    public delegate void OnMapChange(string newId);
+    public static event OnMapChange onMapChange;
+
     public static void RaiseOnBombFuse()
     {
         onBombFuse?.Invoke();
@@ -73,6 +76,10 @@ public class EventBus
         onOpenSkillPool?.Invoke();
     }
 
+    public static void RaiseOnMapChange(string newId)
+    {
+        onMapChange?.Invoke(newId);
+    }
 
     private static EventBus instance = null;
 }
