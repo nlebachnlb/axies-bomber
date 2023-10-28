@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   length: 1
   explosionDuration: 0.5
-  bombFuseTime: 3
+  bombFuseTime: 1.75

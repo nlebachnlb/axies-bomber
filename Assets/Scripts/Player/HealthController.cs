@@ -55,6 +55,10 @@ public class HealthController : MonoBehaviour
         {
             TakeDamage(1);
         }
+        else if (other.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(1);
+        }
     }
 
     private void Awake()
