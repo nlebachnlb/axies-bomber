@@ -20,8 +20,11 @@ MonoBehaviour:
     skillConfigs:
     - skills:
       - {fileID: 11400000, guid: 1a4b25e4344614f928c6ba02404c4bed, type: 2}
+      - {fileID: 11400000, guid: 1c5736ff16d284fd2ba02471f75ae398, type: 2}
     ability:
     - {fileID: 11400000, guid: e03f4de97ea81488b99d08b02a3c0da7, type: 2}
+    - {fileID: 11400000, guid: e21ad080cff3a4c5eb9b6ab4c9419909, type: 2}
+    - {fileID: 11400000, guid: 0da5782558e6a4088afe98090a5f656d, type: 2}
     abilityPrefab: {fileID: 4564667999815439112, guid: 34a383ee6e82f49e6a899c50863dc7bc,
       type: 3}
   - id: 1
@@ -34,6 +37,8 @@ MonoBehaviour:
       - {fileID: 11400000, guid: e29c39c6a431a40c2ac93b54b26afead, type: 2}
     ability:
     - {fileID: 11400000, guid: a9123958c1d9e43f7ae3d46266c016f5, type: 2}
+    - {fileID: 11400000, guid: f93b4918c71b646b7968a1171e29ab37, type: 2}
+    - {fileID: 11400000, guid: 99f0aed55dcea4c09bab33aea853bf9b, type: 2}
     abilityPrefab: {fileID: 7165475212485695643, guid: 60dd5fcb695dc493593e59cb88e33365,
       type: 3}
   - id: 2
@@ -46,5 +51,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 8bdcc5927568d46ab80c942e5cbb3464, type: 2}
     ability:
     - {fileID: 11400000, guid: 21a92011e36ad440eb2cd772ec8459e2, type: 2}
+    - {fileID: 11400000, guid: 2d8e3997c0d684f7f95d048d8a32fc39, type: 2}
+    - {fileID: 11400000, guid: 40a79468222104c9b9a5f4a24df5c6d6, type: 2}
     abilityPrefab: {fileID: 7165475212485695643, guid: 60dd5fcb695dc493593e59cb88e33365,
       type: 3}

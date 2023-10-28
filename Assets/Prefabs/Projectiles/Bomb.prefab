@@ -134,6 +134,9 @@ MonoBehaviour:
     ability: {fileID: 0}
     abilityPrefab: {fileID: 0}
   spriteRenderer: {fileID: 6091454820242364596}
+  explodingCollisionMask:
+    serializedVersion: 2
+    m_Bits: 65
 --- !u!1 &4489134433151916544
 GameObject:
   m_ObjectHideFlags: 0

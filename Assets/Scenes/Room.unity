@@ -343,6 +343,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3618722909391872004, guid: 4fc55d22c1690487fb7c93ef57f2d1ab,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3618722909391872004, guid: 4fc55d22c1690487fb7c93ef57f2d1ab,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4813522279972414414, guid: 4fc55d22c1690487fb7c93ef57f2d1ab,
         type: 3}
       propertyPath: m_Mesh
@@ -356,7 +366,7 @@ PrefabInstance:
     - target: {fileID: 5256838370808864509, guid: 4fc55d22c1690487fb7c93ef57f2d1ab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5256838370808864509, guid: 4fc55d22c1690487fb7c93ef57f2d1ab,
         type: 3}
@@ -366,7 +376,7 @@ PrefabInstance:
     - target: {fileID: 5256838370808864509, guid: 4fc55d22c1690487fb7c93ef57f2d1ab,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.04
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5256838370808864509, guid: 4fc55d22c1690487fb7c93ef57f2d1ab,
         type: 3}

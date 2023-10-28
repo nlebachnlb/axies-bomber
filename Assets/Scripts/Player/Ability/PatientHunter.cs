@@ -29,6 +29,7 @@ public class PatientHunter : AxieAbility<PatientHunterStats>
     public override void SetExtraParams(AxieHeroData axieHero)
     {
         base.SetExtraParams(axieHero);
+        Stats = (PatientHunterStats)Instantiate(axieHero.ability);
         killedEnemies = (int)axieHero.GetExtraParam("killedEnemies", Stats.killsNeeded);
         axieData = axieHero;
         EventBus.RaiseOnAbilityCooldown(killedEnemies, Stats.killsNeeded, 1);

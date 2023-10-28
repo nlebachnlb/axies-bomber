@@ -6,12 +6,12 @@ public class TinyCatapultStats : SkillConfig
     public float cooldownTime;
     public float sturdyDuration;
 
-    public override string GenerateDescription(int level = 0)
+    public override string GenerateDescription()
     {
         return description.Replace("{sturdyDuration}", "" + sturdyDuration);
     }
 
-    public override string GenerateMinorDescription(int level = 0)
+    public override string GenerateMinorDescription()
     {
         return minorDescription.Replace("{cooldownTime}", "" + cooldownTime);
     }

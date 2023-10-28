@@ -63,13 +63,13 @@ public class UserDataModel : MonoBehaviour
         return result;
     }
 
-    public List<SkillConfig> GetPickedAxieAbilities(int level = 0)
+    public List<List<SkillConfig>> GetPickedAxieAbilities()
     {
-        List<SkillConfig> result = new List<SkillConfig>();
+        List<List<SkillConfig>> result = new List<List<SkillConfig>>();
         foreach (var axie in User.currentPickedAxies)
         {
             AxiePackedConfig axieConfig = AppRoot.Instance.Config.availableAxies.GetAxiePackedConfigById(axie);
-            result.Add(axieConfig.ability[level]);
+            result.Add(new List<SkillConfig>(axieConfig.ability));
         }
 
         return result;

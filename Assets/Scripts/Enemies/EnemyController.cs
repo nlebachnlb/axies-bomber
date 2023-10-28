@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour
     {
         collider.enabled = false;
         onDeath?.Invoke();
+        EventBus.RaiseOnEnemyDeath();
         Destroy(gameObject);
     }
 }

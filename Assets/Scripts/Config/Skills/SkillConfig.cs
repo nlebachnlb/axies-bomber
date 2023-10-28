@@ -14,13 +14,14 @@ public class SkillConfig : ScriptableObject
     public Sprite targetAxie;
     public AxieConfig ownerAxie;
     public AxieIdentity axieIdentity;
+    public int level = 0;
 
-    public virtual string GenerateDescription(int level = 0)
+    public virtual string GenerateDescription()
     {
         return "";
     }
 
-    public virtual string GenerateMinorDescription(int level = 0)
+    public virtual string GenerateMinorDescription()
     {
         return "";
     }

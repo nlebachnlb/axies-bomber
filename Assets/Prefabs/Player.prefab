@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 1988761712901673047}
   - component: {fileID: 2878728743684143185}
   - component: {fileID: 5346295266284951868}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -263,6 +263,14 @@ MonoBehaviour:
   explosionLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  axieHeroData:
+    identity: 0
+    axieConfig: {fileID: 0}
+    axieStats: {fileID: 0}
+    bombStats: {fileID: 0}
+    ability: {fileID: 0}
+    abilityPrefab: {fileID: 0}
+  config: {fileID: 0}
 --- !u!114 &2878728743684143185
 MonoBehaviour:
   m_ObjectHideFlags: 0

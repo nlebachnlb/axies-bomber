@@ -30,6 +30,7 @@ public class TailSlap : AxieAbility<TailSlapStats>
     public override void SetExtraParams(AxieHeroData axieHero)
     {
         base.SetExtraParams(axieHero);
+        Stats = (TailSlapStats)Instantiate(axieHero.ability);
         placedBombs = (int)axieHero.GetExtraParam("placedBombs", Stats.placedBombsNeeded);
         axieData = axieHero;
         EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);

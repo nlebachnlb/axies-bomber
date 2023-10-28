@@ -113,8 +113,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 94.266, y: -66.107}
-  m_SizeDelta: {x: -188.531, y: 53.736}
+  m_AnchoredPosition: {x: 31.805, y: -66.107}
+  m_SizeDelta: {x: -313.45, y: 53.736}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3291213780942533458
 CanvasRenderer:
@@ -444,6 +444,7 @@ MonoBehaviour:
   axie: {fileID: 3688864980233606054}
   abilityExplanation: {fileID: 518056984037310006}
   select: {fileID: 3343064377675299931}
+  maxLevelColor: {r: 0.7169812, g: 0.40094343, b: 0, a: 0.65882355}
 --- !u!1 &2215394979398152663
 GameObject:
   m_ObjectHideFlags: 0

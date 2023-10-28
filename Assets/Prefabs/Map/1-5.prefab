@@ -100,7 +100,7 @@ MonoBehaviour:
   - {fileID: 5408159154750375970}
   - {fileID: 2307598046870317627}
   - {fileID: 1524024069662875521}
-  rewardAbilityPool: 0
+  rewardAbilityPool: 1
   exitGate: {fileID: 7094912022468245197}
   poolEntrance: {fileID: 12123213872727703, guid: 6ad9e82eb16e7430990c1e832c0971e7,
     type: 3}

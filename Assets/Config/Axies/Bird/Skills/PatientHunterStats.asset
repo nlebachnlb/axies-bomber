@@ -21,4 +21,4 @@ MonoBehaviour:
   ownerAxie: {fileID: 11400000, guid: 31da111efa11b487c830b364af85818b, type: 2}
   axieIdentity: 1
   killsNeeded: 5
-  dismissDuration: 3
+  dismissDuration: 2

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Bomb : MonoBehaviour
 {
@@ -15,12 +16,15 @@ public class Bomb : MonoBehaviour
 
     private Rigidbody rigidbody;
     private Vector3 vel = Vector3.zero;
+    private Collider col;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private LayerMask explodingCollisionMask;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        col = GetComponent<Collider>();
     }
 
     public void LoadSkin(Sprite sprite)
@@ -43,6 +47,12 @@ public class Bomb : MonoBehaviour
         if (vel != Vector3.zero)
         {
             rigidbody.MovePosition(rigidbody.position + vel * Time.fixedDeltaTime);
+
+            Collider[] colliders = Physics.OverlapSphere(rigidbody.position + vel.normalized * 0.5f, 0.1f, explodingCollisionMask);
+            if (colliders.Length > 0 && !col.isTrigger)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -98,13 +108,5 @@ public class Bomb : MonoBehaviour
 
         Instantiate(explosionPrefab, position, Quaternion.identity);
         Explode(position, direction, length - 1);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (vel != Vector3.zero)
-        {
-            Destroy(gameObject);
-        }
     }
 }

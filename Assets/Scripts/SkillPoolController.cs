@@ -7,12 +7,14 @@ using System;
 public class SkillPoolController : MonoBehaviour
 {
     private List<SkillConfig> skillPool;
-    private List<SkillConfig> abilities;
+    private List<List<SkillConfig>> abilities;
     private List<int> abilityPickTimes;
     private List<int> skillPickTimes;
+    private GameplayController gameplay;
 
     private void Awake()
     {
+        gameplay = GetComponent<GameplayController>();
         skillPool = new List<SkillConfig>();
         EventBus.onPickSkill += OnPickSkill;
     }
@@ -46,7 +48,35 @@ public class SkillPoolController : MonoBehaviour
     {
         if (abilityPool)
         {
-            return abilities;
+            List<SkillConfig> generatedAbilityPool = new List<SkillConfig>();
+            for (int i = 0; i  < abilities.Count; ++i)
+            {
+                List<SkillConfig> ability = abilities[i];
+                foreach (var data in gameplay.slots)
+                {
+                    if (data.identity == ability[0].axieIdentity)
+                    {
+                        if (data.ability == null)
+                            generatedAbilityPool.Add(ability[0]);
+                        else
+                        {
+                            int level = data.ability.level + 1;
+                            if (level >= ability.Count)
+                            {
+                                level = ability.Count - 1;
+                                SkillConfig maxConfig = Instantiate(ability[level]);
+                                maxConfig.level = -1;
+                                generatedAbilityPool.Add(maxConfig);
+                            }
+                            else
+                                generatedAbilityPool.Add(ability[level]);
+                        }
+                        break;
+                    }
+                }
+            }
+
+            return generatedAbilityPool;
         }
 
         int sumPicks = 0;

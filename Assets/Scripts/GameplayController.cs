@@ -154,11 +154,11 @@ public class GameplayController : MonoBehaviour
         int cnt = 0;
         while (cnt < slots.Count)
         {
+            slot = (slot + 1) % slots.Count;
             if (!slots[slot].IsDead)
             {
                 return slot;
             }
-            slot = (slot + 1) % slots.Count;
             cnt++;
         }
 
