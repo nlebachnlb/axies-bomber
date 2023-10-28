@@ -7,6 +7,7 @@ using Spine.Unity;
 
 public class EnemyController : MonoBehaviour
 {
+    public System.Action onDeath;
     [SerializeField] private SkeletonAnimation anim;
     //[SerializeField] private AnimationReferenceAsset animDie;
 
@@ -20,6 +21,7 @@ public class EnemyController : MonoBehaviour
     public void OnDeath()
     {
         collider.enabled = false;
+        onDeath?.Invoke();
         Destroy(gameObject);
     }
 }

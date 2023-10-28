@@ -43841,7 +43841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968763ae4a6ff4244a30ebd0ef8cc7cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axis: 0
+  axis: 1
   moveSpeed: 1.6
   autoChangeDirectionTime: -1
   animSpeedRatio: 0.5

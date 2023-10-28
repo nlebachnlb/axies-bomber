@@ -34,6 +34,11 @@ public class EnemyHealth : MonoBehaviour
                 recoveryTimer = 0f;
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TakeDamage(10);
+        }
     }
 
     private void Awake()
