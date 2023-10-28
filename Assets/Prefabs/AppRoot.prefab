@@ -643,9 +643,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 93800598af2e3e4479f0385ea61f56c0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9ae4dbde4ed8d4dfaacf2b6931613e38, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.471
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -771,7 +771,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 3fb0437a34b922649940d5bf9da84eaf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 54501f88977f9494ab9ca9a293084cda, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1080,11 +1080,12 @@ MonoBehaviour:
   UISFX: {fileID: 4572938148228531137}
   IngameSFX: {fileID: 2281658764977915256}
   SetBombClip: {fileID: 8300000, guid: 5e2b7ceda3ffa8f4cb0a03deb72168f1, type: 3}
-  BombExplodeClip: {fileID: 8300000, guid: 4df3ebc326b4bc54183adfac7713eb8d, type: 3}
+  BombExplodeClip: {fileID: 8300000, guid: 4142d93340b2c4f9a9daade80138b573, type: 3}
   BeingHitClip: {fileID: 8300000, guid: 689b42c56887b81498a1e2677dec5e1d, type: 3}
   VictoryClip: {fileID: 8300000, guid: f8bd9d90b6110304ca718c695f4bd01d, type: 3}
   LoseClip: {fileID: 8300000, guid: 29dd1992b33a3d8458a0791ac0a6d534, type: 3}
   BtnClickClip: {fileID: 8300000, guid: 2773eb124103bfa4897f4bb70c27dcf8, type: 3}
+  ConfirmClip: {fileID: 8300000, guid: 2ff8a2b20ef19448280d155f2784e8a0, type: 3}
 --- !u!1001 &773071497347764096
 PrefabInstance:
   m_ObjectHideFlags: 0

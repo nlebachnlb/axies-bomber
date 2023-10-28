@@ -10,6 +10,7 @@ public class AppRoot : MonoBehaviour
     public TransitionController fastTransitionController;
     public AppRootConfig Config { get => config; }
     public UserDataModel UserDataModel { get; private set; }
+    public SoundManager SoundManager { get; private set; }
 
     [SerializeField] private AppRootConfig config;
 
@@ -19,11 +20,13 @@ public class AppRoot : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         UserDataModel = GetComponent<UserDataModel>();
+        SoundManager = GetComponentInChildren<SoundManager>();
     }
 
     private void Start()
     {
         TransitionToScene(config.startSceneName);
+        SoundManager.PlayAudio(SoundManager.AudioType.MenuBGMType);
     }
 
     public void TransitionToScene(string sceneName, bool needLoading = false)

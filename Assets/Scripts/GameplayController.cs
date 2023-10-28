@@ -31,6 +31,7 @@ public class GameplayController : MonoBehaviour
     [SerializeField] private AxieHeroHUD axieHeroHUD;
     [SerializeField] private SkillPickUI skillPickUI;
     [SerializeField] private GameObject clearBannerHUD;
+    [SerializeField] private GameObject gameOverBannerHUD;
     [SerializeField] private AbilityHUD abilityHUD;
 
     [Header("Test mode")]
@@ -75,6 +76,8 @@ public class GameplayController : MonoBehaviour
 
         SwitchAxieHero(0);
         mapController.Reload("1-1");
+
+        AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.IngameBGMType);
     }
 
     private void InitAxieHeroDataSlots()
@@ -150,17 +153,13 @@ public class GameplayController : MonoBehaviour
 
     private int GetFirstAliveSlotFromCurrent()
     {
-        int slot = currentSlot;
-        int cnt = 0;
-        while (cnt < slots.Count)
-        {
-            slot = (slot + 1) % slots.Count;
-            if (!slots[slot].IsDead)
-            {
-                return slot;
-            }
-            cnt++;
-        }
+        for (int i = currentSlot + 1; i < slots.Count; ++i)
+            if (!slots[i].IsDead)
+                return i;
+
+        for (int i = 0; i < currentSlot; ++i)
+            if (!slots[i].IsDead)
+                return i;
 
         return -1;
     }
@@ -174,8 +173,21 @@ public class GameplayController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Game Over");
+            EventBus.RaiseOnGameOver();
+            StartCoroutine(OnGameOverProgression());
         }
+    }
+
+    private IEnumerator OnGameOverProgression()
+    {
+        Time.timeScale = 0.4f;
+        Instantiate(gameOverBannerHUD, canvas.transform);
+        yield return new WaitForSecondsRealtime(0.5f);
+        Time.timeScale = 1f;
+
+        yield return new WaitForSecondsRealtime(2f);
+        AppRoot.Instance.TransitionToScene(AppRoot.Instance.Config.homeScene, true);
+        AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.MenuBGMType);
     }
 
     private void OnOpenSkillPool(bool isAbilityPool)

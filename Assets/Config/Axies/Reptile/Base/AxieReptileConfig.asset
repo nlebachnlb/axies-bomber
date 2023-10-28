@@ -17,7 +17,7 @@ MonoBehaviour:
   animRun: {fileID: 11400000, guid: e836a8a0df14b4e279a082db5f24e0b0, type: 2}
   animHit: {fileID: 11400000, guid: bc3238fed01fe452cb867df805a8c692, type: 2}
   animRandomIdles: []
-  bombSprite: {fileID: 670668742, guid: e1df03f9f8c2a40a4a19e6a7ca2d2d04, type: 3}
+  bombSprite: {fileID: 21300000, guid: a96038ab196a643ae98f72dea260e305, type: 3}
   auraColor: {r: 0.67394835, g: 0.3537736, b: 1, a: 1}
   axieName: Reptile
   axieClass: 1

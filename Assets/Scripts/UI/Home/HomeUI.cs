@@ -15,6 +15,8 @@ public class HomeUI : MonoBehaviour
 
     private void OnSelectPlay()
     {
+        AppRoot.Instance.SoundManager.StopMenuBGM();
+        AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.Confirm);
         AppRoot.Instance.TransitionToScene(AppRoot.Instance.Config.playScene, true);
     }
 }

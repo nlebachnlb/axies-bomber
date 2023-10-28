@@ -36,6 +36,7 @@ public class MovementController : MonoBehaviour
 
         EventBus.onSwitchAxieHero += OnSwitchHero;
         EventBus.onPickSkill += OnPickSkill;
+        EventBus.onGameOver += OnGameOver;
         InitInput();
     }
 
@@ -43,6 +44,7 @@ public class MovementController : MonoBehaviour
     {
         EventBus.onSwitchAxieHero -= OnSwitchHero;
         EventBus.onPickSkill -= OnPickSkill;
+        EventBus.onGameOver -= OnGameOver;
     }
 
     private void Update()
@@ -255,5 +257,11 @@ public class MovementController : MonoBehaviour
     private void OnPickSkill(SkillConfig skill)
     {
         enabled = true;
+    }
+
+    private void OnGameOver()
+    {
+        characterAnimation.gameObject.SetActive(false);
+        enabled = false;
     }
 }

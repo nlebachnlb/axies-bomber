@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e31ffdbe0a34d8481f04d9b58f0a59, type: 3}
   m_Name: AppRootDefaultConfig
   m_EditorClassIdentifier: 
-  startSceneName: Home
+  startSceneName: Start
   playScene: Room
   homeScene: Home
   availableAxies: {fileID: 11400000, guid: bb1161db249dc419c8d9e96d7fb11331, type: 2}

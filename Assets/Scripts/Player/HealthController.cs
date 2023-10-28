@@ -39,6 +39,8 @@ public class HealthController : MonoBehaviour
                     skeleton.state.SetAnimation(0, config.Axie.animIdle, true);
                 }
             };
+
+            AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.BeingHitType);
         }
 
         recoveryTime = axieHeroData.axieStats.recoveryTimeAfterDamage;

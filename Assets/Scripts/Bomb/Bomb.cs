@@ -73,6 +73,7 @@ public class Bomb : MonoBehaviour
 
         OnBombFuse?.Invoke();
 
+        AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.BombExplodeType);
         EventBus.RaiseOnBombFuse();
     }
 

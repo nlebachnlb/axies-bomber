@@ -71,6 +71,7 @@ public class BombController : MonoBehaviour
             bomb.bombOwner.bombsRemaining++;
         };
 
+        AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.BombSetType);
         EventBus.RaiseOnBombPlace(bomb.bombOwner);
     }
 

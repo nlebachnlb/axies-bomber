@@ -1651,7 +1651,9 @@ MonoBehaviour:
     type: 3}
   clearBannerHUD: {fileID: 2045353194470591166, guid: 4be59011de582464b916c7342d61442d,
     type: 3}
-  abilityHUD: {fileID: 0}
+  gameOverBannerHUD: {fileID: 1835479608105732743, guid: ccceb740039af462796859cb467f7e8e,
+    type: 3}
+  abilityHUD: {fileID: 1992693059}
   testMap: 0
   testMapId: 
 --- !u!4 &1533466146
@@ -2222,7 +2224,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0, y: 0}
 --- !u!225 &1992693058

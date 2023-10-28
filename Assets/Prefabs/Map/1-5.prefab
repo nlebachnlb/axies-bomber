@@ -71387,6 +71387,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapChanger
       objectReference: {fileID: 0}
+    - target: {fileID: 8112161179028902661, guid: cc4bfa4b7fd314d9f8f0a92c9b5ef0fc,
+        type: 3}
+      propertyPath: targetMapId
+      value: 2-1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -53,6 +53,9 @@ public class EventBus
     public delegate void OnAbilityCooldown(float current, float max, int displayType);
     public static event OnAbilityCooldown onAbilityCooldown;
 
+    public delegate void OnGameOver();
+    public static event OnGameOver onGameOver;
+
 
     public static void RaiseOnBombFuse()
     {
@@ -112,6 +115,11 @@ public class EventBus
     public static void RaiseOnAbilityCooldown(float current, float max, int displayType)
     {
         onAbilityCooldown?.Invoke(current, max, displayType);
+    }
+
+    public static void RaiseOnGameOver()
+    {
+        onGameOver?.Invoke();
     }
 
     private static EventBus instance = null;

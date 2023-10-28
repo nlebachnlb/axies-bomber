@@ -5,7 +5,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public AudioSource IngameBGM, MenuBGM, BombSource, UISFX, IngameSFX;
-    public AudioClip SetBombClip, BombExplodeClip, BeingHitClip, VictoryClip, LoseClip, BtnClickClip;
+    public AudioClip SetBombClip, BombExplodeClip, BeingHitClip, VictoryClip, LoseClip, BtnClickClip, ConfirmClip;
     public enum AudioType
     {
         IngameBGMType,
@@ -16,6 +16,7 @@ public class SoundManager : MonoBehaviour
         VictoryType,
         LoseType,
         BtnClickType,
+        Confirm
     }
 
     public void PlayAudio(AudioType type)
@@ -27,10 +28,12 @@ public class SoundManager : MonoBehaviour
             case AudioType.IngameBGMType:
                 targetSource = IngameBGM;
                 MenuBGM.Stop();
+                IngameBGM.Play();
                 break;
             case AudioType.MenuBGMType:
                 targetSource = MenuBGM;
-                IngameSFX.Stop();
+                IngameBGM.Stop();
+                MenuBGM.Play();
                 break;
             case AudioType.BombSetType:
                 targetSource = BombSource;
@@ -56,7 +59,16 @@ public class SoundManager : MonoBehaviour
                 targetSource = UISFX;
                 targetSource.clip = BtnClickClip;
                 break;
+            case AudioType.Confirm:
+                targetSource = UISFX;
+                targetSource.clip = ConfirmClip;
+                break;
         }
-        targetSource.Play();
+        targetSource.PlayOneShot(targetSource.clip);
+    }
+
+    public void StopMenuBGM()
+    {
+        MenuBGM.Stop();
     }
 }
