@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Destructible
+  - MapChanger
+  - Enemy
   layers:
   - Default
   - TransparentFX

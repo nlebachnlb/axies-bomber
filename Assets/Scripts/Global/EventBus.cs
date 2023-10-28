@@ -38,6 +38,13 @@ public class EventBus
     public delegate void OnPickSkill(SkillConfig skill);
     public static event OnPickSkill onPickSkill;
 
+    public delegate void OnMapChange(string newId);
+    public static event OnMapChange onMapChange;
+
+    public delegate void OnEnemyDeath();
+    public static event OnEnemyDeath onEnemyDeath;
+
+
     public static void RaiseOnBombFuse()
     {
         onBombFuse?.Invoke();
@@ -73,6 +80,15 @@ public class EventBus
         onOpenSkillPool?.Invoke();
     }
 
+    public static void RaiseOnMapChange(string newId)
+    {
+        onMapChange?.Invoke(newId);
+    }
+
+    public static void RaiseOnEnemyDeath()
+    {
+        onEnemyDeath?.Invoke();
+    }
 
     private static EventBus instance = null;
 }

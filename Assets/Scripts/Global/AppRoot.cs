@@ -7,6 +7,7 @@ public class AppRoot : MonoBehaviour
 {
     public static AppRoot Instance { get; private set; }
     public TransitionController transitionController;
+    public TransitionController fastTransitionController;
     public AppRootConfig Config { get => config; }
     public UserDataModel UserDataModel { get; private set; }
 

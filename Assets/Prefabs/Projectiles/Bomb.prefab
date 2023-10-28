@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2945844528104523874}
   - component: {fileID: 3046522670206376493}
   - component: {fileID: 4535888581196650623}
-  - component: {fileID: 7143686229393726428}
+  - component: {fileID: 8944679083250496721}
   - component: {fileID: 2631833291757102977}
   m_Layer: 7
   m_Name: Bomb
@@ -84,8 +84,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!135 &7143686229393726428
-SphereCollider:
+--- !u!65 &8944679083250496721
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,7 +103,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &2631833291757102977
 MonoBehaviour:
