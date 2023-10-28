@@ -8,9 +8,32 @@ public class TailSlap : AxieAbility<TailSlapStats>
     [SerializeField] private TailSlapStats defaultStats;
     [SerializeField] private Bomb bombPrefab;
 
+    private int placedBombs;
+    private AxieHeroData axieData;
+
     private void Awake()
     {
         Stats = Instantiate(defaultStats);
+        EventBus.onBombPlace += OnBombPlace;
+    }
+
+    private void OnDestroy()
+    {
+        EventBus.onBombPlace -= OnBombPlace;
+        axieData.SetExtraParam("placedBombs", placedBombs);
+    }
+
+    private void Start()
+    {
+    }
+
+    public override void SetExtraParams(AxieHeroData axieHero)
+    {
+        base.SetExtraParams(axieHero);
+        placedBombs = (int)axieHero.GetExtraParam("placedBombs", Stats.placedBombsNeeded);
+        axieData = axieHero;
+        EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
+        Debug.Log("Extra param: " + placedBombs);
     }
 
     public override void DeployAbility()
@@ -43,10 +66,20 @@ public class TailSlap : AxieAbility<TailSlapStats>
             bomb.bombOwner.bombsRemaining++;
         };
         bomb.SetMoving(movement.LastDirection * defaultStats.speed);
+
+        placedBombs = 0;
+        EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
     }
 
     public override bool CanDeploy()
     {
-        return true;
+        return placedBombs >= Stats.placedBombsNeeded;
+    }
+
+    private void OnBombPlace(AxieHeroData owner)
+    {
+        placedBombs++;
+        EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
+        Debug.Log("Place bomb: " + placedBombs);
     }
 }

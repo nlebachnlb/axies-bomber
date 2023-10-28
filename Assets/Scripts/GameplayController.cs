@@ -31,6 +31,7 @@ public class GameplayController : MonoBehaviour
     [SerializeField] private AxieHeroHUD axieHeroHUD;
     [SerializeField] private SkillPickUI skillPickUI;
     [SerializeField] private GameObject clearBannerHUD;
+    [SerializeField] private AbilityHUD abilityHUD;
 
     [Header("Test mode")]
     [SerializeField] private bool testMap;

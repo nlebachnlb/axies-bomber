@@ -19,7 +19,13 @@ public class AxieAbility : MonoBehaviour, IAxieAbility
     {
     }
 
+    public virtual void SetExtraParams(AxieHeroData axieHero)
+    {
+
+    }
+
     public GameObject Owner { get; set; }
+    public bool IsCooldown { get; protected set; }
 }
 
 public class AxieAbility<T> : AxieAbility

@@ -21,6 +21,7 @@ public class AxieHeroData
     public BombStats bombStats;
     public SkillConfig ability;
     public AxieAbility abilityPrefab;
+    public Dictionary<string, float> extraParams = new Dictionary<string, float>();
 
     public int health
     {
@@ -66,6 +67,22 @@ public class AxieHeroData
     public void RaiseUpdateInfo()
     {
         onInfoChanged?.Invoke(GetCurrentInfo());
+    }
+
+    public float GetExtraParam(string key, float defaultValue = 0)
+    {
+        if (extraParams.ContainsKey(key))
+            return extraParams[key];
+        extraParams.Add(key, defaultValue);
+        return defaultValue;
+    }
+
+    public void SetExtraParam(string key, float value)
+    {
+        if (extraParams.ContainsKey(key))
+            extraParams[key] = value;
+        else
+            extraParams.Add(key, value);
     }
 
     private InfoPacket GetCurrentInfo()

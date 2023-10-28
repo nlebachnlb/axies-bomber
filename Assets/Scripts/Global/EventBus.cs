@@ -20,6 +20,9 @@ public class EventBus
     public delegate void OnBombFuse();
     public static event OnBombFuse onBombFuse;
 
+    public delegate void OnBombPlace(AxieHeroData owner);
+    public static event OnBombPlace onBombPlace;
+
     public delegate void OnSwitchAxieHero(AxieHeroData axieHeroData);
     public static event OnSwitchAxieHero onSwitchAxieHero;
 
@@ -44,10 +47,21 @@ public class EventBus
     public delegate void OnRoomClear();
     public static event OnRoomClear onRoomClear;
 
+    public delegate void OnEnemyDeath();
+    public static event OnEnemyDeath onEnemyDeath;
+
+    public delegate void OnAbilityCooldown(float current, float max, int displayType);
+    public static event OnAbilityCooldown onAbilityCooldown;
+
 
     public static void RaiseOnBombFuse()
     {
         onBombFuse?.Invoke();
+    }
+
+    public static void RaiseOnBombPlace(AxieHeroData owner)
+    {
+        onBombPlace?.Invoke(owner);
     }
 
     public static void RaiseOnSwitchAxieHero(AxieHeroData axieHeroData)
@@ -88,6 +102,16 @@ public class EventBus
     public static void RaiseOnRoomClear()
     {
         onRoomClear?.Invoke();
+    }
+
+    public static void RaiseOnEnemyDeath()
+    {
+        onEnemyDeath?.Invoke();
+    }
+
+    public static void RaiseOnAbilityCooldown(float current, float max, int displayType)
+    {
+        onAbilityCooldown?.Invoke(current, max, displayType);
     }
 
     private static EventBus instance = null;

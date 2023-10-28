@@ -70,6 +70,8 @@ public class BombController : MonoBehaviour
         {
             bomb.bombOwner.bombsRemaining++;
         };
+
+        EventBus.RaiseOnBombPlace(bomb.bombOwner);
     }
 
     private void OnTriggerExit(Collider other)

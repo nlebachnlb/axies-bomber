@@ -47,6 +47,7 @@ public class AbilityController : MonoBehaviour
         if (heroData.ability != null)
         {
             AttachAbility(heroData.abilityPrefab);
+            Ability.SetExtraParams(heroData);
         }
     }
 
