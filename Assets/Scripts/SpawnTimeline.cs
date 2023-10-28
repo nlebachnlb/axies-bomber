@@ -16,56 +16,65 @@ public class SpawnTimeline : MonoBehaviour
 {
     public List<SpawnRecord> timeline;
     public int remainingEnemies = 0;
+    public float readyTime = 3f;
+
+    public bool isActivated = false;
+    public bool isCleared = false;
 
     private int cnt = 0;
     private float timer = 0f;
 
-    private IEnumerator Start()
-    {
-        yield return new WaitForSeconds(2f);
-        Activate();
-    }
-
     public void Activate()
     {
-        StartCoroutine(TimelineProgression());
+        StartCoroutine(ActivateProgress());
         remainingEnemies = 0;
         cnt = 0;
         timer = 0f;
+        isActivated = true;
+    }
+
+    private IEnumerator ActivateProgress()
+    {
+        yield return new WaitForSeconds(readyTime);
+        StartCoroutine(TimelineProgression());
     }
 
     private IEnumerator TimelineProgression()
     {
         while (true)
         {
-            if (!timeline[cnt].spawned)
+            if (cnt < timeline.Count)
             {
-                timer = 0f;
-                remainingEnemies += timeline[cnt].spawnPoints.Count;
-                foreach (var trans in timeline[cnt].spawnPoints)
+                if (!timeline[cnt].spawned)
                 {
-                    EnemyController enemy = Instantiate(timeline[cnt].enemyPrefab, trans.position, Quaternion.identity);
-                    enemy.onDeath = () =>
+                    timer = 0f;
+                    remainingEnemies += timeline[cnt].spawnPoints.Count;
+                    foreach (var trans in timeline[cnt].spawnPoints)
                     {
-                        remainingEnemies--;
-                    };
+                        EnemyController enemy = Instantiate(timeline[cnt].enemyPrefab, trans.position, Quaternion.identity);
+                        enemy.onDeath = () =>
+                        {
+                            remainingEnemies--;
+                        };
+                    }
+                    timeline[cnt].spawned = true;
                 }
-                timeline[cnt].spawned = true;
-            }
-            else if (remainingEnemies > 0 || timer < timeline[cnt].timeToNextRecord)
-            {
-                timer += Time.deltaTime;
-            }
-            else
-            {
-                cnt++;
+                else
+                {
+                    timer += Time.deltaTime;
+                    if (remainingEnemies < 1 || timer >= timeline[cnt].timeToNextRecord)
+                    {
+                        cnt++;
+                    }
+                }
             }
 
-            if (cnt >= timeline.Count)
+            if (cnt >= timeline.Count && remainingEnemies < 1)
                 break;
             yield return new WaitForEndOfFrame();
         }
 
+        isCleared = true;
         Debug.Log("Wave clear");
     }
 }
