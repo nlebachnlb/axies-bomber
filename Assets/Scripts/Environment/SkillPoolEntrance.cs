@@ -7,6 +7,7 @@ public class SkillPoolEntrance : MonoBehaviour
 {
     [SerializeField] private Transform visual;
     [SerializeField] private Light auraLight;
+    [SerializeField] private TMPro.TextMeshPro textInteract;
     public bool isAbilityPool = false;
 
     public void PlayAuraLightIntensity()
@@ -15,6 +16,11 @@ public class SkillPoolEntrance : MonoBehaviour
         {
             auraLight.DOIntensity(3f, 0.8f);
         });
+    }
+
+    public void DisplayInteract(bool show)
+    {
+        textInteract.gameObject.SetActive(show);
     }
 
     private void Awake()

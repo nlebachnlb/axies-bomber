@@ -95,6 +95,19 @@ public class MovementController : MonoBehaviour
             string nextMap = other.GetComponent<MapChanger>().targetMapId;
             EventBus.RaiseOnMapChange(nextMap);
         }
+
+        if (other.CompareTag("SkillPool"))
+        {
+            other.GetComponent<SkillPoolEntrance>().DisplayInteract(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("SkillPool"))
+        {
+            other.GetComponent<SkillPoolEntrance>().DisplayInteract(false);
+        }
     }
 
     private void InitInput()
