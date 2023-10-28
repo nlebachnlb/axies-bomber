@@ -318,6 +318,10 @@ MonoBehaviour:
   spawnWaves:
   - {fileID: 901503317445326988}
   - {fileID: 6198599225778482179}
+  rewardAbilityPool: 0
+  exitGate: {fileID: 1061890929897570519}
+  poolEntrance: {fileID: 12123213872727703, guid: 6ad9e82eb16e7430990c1e832c0971e7,
+    type: 3}
 --- !u!1 &4999473647648483815
 GameObject:
   m_ObjectHideFlags: 0
@@ -5268,6 +5272,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0a11b7f065dc4eb2be102f5587b175f, type: 3}
+--- !u!1 &1061890929897570519 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7527754247086580894, guid: f0a11b7f065dc4eb2be102f5587b175f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7407133541832172617}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5019354895558755647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2549943494645670262, guid: f0a11b7f065dc4eb2be102f5587b175f,

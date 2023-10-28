@@ -319,6 +319,10 @@ MonoBehaviour:
   - {fileID: 8028592242132933072}
   - {fileID: 8212929808857572685}
   - {fileID: 6961316645785244751}
+  rewardAbilityPool: 0
+  exitGate: {fileID: 7375633075432365874}
+  poolEntrance: {fileID: 12123213872727703, guid: 6ad9e82eb16e7430990c1e832c0971e7,
+    type: 3}
 --- !u!1 &5875094949978195064
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,6 +1616,12 @@ PrefabInstance:
 --- !u!4 &3264915906347686618 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2549943494645670262, guid: f0a11b7f065dc4eb2be102f5587b175f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1021322808217320364}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7375633075432365874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7527754247086580894, guid: f0a11b7f065dc4eb2be102f5587b175f,
     type: 3}
   m_PrefabInstance: {fileID: 1021322808217320364}
   m_PrefabAsset: {fileID: 0}
