@@ -15,5 +15,5 @@ MonoBehaviour:
   bombExplosionRadius: 1
   bombMagazine: 3
   health: 2
-  speed: 7
+  speed: 6
   recoveryTimeAfterDamage: 1

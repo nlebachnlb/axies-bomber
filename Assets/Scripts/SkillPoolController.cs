@@ -42,9 +42,9 @@ public class SkillPoolController : MonoBehaviour
         return (T)ability;
     }
 
-    public List<SkillConfig> GetRandomizedSkillPool(int numOfRooms)
+    public List<SkillConfig> GetRandomizedSkillPool(bool abilityPool = false)
     {
-        if (numOfRooms % 5 == 0)
+        if (abilityPool)
         {
             return abilities;
         }

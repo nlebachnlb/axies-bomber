@@ -29,7 +29,7 @@ public class EventBus
     public delegate void OnPickAxie(int slot, AxiePackedConfig config);
     public static event OnPickAxie onPickAxie;
 
-    public delegate void OnOpenSkillPool();
+    public delegate void OnOpenSkillPool(bool isAbilityPool);
     public static event OnOpenSkillPool onOpenSkillPool;
 
     public delegate void OnEnterSkillPool(List<SkillConfig> skills);
@@ -41,8 +41,8 @@ public class EventBus
     public delegate void OnMapChange(string newId);
     public static event OnMapChange onMapChange;
 
-    public delegate void OnEnemyDeath();
-    public static event OnEnemyDeath onEnemyDeath;
+    public delegate void OnRoomClear();
+    public static event OnRoomClear onRoomClear;
 
 
     public static void RaiseOnBombFuse()
@@ -75,9 +75,9 @@ public class EventBus
         onPickSkill?.Invoke(skill);
     }
 
-    public static void RaiseOnOpenSkillPool()
+    public static void RaiseOnOpenSkillPool(bool isAbilityPool)
     {
-        onOpenSkillPool?.Invoke();
+        onOpenSkillPool?.Invoke(isAbilityPool);
     }
 
     public static void RaiseOnMapChange(string newId)
@@ -85,9 +85,9 @@ public class EventBus
         onMapChange?.Invoke(newId);
     }
 
-    public static void RaiseOnEnemyDeath()
+    public static void RaiseOnRoomClear()
     {
-        onEnemyDeath?.Invoke();
+        onRoomClear?.Invoke();
     }
 
     private static EventBus instance = null;

@@ -7,6 +7,7 @@ public class SkillPoolEntrance : MonoBehaviour
 {
     [SerializeField] private Transform visual;
     [SerializeField] private Light auraLight;
+    public bool isAbilityPool = false;
 
     public void PlayAuraLightIntensity()
     {

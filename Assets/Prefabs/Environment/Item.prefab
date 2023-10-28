@@ -9792,7 +9792,7 @@ GameObject:
   - component: {fileID: 8434808506592888255}
   m_Layer: 0
   m_Name: Item
-  m_TagString: Untagged
+  m_TagString: SkillPool
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9834,7 +9834,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1, z: 2}
+  m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &12123213872727703
 MonoBehaviour:
@@ -9850,6 +9850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visual: {fileID: 8319759813854733523}
   auraLight: {fileID: 415340963932040521}
+  isAbilityPool: 0
 --- !u!95 &8434808506592888255
 Animator:
   serializedVersion: 5

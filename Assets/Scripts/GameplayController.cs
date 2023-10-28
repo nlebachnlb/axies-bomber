@@ -30,6 +30,7 @@ public class GameplayController : MonoBehaviour
     [SerializeField] private Canvas canvas;
     [SerializeField] private AxieHeroHUD axieHeroHUD;
     [SerializeField] private SkillPickUI skillPickUI;
+    [SerializeField] private GameObject clearBannerHUD;
 
     [Header("Test mode")]
     [SerializeField] private bool testMap;
@@ -46,6 +47,7 @@ public class GameplayController : MonoBehaviour
         EventBus.onEnterSkillPool += OnEnterSkillPool;
         EventBus.onOpenSkillPool += OnOpenSkillPool;
         EventBus.onPickSkill += OnPickSkill;
+        EventBus.onRoomClear += OnRoomClear;
 
         mapController = GetComponent<MapController>();
         skillController = GetComponent<SkillPoolController>();
@@ -58,6 +60,7 @@ public class GameplayController : MonoBehaviour
         EventBus.onEnterSkillPool -= OnEnterSkillPool;
         EventBus.onOpenSkillPool -= OnOpenSkillPool;
         EventBus.onPickSkill -= OnPickSkill;
+        EventBus.onRoomClear -= OnRoomClear;
     }
 
     private void Start()
@@ -174,9 +177,9 @@ public class GameplayController : MonoBehaviour
         }
     }
 
-    private void OnOpenSkillPool()
+    private void OnOpenSkillPool(bool isAbilityPool)
     {
-        List<SkillConfig> skills = skillController.GetRandomizedSkillPool(0);
+        List<SkillConfig> skills = skillController.GetRandomizedSkillPool(isAbilityPool);
         EventBus.RaiseOnEnterSkillPool(skills);
     }
 
@@ -231,8 +234,8 @@ public class GameplayController : MonoBehaviour
         }
     }
 
-    private void OnChangeMap(string mapId)
+    private void OnRoomClear()
     {
-
+        Instantiate(clearBannerHUD, canvas.transform);
     }
 }

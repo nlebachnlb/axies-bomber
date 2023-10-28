@@ -228,9 +228,10 @@ public class MovementController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.E) && other.CompareTag("SkillPool"))
         {
-            EventBus.RaiseOnOpenSkillPool();
+            SkillPoolEntrance entrance = other.gameObject.GetComponent<SkillPoolEntrance>();
+            EventBus.RaiseOnOpenSkillPool(entrance.isAbilityPool);
             SetDirection(Vector3.zero);
             ResetInput();
             enabled = false;

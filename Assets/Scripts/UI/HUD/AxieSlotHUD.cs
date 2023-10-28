@@ -21,7 +21,7 @@ public class AxieSlotHUD : MonoBehaviour
     public void SetInfo(AxieHeroData.InfoPacket info)
     {
         textBomb.text = "" + info.bombsRemaining + "/" + info.bombMagazine;
-        healthProgress.value = info.health / info.healthLimit;
+        healthProgress.value = (float)info.health / (float)info.healthLimit;
     }
 
     public void SetAxieIcon(Sprite axie)
