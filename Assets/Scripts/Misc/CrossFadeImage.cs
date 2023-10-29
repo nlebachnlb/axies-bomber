@@ -20,7 +20,7 @@ public class CrossFadeImage : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        CrossFade(0.4f, 0.15f);
+        CrossFade(0.8f, 0.15f);
     }
 
     public void OnPointerExit(PointerEventData eventData)

@@ -167,7 +167,7 @@ public class GameplayController : MonoBehaviour
     private void OnAxieHeroDeath(AxieHeroData axieHeroData)
     {
         int aliveSlot = GetFirstAliveSlotFromCurrent();
-        if (aliveSlot > 0)
+        if (aliveSlot >= 0)
         {
             SwitchAxieHero(aliveSlot);
         }

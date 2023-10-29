@@ -29,6 +29,9 @@ public class MovementController : MonoBehaviour
     private List<System.Action> moveActions;
     private Stack<int> inputStack;
 
+    private bool isInteract = false;
+    private SkillPoolEntrance pool;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -101,6 +104,8 @@ public class MovementController : MonoBehaviour
         if (other.CompareTag("SkillPool"))
         {
             other.GetComponent<SkillPoolEntrance>().DisplayInteract(true);
+            pool = other.GetComponent<SkillPoolEntrance>();
+            isInteract = true;
         }
     }
 
@@ -109,6 +114,8 @@ public class MovementController : MonoBehaviour
         if (other.CompareTag("SkillPool"))
         {
             other.GetComponent<SkillPoolEntrance>().DisplayInteract(false);
+            isInteract = false;
+            pool = null;
         }
     }
 
@@ -145,6 +152,15 @@ public class MovementController : MonoBehaviour
 
     private void UpdateInput()
     {
+        if (Input.GetKeyDown(KeyCode.E) && isInteract)
+        {
+            SkillPoolEntrance entrance = pool;
+            EventBus.RaiseOnOpenSkillPool(entrance.isAbilityPool);
+            SetDirection(Vector3.zero);
+            ResetInput();
+            enabled = false;
+        }
+
         for (int i = 0; i < movementInput.Count; ++i)
         {
             if (Input.GetKeyDown(movementInput[i]) && !pressedKeys[i])
@@ -239,19 +255,6 @@ public class MovementController : MonoBehaviour
     {
         stats = heroData.axieStats.Calculate();
         currentState = "";
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (Input.GetKeyDown(KeyCode.E) && other.CompareTag("SkillPool"))
-        {
-            SkillPoolEntrance entrance = other.gameObject.GetComponent<SkillPoolEntrance>();
-            EventBus.RaiseOnOpenSkillPool(entrance.isAbilityPool);
-            SetDirection(Vector3.zero);
-            ResetInput();
-            enabled = false;
-            other.enabled = false;
-        }
     }
 
     private void OnPickSkill(SkillConfig skill)

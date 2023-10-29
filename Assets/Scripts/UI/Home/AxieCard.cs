@@ -11,6 +11,12 @@ public class AxieCard : MonoBehaviour
     [Header("Figure")]
     [SerializeField] private Image axieIcon;
     [SerializeField] private TMPro.TextMeshProUGUI textAxieName;
+    [SerializeField] private Sprite classTank;
+    [SerializeField] private Sprite classAssassin;
+    [SerializeField] private Sprite classDps;
+    [SerializeField] private Image imgClass;
+    [SerializeField] private GameObject explain;
+    [SerializeField] private TMPro.TextMeshProUGUI textExplain;
 
     [Header("Basic Stats")]
     [SerializeField] private TMPro.TextMeshProUGUI textSpeed;
@@ -58,6 +64,7 @@ public class AxieCard : MonoBehaviour
     private void Start()
     {
         HideAction();
+        HideExplain();
     }
 
     private void OnPickAxie(int slot, AxiePackedConfig config)
@@ -93,17 +100,45 @@ public class AxieCard : MonoBehaviour
         textHp.text = "" + config.axieStats.health;
         textBomb.text = "" + config.axieStats.bombMagazine;
         textLength.text = "" + config.axieStats.bombExplosionRadius;
+
+        switch (config.axieConfig.axieClass)
+        {
+            case AxieClass.Damage:
+                imgClass.sprite = classDps;
+                break;
+            case AxieClass.Assassin:
+                imgClass.sprite = classAssassin;
+                break;
+            case AxieClass.Tanker:
+                imgClass.sprite = classTank;
+                break;
+        }
+    }
+
+    public void ShowExplain(string msg)
+    {
+        explain.SetActive(true);
+        textExplain.text = msg;
+    }
+
+    public void HideExplain()
+    {
+        explain.SetActive(false);
     }
 
     public void OnPointerEnter(BaseEventData data)
     {
         Debug.Log("Mouse enter");
         root.DOLocalMoveY(32f, 0.3f).SetEase(Ease.OutCirc);
+
+        ShowExplain("Speed: " + config.axieStats.speed + "\nHitpoints: " + config.axieStats.health + "\nBomb magazine: " + config.axieStats.bombMagazine + "\nBomb length: " + config.axieStats.bombExplosionRadius);
     }
 
     public void OnPointerExit(BaseEventData data)
     {
         Debug.Log("Mouse exit");
         root.DOLocalMoveY(0f, 0.3f).SetEase(Ease.OutCirc);
+
+        HideExplain();
     }
 }
