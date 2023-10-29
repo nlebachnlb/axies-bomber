@@ -53,5 +53,5 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 21a92011e36ad440eb2cd772ec8459e2, type: 2}
     - {fileID: 11400000, guid: 2d8e3997c0d684f7f95d048d8a32fc39, type: 2}
     - {fileID: 11400000, guid: 40a79468222104c9b9a5f4a24df5c6d6, type: 2}
-    abilityPrefab: {fileID: 7165475212485695643, guid: 60dd5fcb695dc493593e59cb88e33365,
+    abilityPrefab: {fileID: 7950587030973305949, guid: 40c02578fc1b64d199740da31568a7ec,
       type: 3}

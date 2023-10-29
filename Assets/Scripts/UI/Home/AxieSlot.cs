@@ -11,6 +11,7 @@ public class AxieSlot : MonoBehaviour
     [SerializeField] private SkeletonGraphic skin;
     [SerializeField] int slotIndex;
 
+    public AxiePackedConfig ChosenAxie { get => chosenAxie; }
     private AxiePackedConfig chosenAxie = null;
 
     private void Awake()

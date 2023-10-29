@@ -8,6 +8,7 @@ TagManager:
   - MapChanger
   - Enemy
   - SkillPool
+  - KillField
   layers:
   - Default
   - TransparentFX
@@ -42,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Behind
+    uniqueID: 3009477611
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -52,7 +52,7 @@ public class AbilityHUD : MonoBehaviour
                 textProgress.text = current + "/" + max;
                 break;
             case 2:
-                textProgress.text = (max - current) + "s";
+                textProgress.text = (int)(max - current) + "s";
                 break;
         }
     }

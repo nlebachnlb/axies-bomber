@@ -7,6 +7,7 @@ public class HomeUI : MonoBehaviour
 {
     [SerializeField] private Button buttonPlay;
     [SerializeField] private Button buttonUpgrade;
+    [SerializeField] private List<AxieSlot> pickedSlots;
 
     private void Awake()
     {
@@ -15,6 +16,12 @@ public class HomeUI : MonoBehaviour
 
     private void OnSelectPlay()
     {
+        foreach (var slot in pickedSlots)
+        {
+            if (slot.ChosenAxie == null)
+                return;
+        }
+
         AppRoot.Instance.SoundManager.StopMenuBGM();
         AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.Confirm);
         AppRoot.Instance.TransitionToScene(AppRoot.Instance.Config.playScene, true);

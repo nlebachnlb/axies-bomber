@@ -40,7 +40,7 @@ public class SkillItem : MonoBehaviour
 
     public void OnPointerEnter(BaseEventData data)
     {
-        if (Config.level == -1)
+        if (Config && Config.level == -1)
         {
             return;
         }
@@ -57,7 +57,7 @@ public class SkillItem : MonoBehaviour
 
     public void OnPointerClick(BaseEventData data)
     {
-        if (Config.level == -1)
+        if (Config && Config.level == -1)
         {
             return;
         }
