@@ -20,6 +20,7 @@ public class EnemyHealth : MonoBehaviour
         {
             enemyController.OnDeath();
             Instantiate(deathFxPrefab, transform.position, Quaternion.identity);
+            AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.Slime);
         }
     }
 

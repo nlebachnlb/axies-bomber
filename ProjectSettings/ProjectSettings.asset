@@ -14,9 +14,9 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: 5tin Eggs
   productName: Axie Infinitiy Omelette
-  defaultCursor: {fileID: 0}
-  cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.05482378, g: 0.08874838, b: 0.1509434, a: 1}
+  defaultCursor: {fileID: 2800000, guid: 59c9a808d00f540a09aa1a142c807b25, type: 3}
+  cursorHotspot: {x: 30, y: 30}
+  m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -137,7 +137,7 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: 0.1.0
+  bundleVersion: 0.1.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0

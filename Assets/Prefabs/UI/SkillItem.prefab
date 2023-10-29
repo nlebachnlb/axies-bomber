@@ -725,7 +725,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "The featured skill of an Axie. \nEach Axie has their own mechanic in their
-    Ability.\n\nActivate Ability by pressing E."
+    Ability.\n\nActivate Ability by pressing Q."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 00dd568a171004f67bbc258acbc85e42, type: 2}
   m_sharedMaterial: {fileID: 715345558796483029, guid: 00dd568a171004f67bbc258acbc85e42,

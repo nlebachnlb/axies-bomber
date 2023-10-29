@@ -1080,12 +1080,13 @@ MonoBehaviour:
   UISFX: {fileID: 4572938148228531137}
   IngameSFX: {fileID: 2281658764977915256}
   SetBombClip: {fileID: 8300000, guid: 5e2b7ceda3ffa8f4cb0a03deb72168f1, type: 3}
-  BombExplodeClip: {fileID: 8300000, guid: 4142d93340b2c4f9a9daade80138b573, type: 3}
+  BombExplodeClip: {fileID: 8300000, guid: c386014629e814cc09c1c2e8c58a9bec, type: 3}
   BeingHitClip: {fileID: 8300000, guid: 689b42c56887b81498a1e2677dec5e1d, type: 3}
   VictoryClip: {fileID: 8300000, guid: f8bd9d90b6110304ca718c695f4bd01d, type: 3}
   LoseClip: {fileID: 8300000, guid: 29dd1992b33a3d8458a0791ac0a6d534, type: 3}
   BtnClickClip: {fileID: 8300000, guid: 2773eb124103bfa4897f4bb70c27dcf8, type: 3}
-  ConfirmClip: {fileID: 8300000, guid: 2ff8a2b20ef19448280d155f2784e8a0, type: 3}
+  ConfirmClip: {fileID: 8300000, guid: d7159b3c338fc4e3fa51836223205491, type: 3}
+  SlimeClip: {fileID: 8300000, guid: 3da2621b0b62b4a2d96027bc0c24e855, type: 3}
 --- !u!1001 &773071497347764096
 PrefabInstance:
   m_ObjectHideFlags: 0
