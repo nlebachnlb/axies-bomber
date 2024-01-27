@@ -31,6 +31,7 @@ public class MovementController : MonoBehaviour
 
     private bool isInteract = false;
     private SkillPoolEntrance pool;
+    private Vector3 snapDirection = Vector3.zero;
 
     private void Awake()
     {
@@ -70,8 +71,15 @@ public class MovementController : MonoBehaviour
     {
         Vector3 position = rigidbody.position;
         Vector3 translation = direction * stats.Calculate().speed * Time.fixedDeltaTime;
-
-        rigidbody.MovePosition(position + translation);
+        Vector3 snapDelta = snapDirection * stats.Calculate().speed * Time.fixedDeltaTime;
+        Vector3 destination = position + translation;
+        
+        // Snap position to integer
+        destination.x = snapDirection.x < 0 ? Mathf.Floor(destination.x) : Mathf.Ceil(destination.x);
+        destination.z = snapDirection.z < 0 ? Mathf.Floor(destination.z) : Mathf.Ceil(destination.z);
+        destination = Vector3.MoveTowards(position, destination, snapDelta.magnitude);
+        
+        rigidbody.MovePosition(destination);
     }
 
     private void SetDirection(Vector3 newDirection)
@@ -86,6 +94,9 @@ public class MovementController : MonoBehaviour
         if (direction != Vector3.zero)
         {
             LastDirection = direction;
+
+            if (direction.x != 0) snapDirection.x = direction.x;
+            if (direction.z != 0) snapDirection.z = direction.z;
         }
 
         characterAnimation.gameObject.transform.localScale = new Vector3(-facing, 1f, 1f);
