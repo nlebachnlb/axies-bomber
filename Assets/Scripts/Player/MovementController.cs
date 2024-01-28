@@ -18,6 +18,8 @@ public class MovementController : MonoBehaviour
 
     public Vector3 LastDirection { get; set; } = Vector3.right;
 
+    [SerializeField] private Transform skinWrapper;
+
     private new Rigidbody rigidbody;
     private Vector3 direction = Vector3.right;
     private string currentState = "idle";
@@ -79,7 +81,7 @@ public class MovementController : MonoBehaviour
         destination.z = snapDirection.z < 0 ? Mathf.Floor(destination.z) : Mathf.Ceil(destination.z);
         destination = Vector3.MoveTowards(position, destination, snapDelta.magnitude);
         
-        rigidbody.MovePosition(destination);
+        rigidbody.MovePosition(position + translation);
     }
 
     private void SetDirection(Vector3 newDirection)
@@ -99,7 +101,7 @@ public class MovementController : MonoBehaviour
             if (direction.z != 0) snapDirection.z = direction.z;
         }
 
-        characterAnimation.gameObject.transform.localScale = new Vector3(-facing, 1f, 1f);
+        skinWrapper.localScale = new Vector3(-facing, 1f, 1f);
     }
 
     private void OnTriggerEnter(Collider other)
