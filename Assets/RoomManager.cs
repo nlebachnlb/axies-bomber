@@ -11,7 +11,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private int minRooms = 10;
 
     int roomWidth = 20;
-    int roomHeight = 12;
+    int roomHeight = 20;
 
     Vector2Int gridSize = new Vector2Int(10, 10);
 
@@ -171,8 +171,8 @@ public class RoomManager : MonoBehaviour
     private Vector3 GetPositionFromGridIndex(Vector2Int grid)
     {
         int x = grid.x;
-        int y = grid.y;
-        return new Vector3(roomWidth * (x - gridSize.x / 2), roomHeight * (y - gridSize.y / 2));
+        int z = grid.y;
+        return new Vector3(roomWidth * (x - gridSize.x / 2), 0, roomHeight * (z - gridSize.y / 2));
     }
 
     private void OnDrawGizmos()
@@ -185,7 +185,7 @@ public class RoomManager : MonoBehaviour
             for (int y = 0; y < gridSize.y; ++y)
             {
                 Vector3 position = GetPositionFromGridIndex(new Vector2Int(x, y));
-                Gizmos.DrawWireCube(new Vector3(position.x, position.y), new Vector3(roomWidth, roomHeight, 1));
+                Gizmos.DrawWireCube(position, new Vector3(roomWidth, 1, roomHeight));
             }
         }
     }
