@@ -10,6 +10,11 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private int maxRooms = 15;
     [SerializeField] private int minRooms = 10;
 
+    public int numberOfFunctionRooms;
+    public int numberOfBossRooms;
+    public int numberOfMinibossRooms;
+    public int numberOfHiddenRooms;
+
     int roomWidth = 20;
     int roomHeight = 20;
 
@@ -80,10 +85,16 @@ public class RoomManager : MonoBehaviour
         roomGrid[x, y] = 1;
         roomCount++;
 
-        var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
-        initialRoom.name = $"Room-{roomCount}";
-        initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
-        roomObjects.Add(initialRoom);
+        //var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        //initialRoom.name = $"Room-{roomCount}";
+        //initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
+        //roomObjects.Add(initialRoom);
+
+        // var minimapRoom = Instantiate(minimapRoomPrefab, minimapRoot);
+        // roomObjects.Add(minimapRoom);
+        // minimapRoom.transform.position = new Vector3(roomIndex.x, roomIndex.y);
+        // minimapRoom.GetComponent<MinimapRoom>().RoomIndex = roomIndex;
+        // OpenDoors(minimapRoom, x, y);
     }
 
     private bool TryGenerateRoom(Vector2Int roomIndex)
@@ -119,23 +130,27 @@ public class RoomManager : MonoBehaviour
         roomGrid[x, y] = 1;
         roomCount++;
 
-        var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
-        initialRoom.name = $"Room-{roomCount}";
-        initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
-        roomObjects.Add(initialRoom);
-        OpenDoors(initialRoom, x, y);
+        //var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
+        //initialRoom.name = $"Room-{roomCount}";
+        //initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
+
+        // var minimapRoom = Instantiate(minimapRoomPrefab, minimapRoot);
+        // minimapRoom.transform.position = new Vector3(roomIndex.x, roomIndex.y);
+        // minimapRoom.GetComponent<MinimapRoom>().RoomIndex = roomIndex;
+        // roomObjects.Add(minimapRoom);
+        // OpenDoors(minimapRoom, x, y);
 
         return true;
     }
 
     private void OpenDoors(GameObject room, int x, int y)
     {
-        Room roomComp = room.GetComponent<Room>();
-
-        Room left = GetRoomComponentAt(new Vector2Int(x - 1, y));
-        Room right = GetRoomComponentAt(new Vector2Int(x + 1, y));
-        Room top = GetRoomComponentAt(new Vector2Int(x, y + 1));
-        Room bottom = GetRoomComponentAt(new Vector2Int(x, y - 1));
+        var roomComp = room.GetComponent<MinimapRoom>();
+        
+        var left = GetRoomComponentAt(new Vector2Int(x - 1, y));
+        var right = GetRoomComponentAt(new Vector2Int(x + 1, y));
+        var top = GetRoomComponentAt(new Vector2Int(x, y + 1));
+        var bottom = GetRoomComponentAt(new Vector2Int(x, y - 1));
 
         if (x > 0 && roomGrid[x - 1, y] != 0)
         {
@@ -162,10 +177,10 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    private Room GetRoomComponentAt(Vector2Int index)
+    private MinimapRoom GetRoomComponentAt(Vector2Int index)
     {
-        GameObject gameObject = roomObjects.Find(r => r.GetComponent<Room>().RoomIndex == index);
-        return gameObject?.GetComponent<Room>();
+        GameObject gameObject = roomObjects.Find(r => r.GetComponent<MinimapRoom>().RoomIndex == index);
+        return gameObject?.GetComponent<MinimapRoom>();
     }
 
     private Vector3 GetPositionFromGridIndex(Vector2Int grid)
