@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Module.MapGeneration.Data;
 using Module.MapGeneration.Type;
 using UnityEngine;
-using System.Linq;
 
 public class MinimapHUD : MonoBehaviour
 {
@@ -11,9 +11,13 @@ public class MinimapHUD : MonoBehaviour
     [SerializeField] private RoomPrefabData[] prefabs;
     [SerializeField] private Transform minimapRoot;
     [SerializeField] private MapData boundModel;
+    [SerializeField] private Vector2Int roomSize;
+    [SerializeField] private Transform axieIcon;
+    [SerializeField] private Transform cameraTransform;
 
     private readonly List<MinimapRoom> minimapRooms = new();
     private readonly Dictionary<RoomType, MinimapRoom> minimapPrefabMetaData = new();
+    private MovementController axieMovement;
 
     private void Awake()
     {
@@ -24,6 +28,20 @@ public class MinimapHUD : MonoBehaviour
         {
             minimapPrefabMetaData.Add(prefab.roomType, prefab.prefab.GetComponent<MinimapRoom>());
         }
+
+        axieMovement = FindObjectOfType<MovementController>();
+    }
+
+    private void LateUpdate()
+    {
+        var pos = GetMapPosition(axieMovement.Body.position);
+        axieIcon.transform.position = pos;
+        cameraTransform.position = new Vector3(pos.x, pos.y, -10);
+    }
+
+    private void OnDestroy()
+    {
+        boundModel.onDataChange -= OnMapChange;
     }
 
     private void OnMapChange()
@@ -83,5 +101,19 @@ public class MinimapHUD : MonoBehaviour
     {
         var room = minimapRooms.Find(r => r.RoomIndex == index);
         return room;
+    }
+    
+    private Vector2Int GetGridIndexFromPosition(Vector3 position)
+    {
+        int x = Mathf.FloorToInt(position.x / roomSize.x + boundModel.GridSize.x * 0.5f);
+        int y = Mathf.FloorToInt(position.z / roomSize.y + boundModel.GridSize.y * 0.5f);
+        return new Vector2Int(x, y);
+    }
+    
+    private Vector2 GetMapPosition(Vector3 position)
+    {
+        float x = position.x / roomSize.x + boundModel.GridSize.x * 0.5f;
+        float y = position.z / roomSize.y + boundModel.GridSize.y * 0.5f;
+        return new Vector2(x, y);
     }
 }

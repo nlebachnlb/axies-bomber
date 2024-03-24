@@ -17,6 +17,7 @@ public class MovementController : MonoBehaviour
     public AxieConfigReader config;
 
     public Vector3 LastDirection { get; set; } = Vector3.right;
+    public Rigidbody Body => rigidbody;
 
     [SerializeField] private Transform skinWrapper;
 
@@ -72,14 +73,12 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 position = rigidbody.position;
-        Vector3 translation = direction * stats.Calculate().speed * Time.fixedDeltaTime;
-        Vector3 snapDelta = snapDirection * stats.Calculate().speed * Time.fixedDeltaTime;
+        Vector3 translation = direction * (stats.Calculate().speed * Time.fixedDeltaTime);
         Vector3 destination = position + translation;
         
         // Snap position to integer
         destination.x = snapDirection.x < 0 ? Mathf.Floor(destination.x) : Mathf.Ceil(destination.x);
         destination.z = snapDirection.z < 0 ? Mathf.Floor(destination.z) : Mathf.Ceil(destination.z);
-        destination = Vector3.MoveTowards(position, destination, snapDelta.magnitude);
         
         rigidbody.MovePosition(position + translation);
     }

@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using Module.MapGeneration.Data;
-using Module.MapGeneration.Type;
-using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,6 +26,7 @@ namespace Module.MapGeneration.Controller
 
         private void StartRoomGenerationFromRoom(Vector2Int roomIndex)
         {
+            generationComplete = false;
             roomQueue.Enqueue(roomIndex);
             DataModel.PlaceRoom(roomIndex, true);
         }
@@ -92,6 +90,9 @@ namespace Module.MapGeneration.Controller
                 Debug.LogWarning("Generate failed: more than 1 adjacent room");
                 return false;
             }
+
+            if (DataModel.IsCellNotNull(roomIndex) && DataModel.RoomGrid[x, y].IsNotNull())
+                return false;
 
             roomQueue.Enqueue(roomIndex);
             DataModel.PlaceRoom(new Vector2Int(x, y));

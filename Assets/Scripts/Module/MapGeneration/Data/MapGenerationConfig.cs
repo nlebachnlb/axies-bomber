@@ -14,14 +14,26 @@ namespace Module.MapGeneration.Data
             public RoomType roomType;
             public int minQuantity, maxQuantity;
             public int minDistance = 1;
-            public GameObject prefab;
+        }
+
+        [Serializable]
+        public class RoomPrefabConfig
+        {
+            public RoomType roomType;
+            public List<Room> prefab;
         }
 
         public List<RoomTypeConfig> roomTypeConfigs;
+        public List<RoomPrefabConfig> roomPrefabConfigs;
 
         public RoomTypeConfig GetRoomTypeConfig(RoomType roomType)
         {
             return roomTypeConfigs.Find(r => r.roomType == roomType);
+        }
+        
+        public RoomPrefabConfig GetRoomPrefabConfig(RoomType roomType)
+        {
+            return roomPrefabConfigs.Find(r => r.roomType == roomType);
         }
     }
 }

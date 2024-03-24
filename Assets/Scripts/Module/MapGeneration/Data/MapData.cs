@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Base.Data;
 using Module.MapGeneration.Type;
 using UnityEngine;
@@ -14,6 +13,7 @@ namespace Module.MapGeneration.Data
         public List<RoomData> Rooms => rooms;
         public int RoomCount => roomCount;
         public int MaxRooms => maxRooms;
+        public MapGenerationConfig Config => generationConfig;
         
         public Vector2Int GridSize => gridSize;
 

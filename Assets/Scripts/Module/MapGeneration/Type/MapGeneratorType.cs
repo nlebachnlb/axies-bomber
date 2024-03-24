@@ -52,13 +52,13 @@ namespace Module.MapGeneration.Type
         public GameObject prefab;
     }
 
-    public class MapGenerationConstant
+    public static class MapGenerationConstant
     {
         public static readonly Vector2Int[] Direction = {
-            new Vector2Int(-1, 0),
-            new Vector2Int(+1, 0),
-            new Vector2Int(0, -1),
-            new Vector2Int(0, +1)
+            new(-1, 0),
+            new(+1, 0),
+            new(0, -1),
+            new(0, +1)
         };
     }
 }
