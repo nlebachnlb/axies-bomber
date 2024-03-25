@@ -26,6 +26,7 @@ namespace Module.MapGeneration.Controller
 
         private void StartRoomGenerationFromRoom(Vector2Int roomIndex)
         {
+            Debug.Log("Start index:" + roomIndex);
             generationComplete = false;
             roomQueue.Enqueue(roomIndex);
             DataModel.PlaceRoom(roomIndex, true);

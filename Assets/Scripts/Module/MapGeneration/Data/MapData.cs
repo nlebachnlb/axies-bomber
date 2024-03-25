@@ -55,7 +55,7 @@ namespace Module.MapGeneration.Data
             var roomData = GenerateRoomData(index);
             roomGrid[x, y] = roomData;
             rooms.Add(roomData);
-            roomCount++;
+            roomData.roomId = roomCount++;
             if (isStartRoom) startIndex = index;
         }
         

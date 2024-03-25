@@ -29,7 +29,7 @@ namespace Module.MapGeneration.View
                 var prefab = boundModel.Config.GetRoomPrefabConfig(roomType).prefab;
                 var roomObject = Instantiate(RandomUtils.RandomElement(prefab), root);
                 var position = GetPositionFromGridIndex(room.index);
-                roomObject.gameObject.transform.position = position;
+                roomObject.gameObject.transform.localPosition = position;
                 roomObject.RoomIndex = room.index;
                 roomObjects.Add(roomObject);
                 OpenDoors(roomObject, room.index.x, room.index.y);
@@ -51,29 +51,34 @@ namespace Module.MapGeneration.View
             var right = GetRoomComponentAt(new Vector2Int(x + 1, y));
             var top = GetRoomComponentAt(new Vector2Int(x, y + 1));
             var bottom = GetRoomComponentAt(new Vector2Int(x, y - 1));
-
+            
+            var currentRoomId = boundModel.RoomGrid[x, y].roomId;
             if (x > 0 && boundModel.IsCellNotNull(x - 1, y) && left)
             {
-                room.OpenDoor(Vector2Int.left);
-                left.OpenDoor(Vector2Int.right);
+                var nextRoomId = boundModel.RoomGrid[x - 1, y].roomId;
+                room.OpenDoor(Vector2Int.left, nextRoomId);
+                left.OpenDoor(Vector2Int.right, currentRoomId);
             }
 
             if (x < gridSize.x - 1 && boundModel.IsCellNotNull(x + 1, y) && right)
             {
-                room.OpenDoor(Vector2Int.right);
-                right.OpenDoor(Vector2Int.left);
+                var nextRoomId = boundModel.RoomGrid[x + 1, y].roomId;
+                room.OpenDoor(Vector2Int.right, nextRoomId);
+                right.OpenDoor(Vector2Int.left, currentRoomId);
             }
 
             if (y > 0 && boundModel.IsCellNotNull(x, y - 1) && bottom)
             {
-                room.OpenDoor(Vector2Int.down);
-                bottom.OpenDoor(Vector2Int.up);
+                var nextRoomId = boundModel.RoomGrid[x, y - 1].roomId;
+                room.OpenDoor(Vector2Int.down, nextRoomId);
+                bottom.OpenDoor(Vector2Int.up, currentRoomId);
             }
 
             if (y < gridSize.y - 1 && boundModel.IsCellNotNull(x, y + 1) && top)
             {
-                room.OpenDoor(Vector2Int.up);
-                top.OpenDoor(Vector2Int.down);
+                var nextRoomId = boundModel.RoomGrid[x, y + 1].roomId;
+                room.OpenDoor(Vector2Int.up, nextRoomId);
+                top.OpenDoor(Vector2Int.down, currentRoomId);
             }
         }
 

@@ -6,14 +6,43 @@ public class Room : MonoBehaviour
 {
     [SerializeField] GameObject topDoor, bottomDoor, leftDoor, rightDoor;
     [SerializeField] GameObject topBlock, bottomBlock, leftBlock, rightBlock;
+    [SerializeField] private int roomWidth, roomHeight;
+    [SerializeField] private MapChanger topTerminal, bottomTerminal, leftTerminal, rightTerminal;
     public Vector2Int RoomIndex { get; set; }
 
-    public void OpenDoor(Vector2Int direction)
+    public Vector3 MinPosition => new(
+        transform.position.x - roomWidth * 0.5f, 0,
+        transform.position.y - roomHeight * 0.5f);
+    
+    public Vector3 MaxPosition => new(
+        transform.position.x + roomWidth * 0.5f, 0,
+        transform.position.y + roomHeight * 0.5f);
+    
+    public void OpenDoor(Vector2Int direction, int targetRoomId)
     {
-        if (direction == Vector2Int.up) topDoor.SetActive(true);
-        if (direction == Vector2Int.down) bottomDoor.SetActive(true);
-        if (direction == Vector2Int.left) leftDoor.SetActive(true);
-        if (direction == Vector2Int.right) rightDoor.SetActive(true);
+        if (direction == Vector2Int.up)
+        {
+            topDoor.SetActive(true);
+            topTerminal.targetRoomId = targetRoomId;
+        }
+
+        if (direction == Vector2Int.down)
+        {
+            bottomDoor.SetActive(true);
+            bottomTerminal.targetRoomId = targetRoomId;
+        }
+
+        if (direction == Vector2Int.left)
+        {
+            leftDoor.SetActive(true);
+            leftTerminal.targetRoomId = targetRoomId;
+        }
+
+        if (direction == Vector2Int.right)
+        {
+            rightDoor.SetActive(true);
+            rightTerminal.targetRoomId = targetRoomId;
+        }
 
         topBlock.SetActive(!topDoor.activeInHierarchy);
         leftBlock.SetActive(!leftDoor.activeInHierarchy);

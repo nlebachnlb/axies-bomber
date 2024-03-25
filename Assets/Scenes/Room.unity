@@ -2531,15 +2531,15 @@ MonoBehaviour:
     roomTypeConfigs:
     - roomType: 4
       minQuantity: 0
-      maxQuantity: 2
+      maxQuantity: 0
       minDistance: 0
     - roomType: 2
-      minQuantity: 1
-      maxQuantity: 1
+      minQuantity: 0
+      maxQuantity: 0
       minDistance: 4
     - roomType: 5
-      minQuantity: 1
-      maxQuantity: 1
+      minQuantity: 0
+      maxQuantity: 0
       minDistance: 3
     roomPrefabConfigs:
     - roomType: 1

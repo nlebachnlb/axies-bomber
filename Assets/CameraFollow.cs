@@ -8,6 +8,12 @@ public class CameraFollow : MonoBehaviour
 
     public Vector3 minPosition, maxPosition;
 
+    public void BoundWithRoom(Room room)
+    {
+        minPosition = room.MinPosition;
+        maxPosition = room.MaxPosition;
+    }
+    
     private void FixedUpdate()
     {
         Vector3 desiredPosition = target.position;
