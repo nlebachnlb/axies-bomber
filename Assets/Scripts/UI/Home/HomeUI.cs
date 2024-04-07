@@ -12,6 +12,7 @@ public class HomeUI : MonoBehaviour
     private void Awake()
     {
         buttonPlay.onClick.AddListener(OnSelectPlay);
+        buttonUpgrade.onClick.AddListener(OnSelectUpgrade);
     }
 
     private void OnSelectPlay()
@@ -25,5 +26,10 @@ public class HomeUI : MonoBehaviour
         AppRoot.Instance.SoundManager.StopMenuBGM();
         AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.Confirm);
         AppRoot.Instance.TransitionToScene(AppRoot.Instance.Config.playScene, true);
+    }
+
+    private void OnSelectUpgrade()
+    {
+        ViewController.Instance.upgradeUI.Open();
     }
 }

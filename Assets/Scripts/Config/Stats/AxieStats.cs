@@ -14,6 +14,27 @@ public class AxieStats : ScriptableObject
 
     public List<StatsBuff> buffs { get; private set; } = new List<StatsBuff>();
 
+    public float GetBaseValue(Stat stat)
+    {
+        float baseValue = 0;
+        switch (stat)
+        {
+            case Stat.Speed:
+                baseValue = speed;
+                break;
+            case Stat.BombMagazine:
+                baseValue = bombMagazine;
+                break;
+            case Stat.Health:
+                baseValue = health;
+                break;
+            case Stat.BombExplosionRadius:
+                baseValue = bombExplosionRadius;
+                break;
+        }
+        return baseValue;
+    }
+
     public void AddBuff(StatsBuff buff)
     {
         buffs.Add(buff);
@@ -38,23 +59,33 @@ public class AxieStats : ScriptableObject
         {
             switch (buff.buffType)
             {
-                case StatsBuff.BuffType.Speed:
+                case Stat.Speed:
                     //Debug.Log("Speed buff: " + result.speed + " + " + buff.GetDeltaValueFromBase(speed));
                     result.speed += buff.GetDeltaValueFromBase(speed);
                     break;
-                case StatsBuff.BuffType.BombMagazine:
+                case Stat.BombMagazine:
                     //Debug.Log("Bomb buff: " + result.bombMagazine + " + " + buff.GetDeltaValueFromBase(bombMagazine));
                     result.bombMagazine += (int)buff.GetDeltaValueFromBase(bombMagazine);
                     break;
-                case StatsBuff.BuffType.Health:
+                case Stat.Health:
                     result.health += (int)buff.GetDeltaValueFromBase(health);
                     break;
-                case StatsBuff.BuffType.BombExplosionRadius:
+                case Stat.BombExplosionRadius:
                     result.bombExplosionRadius += (int)buff.GetDeltaValueFromBase(bombExplosionRadius);
                     break;
             }
         }
         //Debug.Log("After: " + result);
+        return result;
+    }
+
+    public AxieStats AddUpgradeBuff(UpgradeBuff upgradeBuff)
+    {
+        AxieStats result = Instantiate(this);
+        result.bombExplosionRadius += upgradeBuff.bombExplosionRadius;
+        result.bombMagazine += upgradeBuff.bombMagazine;
+        result.health += upgradeBuff.health;
+        result.speed += upgradeBuff.speed;
         return result;
     }
 

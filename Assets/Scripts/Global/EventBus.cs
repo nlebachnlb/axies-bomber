@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,6 +57,7 @@ public class EventBus
     public delegate void OnGameOver();
     public static event OnGameOver onGameOver;
 
+    public static event Action<int> onCurrency1Changed;
 
     public static void RaiseOnBombFuse()
     {
@@ -120,6 +122,11 @@ public class EventBus
     public static void RaiseOnGameOver()
     {
         onGameOver?.Invoke();
+    }
+
+    public static void RaiseOnCurrency1Changed(int value)
+    {
+        onCurrency1Changed?.Invoke(value);
     }
 
     private static EventBus instance = null;

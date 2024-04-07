@@ -37,7 +37,7 @@ public class SimpleSlimeMovement : MonoBehaviour
     private EnemyState state = EnemyState.Spawn;
     private EnemyController enemyController;
     private Collider colBox;
-    private Rigidbody rigidbody;
+    private new Rigidbody rigidbody;
     private Vector3 direction;
     private EnemyHealth health;
     private float timer = 0f;

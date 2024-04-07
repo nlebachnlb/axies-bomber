@@ -11,11 +11,11 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private SkeletonAnimation anim;
     //[SerializeField] private AnimationReferenceAsset animDie;
 
-    private Collider collider;
+    private new Collider collider;
 
     private void Awake()
     {
-        collider = GetComponent<Collider>();    
+        collider = GetComponent<Collider>();
     }
 
     public void OnDeath()

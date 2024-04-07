@@ -1,0 +1,142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a4d8cb5b0e02f48a99853c2296373b, type: 3}
+  m_Name: AxieUpgradeConfig
+  m_EditorClassIdentifier: 
+  Data:
+    _serializedList:
+    - Key: 0
+      Value:
+      - Damage: 0
+        Speed: 0
+        BombRange: 0
+        BombCount: 0
+        Health: 0
+        DamageCost: 1
+        SpeedCost: 1
+        BombRangeCost: 1
+        BombCountCost: 1
+        HealthCost: 1
+      - Damage: 1
+        Speed: 1
+        BombRange: 1
+        BombCount: 1
+        Health: 1
+        DamageCost: 2
+        SpeedCost: 2
+        BombRangeCost: 2
+        BombCountCost: 2
+        HealthCost: 2
+      - Damage: 2
+        Speed: 2
+        BombRange: 2
+        BombCount: 2
+        Health: 2
+        DamageCost: 3
+        SpeedCost: 3
+        BombRangeCost: 3
+        BombCountCost: 3
+        HealthCost: 3
+      - Damage: 3
+        Speed: 3
+        BombRange: 3
+        BombCount: 3
+        Health: 3
+        DamageCost: 0
+        SpeedCost: 0
+        BombRangeCost: 0
+        BombCountCost: 0
+        HealthCost: 0
+    - Key: 1
+      Value:
+      - Damage: 0
+        Speed: 0
+        BombRange: 0
+        BombCount: 0
+        Health: 0
+        DamageCost: 1
+        SpeedCost: 1
+        BombRangeCost: 1
+        BombCountCost: 1
+        HealthCost: 1
+      - Damage: 1
+        Speed: 1
+        BombRange: 1
+        BombCount: 1
+        Health: 1
+        DamageCost: 2
+        SpeedCost: 2
+        BombRangeCost: 2
+        BombCountCost: 2
+        HealthCost: 2
+      - Damage: 2
+        Speed: 2
+        BombRange: 2
+        BombCount: 2
+        Health: 2
+        DamageCost: 3
+        SpeedCost: 3
+        BombRangeCost: 3
+        BombCountCost: 3
+        HealthCost: 3
+      - Damage: 3
+        Speed: 3
+        BombRange: 3
+        BombCount: 3
+        Health: 3
+        DamageCost: 0
+        SpeedCost: 0
+        BombRangeCost: 0
+        BombCountCost: 0
+        HealthCost: 0
+    - Key: 2
+      Value:
+      - Damage: 0
+        Speed: 0
+        BombRange: 0
+        BombCount: 0
+        Health: 0
+        DamageCost: 1
+        SpeedCost: 1
+        BombRangeCost: 1
+        BombCountCost: 1
+        HealthCost: 1
+      - Damage: 1
+        Speed: 1
+        BombRange: 1
+        BombCount: 1
+        Health: 1
+        DamageCost: 2
+        SpeedCost: 2
+        BombRangeCost: 2
+        BombCountCost: 2
+        HealthCost: 2
+      - Damage: 2
+        Speed: 2
+        BombRange: 2
+        BombCount: 2
+        Health: 2
+        DamageCost: 3
+        SpeedCost: 3
+        BombRangeCost: 3
+        BombCountCost: 3
+        HealthCost: 3
+      - Damage: 3
+        Speed: 3
+        BombRange: 3
+        BombCount: 3
+        Health: 3
+        DamageCost: 0
+        SpeedCost: 0
+        BombRangeCost: 0
+        BombCountCost: 0
+        HealthCost: 0

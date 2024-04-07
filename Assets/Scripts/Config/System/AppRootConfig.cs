@@ -8,6 +8,8 @@ public class AppRootConfig : ScriptableObject
     public string startSceneName;
     public string playScene;
     public string homeScene;
+
+    [Header("Axies")]
     public AvailableAxieHeroesConfig availableAxies;
 
     [System.Serializable]
@@ -17,8 +19,12 @@ public class AppRootConfig : ScriptableObject
         public GameObject tilemap;
     }
 
+    [Header("Maps")]
     [SerializeField] private MapConfig[] mapConfigs;
     private Dictionary<string, MapConfig> indexedMapConfigs;
+
+    [Header("Upgrades")]
+    public AxieUpgradeConfig axieUpgrades;
 
     private void GenerateIndexedMapConfig()
     {

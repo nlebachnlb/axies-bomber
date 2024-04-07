@@ -1,13 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using static AxieUpgradeConfig;
 
-[System.Serializable]
+[Serializable]
 public class UserData
 {
     public List<int> ownedAxieIds = new List<int>();
     public List<int> currentPickedAxies;
+    public Dictionary<int, Dictionary<Stat, int>> axieStatLevel = new();
+    public int currency1;
+
+    public int Currency1
+    {
+        get => currency1;
+        set
+        {
+            currency1 = value;
+            EventBus.RaiseOnCurrency1Changed(value);
+        }
+    }
 
     public UserData()
     {
@@ -15,6 +29,7 @@ public class UserData
         {
             -1, -1, -1
         };
+        currency1 = 50;
     }
 }
 
@@ -78,6 +93,48 @@ public class UserDataModel : MonoBehaviour
     public bool IsAxiePicked(int axieId)
     {
         return User.currentPickedAxies.Contains(axieId);
+    }
+
+    public Dictionary<Stat, int> GetAxieStatsLevel(int axieId)
+    {
+        if (User.axieStatLevel.TryGetValue(axieId, out var info))
+            return info;
+        else
+            return null;
+    }
+
+    public int GetAxieStatLevel(int axieId, Stat stat)
+    {
+        var statInfo = GetAxieStatsLevel(axieId);
+        if (statInfo != null && statInfo.ContainsKey(stat))
+            return statInfo[stat];
+        else
+            return 0;
+    }
+
+    public int IncreaseStatLevel(int axieId, Stat stat)
+    {
+        User.axieStatLevel.TryAdd(axieId, new());
+        User.axieStatLevel[axieId].TryAdd(stat, 0);
+        User.axieStatLevel[axieId][stat] += 1;
+        return User.axieStatLevel[axieId][stat];
+    }
+
+    public UpgradeBuff GetUpgradeBuff(int axieId)
+    {
+        var statLevel = GetAxieStatsLevel(axieId);
+        if (statLevel == null)
+            return new();
+
+        AxieUpgradeConfig axieUpgradeConfig = AppRoot.Instance.Config.axieUpgrades;
+        AxieIdentity id = (AxieIdentity)axieId;
+        return new()
+        {
+            speed = axieUpgradeConfig.GetSpeedUpgrade(id, GetAxieStatLevel(axieId, Stat.Speed)),
+            health = axieUpgradeConfig.GetHealthUpgrade(id, GetAxieStatLevel(axieId, Stat.Health)),
+            bombExplosionRadius = axieUpgradeConfig.GetBombExplosionRadiusUpgrade(id, GetAxieStatLevel(axieId, Stat.BombExplosionRadius)),
+            bombMagazine = axieUpgradeConfig.GetBombMagazineUpgrade(id, GetAxieStatLevel(axieId, Stat.BombMagazine))
+        };
     }
 
     private void Awake()
