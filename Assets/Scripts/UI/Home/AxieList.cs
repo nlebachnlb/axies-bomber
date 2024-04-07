@@ -26,8 +26,7 @@ public class AxieList : MonoBehaviour
             if (i >= comp.Length)
             {
                 AxieCard card = Instantiate(axieCard, content.transform);
-                card.config = config;
-                card.ReloadConfig();
+                card.ReloadConfig(config);
                 card.onSelect += (AxieCard card) =>
                 {
                     AxieCard[] cards = GetComponentsInChildren<AxieCard>();
@@ -39,8 +38,7 @@ public class AxieList : MonoBehaviour
             else
             {
                 comp[i].gameObject.SetActive(true);
-                comp[i].config = config;
-                comp[i].ReloadConfig();
+                comp[i].ReloadConfig(config);
             }
         }
     }

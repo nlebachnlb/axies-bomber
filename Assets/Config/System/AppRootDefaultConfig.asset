@@ -62,3 +62,4 @@ MonoBehaviour:
   - id: 3-5
     tilemap: {fileID: 5828305884576650255, guid: 15e16a932298711498d70d90add22198,
       type: 3}
+  axieUpgrades: {fileID: 11400000, guid: 7253246006ecb404ea375b3002814674, type: 2}

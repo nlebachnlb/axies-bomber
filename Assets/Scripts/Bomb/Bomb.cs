@@ -14,7 +14,7 @@ public class Bomb : MonoBehaviour
     public Color color;
     public AxieHeroData bombOwner;
 
-    private Rigidbody rigidbody;
+    private new Rigidbody rigidbody;
     private Vector3 vel = Vector3.zero;
     private Collider col;
 

@@ -14,6 +14,9 @@ public class GameplayController : MonoBehaviour
     public AxieStats axieBaseStats;
     public BombStats bombBaseStats;
 
+    [Header("Map")]
+    [SerializeField] private string defaultMapId;
+
     [Header("Axie Heroes Slots")]
     public List<AxieHeroData> slots;
     public List<KeyCode> inputSlotMap;
@@ -75,7 +78,7 @@ public class GameplayController : MonoBehaviour
             slot.ReloadInGameData();
 
         SwitchAxieHero(0);
-        mapController.Reload("1-1");
+        mapController.Reload(defaultMapId);
 
         AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.IngameBGMType);
     }
@@ -83,8 +86,9 @@ public class GameplayController : MonoBehaviour
     private void InitAxieHeroDataSlots()
     {
         slots = new List<AxieHeroData>();
-        UserData model = AppRoot.Instance.UserDataModel.User;
-        List<AxiePackedConfig> configs = model.currentPickedAxies.Select(id => AppRoot.Instance.Config.availableAxies.GetAxiePackedConfigById(id)).ToList();
+        UserDataModel userDataModel = AppRoot.Instance.UserDataModel;
+        UserData userData = userDataModel.User;
+        List<AxiePackedConfig> configs = userData.currentPickedAxies.Select(id => AppRoot.Instance.Config.availableAxies.GetAxiePackedConfigById(id)).ToList();
 
         Debug.Log("Initiating...");
         for (int i = 0; i < configs.Count; ++i)
@@ -92,7 +96,7 @@ public class GameplayController : MonoBehaviour
             AxieHeroData axie = new AxieHeroData();
             axie.identity = (AxieIdentity)configs[i].id;
             axie.axieConfig = Instantiate(configs[i].axieConfig);
-            axie.axieStats = Instantiate(configs[i].axieStats);
+            axie.axieStats = Instantiate(configs[i].axieStats).AddUpgradeBuff(userDataModel.GetUpgradeBuff(configs[i].id));
             axie.bombStats = Instantiate(configs[i].bombStats);
             axie.abilityPrefab = configs[i].abilityPrefab;
             axie.ability = null;
