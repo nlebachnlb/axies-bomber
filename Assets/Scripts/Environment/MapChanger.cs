@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MapChanger : MonoBehaviour
 {
-    public string targetMapId;
     public int targetRoomId;
+    public Transform spawnPoint;
+    public Vector2Int direction;
 }

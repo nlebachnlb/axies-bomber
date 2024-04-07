@@ -611,6 +611,16 @@ PrefabInstance:
       propertyPath: boundModel
       value: 
       objectReference: {fileID: 6247636260515375352}
+    - target: {fileID: 5037178869154486863, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: roomSize.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037178869154486863, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: roomSize.y
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6456539490807453642, guid: df31bd18b641d0a42a4e21d260cebc41,
         type: 3}
       propertyPath: m_Name
@@ -1750,6 +1760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1db4ec9eca1f4af5a55606fd02738c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataModel: {fileID: 0}
   root: {fileID: 2068155581}
   player: {fileID: 640056823}
   movement: {fileID: 390811916}
@@ -2384,7 +2395,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boundModel: {fileID: 6247636260515375352}
   root: {fileID: 2068155581}
-  roomSize: {x: 20, y: 20}
+  roomSize: {x: 30, y: 30}
+  camera: {fileID: 1342699089}
+  player: {fileID: 640056823}
 --- !u!1 &2068155580
 GameObject:
   m_ObjectHideFlags: 0

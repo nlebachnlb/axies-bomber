@@ -75,9 +75,9 @@ public class GameplayController : MonoBehaviour
             slot.ReloadInGameData();
 
         SwitchAxieHero(0);
-        mapController.Reload("1-1");
+        // mapController.Reload("1-1");
 
-        AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.IngameBGMType);
+        // AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.IngameBGMType);
     }
 
     private void InitAxieHeroDataSlots()

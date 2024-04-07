@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Module.MapGeneration.Data;
 using Module.Utils;
 using UnityEngine;
@@ -11,15 +12,37 @@ namespace Module.MapGeneration.View
         [SerializeField] private MapData boundModel;
         [SerializeField] private Transform root;
         [SerializeField] private Vector2Int roomSize;
+        [SerializeField] private CameraFollow camera;
+        [SerializeField] private Transform player;
 
-        private readonly List<Room> roomObjects = new();
+        private readonly Dictionary<int, Room> roomObjects = new();
 
         private void Awake()
         {
-            boundModel.onDataChange += OnMapChange;
+            boundModel.onDataChange += OnDataChange;
+
+            EventBus.onRoomChange += OnRoomChange;
         }
 
-        private void OnMapChange()
+        private void OnDestroy()
+        {
+            EventBus.onRoomChange -= OnRoomChange;
+        }
+
+        private void OnRoomChange(int roomId, Vector2Int fromDirection)
+        {
+            var roomData = boundModel.GetRoomDataFromId(roomId);
+            var position = GetPositionFromGridIndex(roomData.index);
+            Debug.Log($"Change camera bound to: {position.x}, {position.z}");
+            camera.minPosition = new Vector3(position.x - 5, 0, position.z - 5);
+            camera.maxPosition = new Vector3(position.x + 5, 0, position.z + 5);
+
+            Room room = roomObjects[roomId];
+            var spawnPoint = room.GetSpawnPointFromDirection(fromDirection);
+            player.position = spawnPoint;
+        }
+
+        private void OnDataChange()
         {
             roomObjects.Clear();
             var rooms = boundModel.Rooms;
@@ -31,7 +54,7 @@ namespace Module.MapGeneration.View
                 var position = GetPositionFromGridIndex(room.index);
                 roomObject.gameObject.transform.localPosition = position;
                 roomObject.RoomIndex = room.index;
-                roomObjects.Add(roomObject);
+                roomObjects.Add(room.roomId, roomObject);
                 OpenDoors(roomObject, room.index.x, room.index.y);
             }
         }
@@ -84,7 +107,7 @@ namespace Module.MapGeneration.View
 
         private Room GetRoomComponentAt(Vector2Int index)
         {
-            var room = roomObjects.Find(r => r.RoomIndex == index);
+            var room = roomObjects.Values.ToList().Find(r => r.RoomIndex == index);
             return room;
         }
     }

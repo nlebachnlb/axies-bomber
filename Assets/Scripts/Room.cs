@@ -49,4 +49,21 @@ public class Room : MonoBehaviour
         rightBlock.SetActive(!rightDoor.activeInHierarchy);
         bottomBlock.SetActive(!bottomDoor.activeInHierarchy);
     }
+
+    public Vector3 GetSpawnPointFromDirection(Vector2Int direction)
+    {
+        if (direction == Vector2Int.up)
+            return bottomTerminal.spawnPoint.position;
+        
+        if (direction == Vector2Int.down)
+            return topTerminal.spawnPoint.position;
+        
+        if (direction == Vector2Int.left)
+            return rightTerminal.spawnPoint.position;
+        
+        if (direction == Vector2Int.right)
+            return leftTerminal.spawnPoint.position;
+
+        return new Vector3(-1, -1, -1);
+    }
 }

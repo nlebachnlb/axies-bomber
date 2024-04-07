@@ -41,8 +41,11 @@ public class EventBus
     public delegate void OnPickSkill(SkillConfig skill);
     public static event OnPickSkill onPickSkill;
 
-    public delegate void OnMapChange(string newId);
+    public delegate void OnMapChange(int newId);
     public static event OnMapChange onMapChange;
+    
+    public delegate void OnRoomChange(int newId, Vector2Int fromDirection);
+    public static event OnRoomChange onRoomChange;
 
     public delegate void OnRoomClear();
     public static event OnRoomClear onRoomClear;
@@ -97,7 +100,7 @@ public class EventBus
         onOpenSkillPool?.Invoke(isAbilityPool);
     }
 
-    public static void RaiseOnMapChange(string newId)
+    public static void RaiseOnMapChange(int newId)
     {
         onMapChange?.Invoke(newId);
     }
@@ -120,6 +123,11 @@ public class EventBus
     public static void RaiseOnGameOver()
     {
         onGameOver?.Invoke();
+    }
+
+    public static void RaiseOnRoomChange(int roomId, Vector2Int fromDirection)
+    {
+        onRoomChange?.Invoke(roomId, fromDirection);
     }
 
     private static EventBus instance = null;

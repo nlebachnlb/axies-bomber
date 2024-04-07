@@ -165,6 +165,11 @@ namespace Module.MapGeneration.Data
             }
         }
 
+        public RoomData GetRoomDataFromId(int roomId)
+        {
+            return rooms.Find(room => room.roomId == roomId);
+        }
+
         public event IBaseData.OnDataChange onDataChange;
     }
 }

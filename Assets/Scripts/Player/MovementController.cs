@@ -108,9 +108,11 @@ public class MovementController : MonoBehaviour
         if (other.CompareTag("MapChanger"))
         {
             Debug.Log("Change map");
-            Destroy(other.gameObject);
-            string nextMap = other.GetComponent<MapChanger>().targetMapId;
-            EventBus.RaiseOnMapChange(nextMap);
+            var mapChanger = other.GetComponent<MapChanger>();
+            var nextRoom = mapChanger.targetRoomId;
+            var fromDirection = mapChanger.direction;
+            // mapChanger.enabled = false;
+            EventBus.RaiseOnRoomChange(nextRoom, fromDirection);
         }
 
         if (other.CompareTag("SkillPool"))

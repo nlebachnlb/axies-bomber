@@ -43,6 +43,12 @@ namespace Module.MapGeneration.Type
             index = value;
             return this;
         }
+        
+        public RoomData SetId(int value)
+        {
+            roomId = value;
+            return this;
+        }
     }
 
     [System.Serializable]
