@@ -3,6 +3,12 @@ using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum MovementPermission
+{
+    Auto,
+    Player
+}
+
 [RequireComponent(typeof(Rigidbody))]
 public class MovementController : MonoBehaviour
 {
@@ -36,6 +42,28 @@ public class MovementController : MonoBehaviour
     private SkillPoolEntrance pool;
     private Vector3 snapDirection = Vector3.zero;
 
+    public MovementPermission movementPermission;
+
+    public void SetColliderActive(bool active)
+    {
+        GetComponent<Collider>().enabled = active;
+    }
+    
+    public void AutoMoveTo(Vector2 destination, Vector2Int direction)
+    {
+        DoAutoMoveTo(destination, direction);
+    }
+
+    private IEnumerator DoAutoMoveTo(Vector2 destination, Vector2Int direction)
+    {
+        ResetInput();
+        movementPermission = MovementPermission.Auto;
+
+        yield return null;
+
+        movementPermission = MovementPermission.Player;
+    }
+    
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -108,10 +136,9 @@ public class MovementController : MonoBehaviour
         if (other.CompareTag("MapChanger"))
         {
             Debug.Log("Change map");
-            var mapChanger = other.GetComponent<MapChanger>();
+            var mapChanger = other.GetComponent<GateWay>();
             var nextRoom = mapChanger.targetRoomId;
-            var fromDirection = mapChanger.direction;
-            // mapChanger.enabled = false;
+            var fromDirection = mapChanger.Direction;
             EventBus.RaiseOnRoomChange(nextRoom, fromDirection);
         }
 
@@ -154,6 +181,8 @@ public class MovementController : MonoBehaviour
         };
 
         inputStack = new Stack<int>();
+
+        movementPermission = MovementPermission.Player;
     }
 
     public void ResetInput()
@@ -166,6 +195,9 @@ public class MovementController : MonoBehaviour
 
     private void UpdateInput()
     {
+        if (movementPermission != MovementPermission.Player)
+            return;
+        
         if (Input.GetKeyDown(KeyCode.E) && isInteract)
         {
             SkillPoolEntrance entrance = pool;

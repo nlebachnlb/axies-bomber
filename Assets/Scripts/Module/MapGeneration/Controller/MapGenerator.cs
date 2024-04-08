@@ -7,19 +7,14 @@ namespace Module.MapGeneration.Controller
 {
     public class MapGenerator : MonoBehaviour
     {
-        public MapData DataModel { get; private set; }
+        public MapData DataModel => dataModel;
 
         [SerializeField] private MapData dataModel;
         
         private readonly Queue<Vector2Int> roomQueue = new();
         private bool generationComplete = false;
 
-        private void Awake()
-        {
-            DataModel = dataModel;
-        }
-
-        private void Start()
+        public void StartRoomGeneration()
         {
             StartRoomGenerationFromRoom(DataModel.GridSize / 2);
         }
@@ -55,6 +50,7 @@ namespace Module.MapGeneration.Controller
             {
                 generationComplete = true;
                 DataModel.PublishChanges();
+                EventBus.Instance.OnEnterRoomEvent(0);
                 Debug.Log("Generation complete");
             }
         }

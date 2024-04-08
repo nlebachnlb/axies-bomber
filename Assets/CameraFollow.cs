@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
         maxPosition = room.MaxPosition;
     }
     
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         Vector3 desiredPosition = target.position;
         if (desiredPosition.x < minPosition.x)

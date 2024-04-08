@@ -59,6 +59,10 @@ public class EventBus
     public delegate void OnGameOver();
     public static event OnGameOver onGameOver;
 
+    public delegate void OnEnterRoom(int roomId);
+
+    public event OnEnterRoom EnterRoomEvent;
+
 
     public static void RaiseOnBombFuse()
     {
@@ -131,4 +135,9 @@ public class EventBus
     }
 
     private static EventBus instance = null;
+
+    public void OnEnterRoomEvent(int roomId)
+    {
+        EnterRoomEvent?.Invoke(roomId);
+    }
 }

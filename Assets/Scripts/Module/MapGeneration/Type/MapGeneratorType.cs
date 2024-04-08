@@ -1,3 +1,4 @@
+using Base.Data;
 using TMPro;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace Module.MapGeneration.Type
     }
 
     [System.Serializable]
-    public class RoomData
+    public class RoomData : IBaseData
     {
         public int roomId = -1;
         public RoomType roomType = RoomType.NULL;
@@ -49,6 +50,8 @@ namespace Module.MapGeneration.Type
             roomId = value;
             return this;
         }
+
+        public event IBaseData.OnDataChange onDataChange;
     }
 
     [System.Serializable]

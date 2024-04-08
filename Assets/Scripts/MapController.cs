@@ -2,33 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Module.MapGeneration.Controller;
 using Module.MapGeneration.Data;
+using Module.MapGeneration.View;
 
 public class MapController : MonoBehaviour
 {
-    public int CurrentMapId { get; private set; }
+    public int CurrentRoomId { get; private set; }
 
     [SerializeField] private MapData dataModel;
+    [SerializeField] private MapView mapView;
     [SerializeField] private Transform root;
     [SerializeField] private Transform player;
     [SerializeField] private MovementController movement;
     [SerializeField] private Transform cameraRoot;
+    [SerializeField] private MapGenerator mapGenerator;
 
     private GameObject currentMapObject;
 
+    public void LoadMap()
+    {
+        mapGenerator.StartRoomGeneration();
+    }
+    
     private void Awake()
     {
-        // EventBus.onRoomChange += Reload;
+        EventBus.onRoomChange += OnRoomChange;
+        EventBus.Instance.EnterRoomEvent += OnEnterRoom;
     }
     
     private void OnDestroy()
     {
-        // EventBus.onRoomChange -= Reload;
+        EventBus.onRoomChange -= OnRoomChange;
+        EventBus.Instance.EnterRoomEvent -= OnEnterRoom;
     }
 
-    public void Reload(int roomId)
+    private void OnEnterRoom(int roomId)
     {
-        StartCoroutine(ReloadProgress(roomId));
+        mapView.OnEnterRoom(roomId);
+        CurrentRoomId = roomId;
+    }
+    
+    private void OnRoomChange(int roomId, Vector2Int fromDirection)
+    {
+        mapView.OnRoomChange(CurrentRoomId, roomId, fromDirection);
+        CurrentRoomId = roomId;
+        // StartCoroutine(ReloadProgress(roomId));
     }
 
     private IEnumerator ReloadProgress(int mapId)
