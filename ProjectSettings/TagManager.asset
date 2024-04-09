@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - SkillPool
   - KillField
+  - Transport
   layers:
   - Default
   - TransparentFX

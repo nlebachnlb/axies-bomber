@@ -565,7 +565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &481153120
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1709,6 +1709,7 @@ MonoBehaviour:
   smoothSpeed: 0.2
   minPosition: {x: -100, y: 0, z: -100}
   maxPosition: {x: 100, y: 0, z: 100}
+  camera: {fileID: 330585545}
 --- !u!1 &1398546203
 GameObject:
   m_ObjectHideFlags: 0
@@ -2616,6 +2617,7 @@ MonoBehaviour:
   player: {fileID: 390811916}
   transportPrefab: {fileID: 8389678790966524438, guid: eb9d82baf575f11458c7a247fe591711,
     type: 3}
+  loadingMask: {fileID: 481153121}
 --- !u!1 &2068155580
 GameObject:
   m_ObjectHideFlags: 0

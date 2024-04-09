@@ -27,13 +27,13 @@ public class MapController : MonoBehaviour
     
     private void Awake()
     {
-        EventBus.onRoomChange += OnRoomChange;
+        EventBus.Instance.LeaveToRoomEvent += OnRoomChange;
         EventBus.Instance.EnterRoomEvent += OnEnterRoom;
     }
     
     private void OnDestroy()
     {
-        EventBus.onRoomChange -= OnRoomChange;
+        EventBus.Instance.LeaveToRoomEvent -= OnRoomChange;
         EventBus.Instance.EnterRoomEvent -= OnEnterRoom;
     }
 
@@ -43,11 +43,10 @@ public class MapController : MonoBehaviour
         CurrentRoomId = roomId;
     }
     
-    private void OnRoomChange(int roomId, Vector2Int fromDirection)
+    private void OnRoomChange(int roomId)
     {
-        mapView.OnRoomChange(CurrentRoomId, roomId, fromDirection);
+        mapView.OnRoomChange(CurrentRoomId, roomId);
         CurrentRoomId = roomId;
-        // StartCoroutine(ReloadProgress(roomId));
     }
 
     private IEnumerator ReloadProgress(int mapId)

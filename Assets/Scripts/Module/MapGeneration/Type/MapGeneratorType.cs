@@ -21,6 +21,7 @@ namespace Module.MapGeneration.Type
         public RoomType roomType = RoomType.NULL;
         public Vector2Int index;
         public int distanceToStartRoom;
+        public bool cleared = true;
 
         public bool IsNotNull()
         {

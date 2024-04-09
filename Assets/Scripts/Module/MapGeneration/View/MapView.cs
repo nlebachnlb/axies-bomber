@@ -38,39 +38,84 @@ namespace Module.MapGeneration.View
 
         public void OnEnterRoom(int roomId)
         {
+            if (boundModel.GetRoomDataFromId(roomId).cleared)
+                CallTransports(roomId);
+        }
+
+        public void OnRoomChange(int oldRoomId, int roomId)
+        {
+            StartCoroutine(DoOnRoomChange(oldRoomId, roomId));
+        }
+
+        private void CallTransports(int roomId)
+        {
             Room room = roomObjects[roomId];
-            room.CallTransport(GateWayDirection.East);
-            room.CallTransport(GateWayDirection.West);
-            room.CallTransport(GateWayDirection.North);
-            room.CallTransport(GateWayDirection.South);
+            var (x, y) = (room.RoomIndex.x, room.RoomIndex.y);
+            var left = GetRoomComponentAt(new Vector2Int(x - 1, y));
+            var right = GetRoomComponentAt(new Vector2Int(x + 1, y));
+            var top = GetRoomComponentAt(new Vector2Int(x, y + 1));
+            var bottom = GetRoomComponentAt(new Vector2Int(x, y - 1));
+
+            if (left)
+            {
+                var transport = CreateTransport();
+                var destGateWay = left.GetGateWay(GateWayDirection.East);
+                transport.Destination = destGateWay.transform.position;
+                transport.DestinationSpawnPoint = destGateWay.spawnPoint.position;
+                transport.TargetRoomId = left.RoomId;
+                transport.DoEntrance(room.GetGateWay(GateWayDirection.West).transform.position);
+            }
+            
+            if (right)
+            {
+                var transport = CreateTransport();
+                var destGateWay = right.GetGateWay(GateWayDirection.West);
+                transport.Destination = destGateWay.transform.position;
+                transport.DestinationSpawnPoint = destGateWay.spawnPoint.position;
+                transport.TargetRoomId = right.RoomId;
+                transport.DoEntrance(room.GetGateWay(GateWayDirection.East).transform.position);
+            }
+            
+            if (top)
+            {
+                var transport = CreateTransport();
+                var destGateWay = top.GetGateWay(GateWayDirection.South);
+                transport.Destination = destGateWay.transform.position;
+                transport.DestinationSpawnPoint = destGateWay.spawnPoint.position;
+                transport.TargetRoomId = top.RoomId;
+                transport.DoEntrance(room.GetGateWay(GateWayDirection.North).transform.position);
+            }
+            
+            if (bottom)
+            {
+                var transport = CreateTransport();
+                var destGateWay = bottom.GetGateWay(GateWayDirection.North);
+                transport.Destination = destGateWay.transform.position;
+                transport.DestinationSpawnPoint = destGateWay.spawnPoint.position;
+                transport.TargetRoomId = bottom.RoomId;
+                transport.DoEntrance(room.GetGateWay(GateWayDirection.South).transform.position);
+            }
         }
 
-        public void OnRoomChange(int oldRoomId, int roomId, Vector2Int fromDirection)
+        private IEnumerator DoOnRoomChange(int oldRoomId, int roomId)
         {
-            StartCoroutine(DoOnRoomChange(oldRoomId, roomId, fromDirection));
-        }
-
-        private IEnumerator DoOnRoomChange(int oldRoomId, int roomId, Vector2Int fromDirection)
-        {
+            camera.OnLeaveToRoom();
             var roomData = boundModel.GetRoomDataFromId(roomId);
-            var oldRoomData = boundModel.GetRoomDataFromId(oldRoomId);
             var position = GetPositionFromGridIndex(roomData.index);
-            var oldPosition = GetPositionFromGridIndex(oldRoomData.index);
             camera.minPosition = new Vector3(position.x - 100, 0, position.z - 100);
             camera.maxPosition = new Vector3(position.x + 100, 0, position.z + 100);
 
-            Room room = roomObjects[roomId];
-            Room oldRoom = roomObjects[oldRoomId];
-            var spawnPoint = room.GetSpawnPointFromDirection(fromDirection);
-            // var transport = room.GetTransportFromDirection(fromDirection);
+            yield return new WaitForSeconds(2f);
 
-            // var oldTransport = oldRoom.GetTransportFromDirection(-fromDirection);
-            // oldTransport.TransportPlayerTo(transport.transform.position, player, spawnPoint);
+            camera.smoothSpeed = 0.05f;
+            camera.minPosition = new Vector3(position.x - 2, 0, position.z - 2);
+            camera.maxPosition = new Vector3(position.x + 2, 0, position.z + 2);
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1f);
+            EventBus.Instance.OnEnterRoomEvent(roomId);
+            camera.smoothSpeed = 0.2f;
             
-            camera.minPosition = new Vector3(position.x - 5, 0, position.z - 5);
-            camera.maxPosition = new Vector3(position.x + 5, 0, position.z + 5);
+            camera.OnEnterRoom();
         }
 
         private void OnDataChange()
@@ -78,10 +123,6 @@ namespace Module.MapGeneration.View
             foreach (var roomObject in roomObjects.Values)
                 Destroy(roomObject.gameObject);
             roomObjects.Clear();
-            
-            foreach (var transport in transports.Values)
-                Destroy(transport.gameObject);
-            transports.Clear();
             
             var rooms = boundModel.Rooms;
             foreach (var room in rooms)
@@ -121,9 +162,6 @@ namespace Module.MapGeneration.View
                 var nextRoomId = boundModel.RoomGrid[x - 1, y].roomId;
                 room.OpenDoor(Vector2Int.left, nextRoomId);
                 left.OpenDoor(Vector2Int.right, currentRoomId);
-                var transport = CreateTransport(currentRoomId, nextRoomId, 0);
-                transport.RegisterRoom(currentRoomId, GateWayDirection.West);
-                transport.RegisterRoom(nextRoomId, GateWayDirection.East);
             }
 
             if (x < gridSize.x - 1 && boundModel.IsCellNotNull(x + 1, y) && right)
@@ -131,9 +169,6 @@ namespace Module.MapGeneration.View
                 var nextRoomId = boundModel.RoomGrid[x + 1, y].roomId;
                 room.OpenDoor(Vector2Int.right, nextRoomId);
                 right.OpenDoor(Vector2Int.left, currentRoomId);
-                var transport = CreateTransport(currentRoomId, nextRoomId, 1);
-                transport.RegisterRoom(currentRoomId, GateWayDirection.East);
-                transport.RegisterRoom(nextRoomId, GateWayDirection.West);
             }
 
             if (y > 0 && boundModel.IsCellNotNull(x, y - 1) && bottom)
@@ -141,9 +176,6 @@ namespace Module.MapGeneration.View
                 var nextRoomId = boundModel.RoomGrid[x, y - 1].roomId;
                 room.OpenDoor(Vector2Int.down, nextRoomId);
                 bottom.OpenDoor(Vector2Int.up, currentRoomId);
-                var transport = CreateTransport(currentRoomId, nextRoomId, 2);
-                transport.RegisterRoom(currentRoomId, GateWayDirection.South);
-                transport.RegisterRoom(nextRoomId, GateWayDirection.North);            
             }
 
             if (y < gridSize.y - 1 && boundModel.IsCellNotNull(x, y + 1) && top)
@@ -151,9 +183,6 @@ namespace Module.MapGeneration.View
                 var nextRoomId = boundModel.RoomGrid[x, y + 1].roomId;
                 room.OpenDoor(Vector2Int.up, nextRoomId);
                 top.OpenDoor(Vector2Int.down, currentRoomId);
-                var transport = CreateTransport(currentRoomId, nextRoomId, 3);
-                transport.RegisterRoom(currentRoomId, GateWayDirection.North);
-                transport.RegisterRoom(nextRoomId, GateWayDirection.South);
             }
         }
 
@@ -177,10 +206,13 @@ namespace Module.MapGeneration.View
             Room roomA = roomObjects[roomIdA];
             Room roomB = roomObjects[roomIdB];
 
-            roomA.CallTransportEvent += transport.OnCalledByRoom;
-            roomB.CallTransportEvent += transport.OnCalledByRoom;
-
             transport.name = $"Transport {roomIdA} - {roomIdB}";
+            return transport;
+        }
+
+        private Transport CreateTransport()
+        {
+            Transport transport = Instantiate(transportPrefab, root);
             return transport;
         }
     }

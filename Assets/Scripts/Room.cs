@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Module.MapGeneration.Type;
@@ -6,6 +7,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public Vector2Int RoomIndex => dataModel.index;
+    public int RoomId => dataModel.roomId;
     
     [SerializeField] GameObject topDoor, bottomDoor, leftDoor, rightDoor;
     [SerializeField] GameObject topBlock, bottomBlock, leftBlock, rightBlock;
@@ -77,6 +79,18 @@ public class Room : MonoBehaviour
             return leftTerminal.spawnPoint.position;
 
         return new Vector3(-1, -1, -1);
+    }
+
+    public GateWay GetGateWay(GateWayDirection direction)
+    {
+        return direction switch
+        {
+            GateWayDirection.West => leftTerminal,
+            GateWayDirection.East => rightTerminal,
+            GateWayDirection.North => topTerminal,
+            GateWayDirection.South => bottomTerminal,
+            _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
+        };
     }
 
     public void CallTransport(GateWayDirection gateWayDirection)

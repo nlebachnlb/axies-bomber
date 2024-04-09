@@ -62,6 +62,10 @@ public class EventBus
     public delegate void OnEnterRoom(int roomId);
 
     public event OnEnterRoom EnterRoomEvent;
+    
+    public delegate void OnLeaveToRoom(int roomId);
+
+    public event OnEnterRoom LeaveToRoomEvent;
 
 
     public static void RaiseOnBombFuse()
@@ -129,7 +133,7 @@ public class EventBus
         onGameOver?.Invoke();
     }
 
-    public static void RaiseOnRoomChange(int roomId, Vector2Int fromDirection)
+    public static void  RaiseOnRoomChange(int roomId, Vector2Int fromDirection)
     {
         onRoomChange?.Invoke(roomId, fromDirection);
     }
@@ -139,5 +143,10 @@ public class EventBus
     public void OnEnterRoomEvent(int roomId)
     {
         EnterRoomEvent?.Invoke(roomId);
+    }
+
+    public void OnLeaveToRoomEvent(int roomId)
+    {
+        LeaveToRoomEvent?.Invoke(roomId);
     }
 }

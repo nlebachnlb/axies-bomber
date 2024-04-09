@@ -148,6 +148,13 @@ public class MovementController : MonoBehaviour
             pool = other.GetComponent<SkillPoolEntrance>();
             isInteract = true;
         }
+
+        if (other.CompareTag("Transport"))
+        {
+            var transport = other.GetComponent<Transport>();
+            EventBus.Instance.OnLeaveToRoomEvent(transport.TargetRoomId);
+            transport.TransportPlayer(this);
+        }
     }
 
     private void OnTriggerExit(Collider other)
