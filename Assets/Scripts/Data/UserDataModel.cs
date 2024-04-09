@@ -137,6 +137,19 @@ public class UserDataModel : MonoBehaviour
         };
     }
 
+    public void Collect(Collectible collectible)
+    {
+        if (collectible == null)
+            return;
+
+        switch (collectible.Type)
+        {
+            case CollectibleType.Coin:
+                User.Currency1 += collectible.Amount;
+                break;
+        }
+    }
+
     private void Awake()
     {
         User = GenerateDefaultUserData();

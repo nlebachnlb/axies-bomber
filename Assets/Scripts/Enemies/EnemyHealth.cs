@@ -20,6 +20,13 @@ public class EnemyHealth : MonoBehaviour
         {
             enemyController.OnDeath();
             Instantiate(deathFxPrefab, transform.position, Quaternion.identity);
+
+            if (enemyController.Coin > 0)
+            {
+                GameObject collectibleGameObject = Instantiate(AppRoot.Instance.Config.coinPrefab, transform.position, Quaternion.identity);
+                Collectible collectible = collectibleGameObject.GetComponent<Collectible>();
+                collectible.Amount = enemyController.Coin;
+            }
             AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.Slime);
         }
     }

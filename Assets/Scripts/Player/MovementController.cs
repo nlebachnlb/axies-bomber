@@ -2,6 +2,7 @@ using UnityEngine;
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 [RequireComponent(typeof(Rigidbody))]
 public class MovementController : MonoBehaviour
@@ -106,6 +107,11 @@ public class MovementController : MonoBehaviour
             other.GetComponent<SkillPoolEntrance>().DisplayInteract(true);
             pool = other.GetComponent<SkillPoolEntrance>();
             isInteract = true;
+        }
+
+        if (other.CompareTag("Collectible") && other.TryGetComponent<Collectible>(out Collectible collectible))
+        {
+            PickCollectible(collectible);
         }
     }
 
@@ -249,6 +255,20 @@ public class MovementController : MonoBehaviour
         }
 
         currentState = state;
+    }
+
+    private void PickCollectible(Collectible collectible)
+    {
+        GameObject floatingText = Instantiate(AppRoot.Instance.Config.floatingText);
+        floatingText.transform.position = collectible.transform.position;
+
+        TextMeshPro text = floatingText.GetComponent<TextMeshPro>();
+        text.text = $"+{collectible.Amount} <sprite index=0>";
+
+        AppRoot.Instance.UserDataModel.Collect(collectible);
+        EventBus.RaiseOnPickCollectible(collectible);
+
+        Destroy(collectible.gameObject);
     }
 
     private void OnSwitchHero(AxieHeroData heroData)

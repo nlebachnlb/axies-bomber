@@ -9,11 +9,15 @@ public enum AxieIdentity
     Reptile = 2
 }
 
-
 public enum Stat
 {
     Speed,
     BombMagazine,
     Health,
     BombExplosionRadius
+}
+
+public enum CollectibleType
+{
+    Coin,
 }

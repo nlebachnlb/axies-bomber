@@ -59,6 +59,8 @@ public class EventBus
 
     public static event Action<int> onCurrency1Changed;
 
+    public static event Action<Collectible> onPickCollectible;
+
     public static void RaiseOnBombFuse()
     {
         onBombFuse?.Invoke();
@@ -127,6 +129,11 @@ public class EventBus
     public static void RaiseOnCurrency1Changed(int value)
     {
         onCurrency1Changed?.Invoke(value);
+    }
+
+    public static void RaiseOnPickCollectible(Collectible collectible)
+    {
+        onPickCollectible?.Invoke(collectible);
     }
 
     private static EventBus instance = null;

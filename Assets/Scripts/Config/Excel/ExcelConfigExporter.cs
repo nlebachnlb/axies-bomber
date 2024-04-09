@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Cathei.BakingSheet;
 using Cathei.BakingSheet.Unity;
 using ExcelConfig;
-using TriInspector;
+using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
@@ -28,7 +28,7 @@ public class ExcelConfigExporter : ScriptableObject
     public async Task Export()
     {
         MainConfigSheetContainer sheetContainer = await BakeSheet();
-        ExportAxieUpgradeConfig(sheetContainer.AxieUpgrade);
+        axieUpgradeConfig.Import(sheetContainer.AxieUpgrade);
         AssetDatabase.SaveAssets();
     }
 
@@ -41,14 +41,5 @@ public class ExcelConfigExporter : ScriptableObject
         ExcelSheetConverter excelConverter = new(path);
         await sheetContainer.Bake(excelConverter);
         return sheetContainer;
-    }
-
-    private void ExportAxieUpgradeConfig(AxieUpgradeSheet axieUpgradeSheet)
-    {
-        Dictionary<AxieIdentity, List<AxieUpgradeConfigData>> dictionary = new();
-        foreach (var row in axieUpgradeSheet)
-            dictionary[row.Id] = row.Arr;
-        axieUpgradeConfig.Data.SetDictionaryValue(dictionary);
-        EditorUtility.SetDirty(axieUpgradeConfig);
     }
 }

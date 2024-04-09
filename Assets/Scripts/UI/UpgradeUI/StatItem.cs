@@ -111,7 +111,7 @@ public class StatItem : MonoBehaviour
         currentUpgradeDelta = dataPacket.UpgradeValue;
         upgradePrice = dataPacket.UpgradeCost;
 
-        int maxLevel = axieUpgradeConfig.Data[id].Count - 1;
+        int maxLevel = axieUpgradeConfig.GetStatMaxLevel(id, stat);
         isMaxedLevel = level == maxLevel;
         if (isMaxedLevel)
         {

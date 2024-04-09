@@ -7,7 +7,7 @@ using UnityEngine;
 namespace ExcelConfig
 {
     // Private properties are data to be filled in by Cathei.BakingSheet
-    // Public fields are fields to be serialized into scriptable objectss
+    // Public fields are fields to be serialized into scriptable objects
     [Serializable]
     public class AxieUpgradeConfigData : SheetRowElem
     {
