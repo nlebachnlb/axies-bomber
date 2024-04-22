@@ -2778,15 +2778,16 @@ MonoBehaviour:
     - roomType: 1
       prefab:
       - {fileID: 7936532511103908301, guid: eab654f01ee849844b4c20419ed5034c, type: 3}
+      - {fileID: 7936532511103908301, guid: 9f16ac749fa5d9240853e360acd28376, type: 3}
     - roomType: 2
       prefab:
-      - {fileID: 7936532511103908301, guid: c7e6750b13144cd4bb045a36b51697a3, type: 3}
+      - {fileID: 7936532511103908301, guid: cedb3f419d48b774494635244595eb03, type: 3}
     - roomType: 5
       prefab:
-      - {fileID: 7936532511103908301, guid: 8f70c9ec61c2a6d44b584997adc8948a, type: 3}
+      - {fileID: 7936532511103908301, guid: 77e4c38ebe977d6469b10a86771b90dc, type: 3}
     - roomType: 4
       prefab:
-      - {fileID: 7936532511103908301, guid: 936c8dc7313c94b4dbcf823bbe7e4eea, type: 3}
+      - {fileID: 7936532511103908301, guid: 823b1b732288f5349a35c4b2537434a5, type: 3}
 --- !u!1 &7757064705139603883
 GameObject:
   m_ObjectHideFlags: 0

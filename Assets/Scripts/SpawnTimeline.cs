@@ -71,7 +71,7 @@ public class SpawnTimeline : MonoBehaviour
 
             if (cnt >= timeline.Count && remainingEnemies < 1)
                 break;
-            yield return new WaitForEndOfFrame();
+            yield return null;
         }
 
         isCleared = true;

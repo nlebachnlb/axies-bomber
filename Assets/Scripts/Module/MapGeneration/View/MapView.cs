@@ -20,7 +20,6 @@ namespace Module.MapGeneration.View
         [SerializeField] private Image loadingMask;
 
         private readonly Dictionary<int, Room> roomObjects = new();
-        private readonly Dictionary<(int, int, int), Transport> transports = new();
 
         private void Awake()
         {
@@ -38,8 +37,15 @@ namespace Module.MapGeneration.View
 
         public void OnEnterRoom(int roomId)
         {
-            if (boundModel.GetRoomDataFromId(roomId).cleared)
+            var roomData = boundModel.GetRoomDataFromId(roomId);
+            if (roomData.cleared)
+            {
                 CallTransports(roomId);
+                return;
+            }
+
+            var roomObject = roomObjects[roomId];
+            roomObject.gameObject.GetComponent<SpawnController>().OnEnterRoom();
         }
 
         public void OnRoomChange(int oldRoomId, int roomId)
@@ -108,8 +114,8 @@ namespace Module.MapGeneration.View
             yield return new WaitForSeconds(2f);
 
             camera.smoothSpeed = 0.05f;
-            camera.minPosition = new Vector3(position.x - 2, 0, position.z - 2);
-            camera.maxPosition = new Vector3(position.x + 2, 0, position.z + 2);
+            camera.minPosition = new Vector3(position.x - 3, 0, position.z - 5);
+            camera.maxPosition = new Vector3(position.x + 3, 0, position.z + 5);
 
             yield return new WaitForSeconds(1f);
             EventBus.Instance.OnEnterRoomEvent(roomId);
@@ -191,25 +197,7 @@ namespace Module.MapGeneration.View
             var room = roomObjects.Values.ToList().Find(r => r.RoomIndex == index);
             return room;
         }
-
-        private (int, int, int) GetTransportId(int roomIdA, int roomIdB, int axis)
-        {
-            return (Math.Min(roomIdA, roomIdB), Math.Max(roomIdA, roomIdB), axis);
-        }
         
-        private Transport CreateTransport(int roomIdA, int roomIdB, int axis)
-        {
-            Transport transport = Instantiate(transportPrefab, root);
-            transport.gameObject.SetActive(false);
-            transports.Add((roomIdA, roomIdB, axis), transport);
-
-            Room roomA = roomObjects[roomIdA];
-            Room roomB = roomObjects[roomIdB];
-
-            transport.name = $"Transport {roomIdA} - {roomIdB}";
-            return transport;
-        }
-
         private Transport CreateTransport()
         {
             Transport transport = Instantiate(transportPrefab, root);
