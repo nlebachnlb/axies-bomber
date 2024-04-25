@@ -29,6 +29,7 @@ public class EnemyHealth : MonoBehaviour
             }
             AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.Slime);
         }
+        Debug.Log($"Took damage: {damage}");
     }
 
     private void Update()
@@ -61,7 +62,8 @@ public class EnemyHealth : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
         {
-            TakeDamage(1f);
+            Explosion explosion = other.GetComponent<Explosion>();
+            TakeDamage(explosion.damage);
             other.enabled = false;
         }
 

@@ -100,15 +100,19 @@ public class GameplayController : MonoBehaviour
         for (int i = 0; i < configs.Count; ++i)
         {
             AxieHeroData axie = new AxieHeroData();
+            UpgradeBuff upgradeBuff = userDataModel.GetUpgradeBuff(configs[i].id);
             axie.identity = (AxieIdentity)configs[i].id;
             axie.axieConfig = Instantiate(configs[i].axieConfig);
-            axie.axieStats = Instantiate(configs[i].axieStats).AddUpgradeBuff(userDataModel.GetUpgradeBuff(configs[i].id));
+            axie.axieStats = Instantiate(configs[i].axieStats);
             axie.bombStats = Instantiate(configs[i].bombStats);
             axie.abilityPrefab = configs[i].abilityPrefab;
             axie.ability = null;
 
             Debug.Log("Init: " + axie.identity);
             axie.axieStats.ResetBuffs();
+            axie.axieStats.AddUpgradeBuff(upgradeBuff);
+            axie.bombStats.AddUpgradeBuff(upgradeBuff);
+
             slots.Add(axie);
         }
     }

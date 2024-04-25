@@ -13,6 +13,7 @@ public class Bomb : MonoBehaviour
     public LayerMask explosionLayerMask;
     public Color color;
     public AxieHeroData bombOwner;
+    public float damage => bombOwner.bombStats.Calculate().damage;
 
     private new Rigidbody rigidbody;
     private Vector3 vel = Vector3.zero;
@@ -94,7 +95,6 @@ public class Bomb : MonoBehaviour
         position += direction;
 
         Collider[] colliders = Physics.OverlapBox(new Vector3(position.x, position.y + 0.5f, position.z), Vector3.one * 0.25f, Quaternion.identity, explosionLayerMask);
-        Debug.Log(colliders.Length);
         if (colliders.Length > 0)
         {
             foreach (Collider collider in colliders)
@@ -107,7 +107,8 @@ public class Bomb : MonoBehaviour
             return;
         }
 
-        Instantiate(explosionPrefab, position, Quaternion.identity);
+        var explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
+        explosion.damage = damage;
         Explode(position, direction, length - 1);
     }
 }

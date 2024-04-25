@@ -13,6 +13,7 @@ public class AxieStats : ScriptableObject
     public float recoveryTimeAfterDamage = 1f;
 
     public List<StatsBuff> buffs { get; private set; } = new List<StatsBuff>();
+    public UpgradeBuff upgradeBuff { get; private set; } = new();
 
     public float GetBaseValue(Stat stat)
     {
@@ -75,18 +76,17 @@ public class AxieStats : ScriptableObject
                     break;
             }
         }
+        result.speed += upgradeBuff.speed;
+        result.bombExplosionRadius += upgradeBuff.bombExplosionRadius;
+        result.bombMagazine += upgradeBuff.bombMagazine;
+        result.health += upgradeBuff.health;
         //Debug.Log("After: " + result);
         return result;
     }
 
-    public AxieStats AddUpgradeBuff(UpgradeBuff upgradeBuff)
+    public void AddUpgradeBuff(UpgradeBuff upgradeBuff)
     {
-        AxieStats result = Instantiate(this);
-        result.bombExplosionRadius += upgradeBuff.bombExplosionRadius;
-        result.bombMagazine += upgradeBuff.bombMagazine;
-        result.health += upgradeBuff.health;
-        result.speed += upgradeBuff.speed;
-        return result;
+        this.upgradeBuff = upgradeBuff;
     }
 
     public override string ToString()
