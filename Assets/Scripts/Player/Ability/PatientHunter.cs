@@ -29,9 +29,11 @@ public class PatientHunter : AxieAbility<PatientHunterStats>
     public override void SetExtraParams(AxieHeroData axieHero)
     {
         base.SetExtraParams(axieHero);
-        Stats = (PatientHunterStats)Instantiate(axieHero.ability);
+        if (axieHero.ability != null)
+            Stats = (PatientHunterStats)Instantiate(axieHero.ability);
         killedEnemies = (int)axieHero.GetExtraParam("killedEnemies", Stats.killsNeeded);
         axieData = axieHero;
+        RaiseOnCooldown(killedEnemies, Stats.killsNeeded);
         EventBus.RaiseOnAbilityCooldown(killedEnemies, Stats.killsNeeded, 1);
         Debug.Log("Extra param: " + killedEnemies);
     }
@@ -44,6 +46,7 @@ public class PatientHunter : AxieAbility<PatientHunterStats>
 
         StartCoroutine(DeployProgress());
         killedEnemies = 0;
+        RaiseOnCooldown(killedEnemies, Stats.killsNeeded);
         EventBus.RaiseOnAbilityCooldown(killedEnemies, Stats.killsNeeded, 1);
     }
 
@@ -65,6 +68,7 @@ public class PatientHunter : AxieAbility<PatientHunterStats>
         killedEnemies++;
         if (killedEnemies >= Stats.killsNeeded)
             IsCooldown = true;
+        RaiseOnCooldown(killedEnemies, Stats.killsNeeded);
         EventBus.RaiseOnAbilityCooldown(killedEnemies, Stats.killsNeeded, 1);
     }
 

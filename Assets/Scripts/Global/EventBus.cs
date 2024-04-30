@@ -51,14 +51,17 @@ public class EventBus
     public delegate void OnEnemyDeath();
     public static event OnEnemyDeath onEnemyDeath;
 
+    [Obsolete]
     public delegate void OnAbilityCooldown(float current, float max, int displayType);
     public static event OnAbilityCooldown onAbilityCooldown;
 
     public delegate void OnGameOver();
     public static event OnGameOver onGameOver;
 
-    public static event Action<int> onCurrency1Changed;
+    public delegate void OnAbilityAttached(SkillType skillType, AxieAbility ability);
+    public static event OnAbilityAttached onAbilityAttached;
 
+    public static event Action<int> onCurrency1Changed;
     public static event Action<Collectible> onPickCollectible;
 
     public static void RaiseOnBombFuse()
@@ -116,6 +119,7 @@ public class EventBus
         onEnemyDeath?.Invoke();
     }
 
+    [Obsolete]
     public static void RaiseOnAbilityCooldown(float current, float max, int displayType)
     {
         onAbilityCooldown?.Invoke(current, max, displayType);
@@ -134,6 +138,11 @@ public class EventBus
     public static void RaiseOnPickCollectible(Collectible collectible)
     {
         onPickCollectible?.Invoke(collectible);
+    }
+
+    public static void RaiseOnAbilityAttached(SkillType skillType, AxieAbility axieAbility)
+    {
+        onAbilityAttached?.Invoke(skillType, axieAbility);
     }
 
     private static EventBus instance = null;

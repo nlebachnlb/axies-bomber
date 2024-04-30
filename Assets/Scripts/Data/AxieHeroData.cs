@@ -21,6 +21,7 @@ public class AxieHeroData
     public BombStats bombStats;
     public SkillConfig ability;
     public AxieAbility abilityPrefab;
+    public Dictionary<SkillType, AxieAbility> abilities;
     public Dictionary<string, float> extraParams = new Dictionary<string, float>();
 
     public int health

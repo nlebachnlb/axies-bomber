@@ -21,3 +21,11 @@ public enum CollectibleType
 {
     Coin,
 }
+
+public enum SkillType
+{
+    Mouth,
+    Horn,
+    Back,
+    Tail
+}

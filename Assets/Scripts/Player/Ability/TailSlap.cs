@@ -30,9 +30,11 @@ public class TailSlap : AxieAbility<TailSlapStats>
     public override void SetExtraParams(AxieHeroData axieHero)
     {
         base.SetExtraParams(axieHero);
-        Stats = (TailSlapStats)Instantiate(axieHero.ability);
+        if (axieHero.ability != null)
+            Stats = (TailSlapStats)Instantiate(axieHero.ability);
         placedBombs = (int)axieHero.GetExtraParam("placedBombs", Stats.placedBombsNeeded);
         axieData = axieHero;
+        RaiseOnCooldown(placedBombs, Stats.placedBombsNeeded);
         EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
         Debug.Log("Extra param: " + placedBombs);
     }
@@ -69,6 +71,7 @@ public class TailSlap : AxieAbility<TailSlapStats>
         bomb.SetMoving(movement.LastDirection * defaultStats.speed);
 
         placedBombs = 0;
+        RaiseOnCooldown(placedBombs, Stats.placedBombsNeeded);
         EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
     }
 
@@ -80,6 +83,7 @@ public class TailSlap : AxieAbility<TailSlapStats>
     private void OnBombPlace(AxieHeroData owner)
     {
         placedBombs++;
+        RaiseOnCooldown(placedBombs, Stats.placedBombsNeeded);
         EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
         Debug.Log("Place bomb: " + placedBombs);
     }
