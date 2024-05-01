@@ -27,7 +27,7 @@ public class CameraFollow : MonoBehaviour
         camera.DOFieldOfView(25f, 0.5f);
     }
     
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         Vector3 desiredPosition = target.position;
         if (desiredPosition.x < minPosition.x)

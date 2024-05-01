@@ -29,12 +29,14 @@ public class MapController : MonoBehaviour
     {
         EventBus.Instance.LeaveToRoomEvent += OnRoomChange;
         EventBus.Instance.EnterRoomEvent += OnEnterRoom;
+        EventBus.onRoomClear += OnRoomClear;
     }
     
     private void OnDestroy()
     {
         EventBus.Instance.LeaveToRoomEvent -= OnRoomChange;
         EventBus.Instance.EnterRoomEvent -= OnEnterRoom;
+        EventBus.onRoomClear -= OnRoomClear;
     }
 
     private void OnEnterRoom(int roomId)
@@ -47,6 +49,12 @@ public class MapController : MonoBehaviour
     {
         mapView.OnRoomChange(CurrentRoomId, roomId);
         CurrentRoomId = roomId;
+    }
+    
+    private void OnRoomClear()
+    {
+        dataModel.GetRoomDataFromId(CurrentRoomId).cleared = true;
+        OnEnterRoom(CurrentRoomId);
     }
 
     private IEnumerator ReloadProgress(int mapId)

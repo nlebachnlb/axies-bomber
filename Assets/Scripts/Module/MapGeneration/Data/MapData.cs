@@ -56,7 +56,11 @@ namespace Module.MapGeneration.Data
             roomGrid[x, y] = roomData;
             rooms.Add(roomData);
             roomData.roomId = roomCount++;
-            if (isStartRoom) startIndex = index;
+            if (isStartRoom)
+            {
+                startIndex = index;
+                roomData.cleared = true;
+            }
         }
         
         public int CountAdjacentRooms(Vector2Int roomIndex)
