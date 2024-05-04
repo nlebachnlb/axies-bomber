@@ -13,7 +13,7 @@ public class Bomb : MonoBehaviour
     public LayerMask explosionLayerMask;
     public Color color;
     public AxieHeroData bombOwner;
-    public float damage => bombOwner.bombStats.Calculate().damage;
+    public float damage = 1;
 
     private new Rigidbody rigidbody;
     private Vector3 vel = Vector3.zero;
@@ -36,6 +36,12 @@ public class Bomb : MonoBehaviour
     public void SetMoving(Vector3 velocity)
     {
         vel = velocity;
+    }
+
+    public void SetOwner(AxieHeroData bombOwner)
+    {
+        this.bombOwner = bombOwner;
+        damage = bombOwner.bombDamage;
     }
 
     private void Start()

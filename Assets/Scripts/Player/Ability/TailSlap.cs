@@ -20,7 +20,7 @@ public class TailSlap : AxieAbility<TailSlapStats>
     private void OnDestroy()
     {
         EventBus.onBombPlace -= OnBombPlace;
-        axieData.SetExtraParam("placedBombs", placedBombs);
+        axieData.SetExtraParam(AxieHeroData.PARAM_PLACED_BOMBS, placedBombs);
     }
 
     private void Start()
@@ -32,7 +32,7 @@ public class TailSlap : AxieAbility<TailSlapStats>
         base.SetExtraParams(axieHero);
         if (axieHero.ability != null)
             Stats = (TailSlapStats)Instantiate(axieHero.ability);
-        placedBombs = (int)axieHero.GetExtraParam("placedBombs", Stats.placedBombsNeeded);
+        placedBombs = (int)axieHero.GetExtraParam(AxieHeroData.PARAM_PLACED_BOMBS, Stats.placedBombsNeeded);
         axieData = axieHero;
         RaiseOnCooldown(placedBombs, Stats.placedBombsNeeded);
         EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
@@ -58,7 +58,7 @@ public class TailSlap : AxieAbility<TailSlapStats>
         bombController.axieHeroData.bombsRemaining--;
 
         Bomb bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-        bomb.bombOwner = bombController.axieHeroData;
+        bomb.SetOwner(bombController.axieHeroData);
 
         bomb.bombFuseTime = bombController.axieHeroData.bombStats.bombFuseTime;
         bomb.explosionLength = bombController.axieHeroData.axieStats.Calculate().bombExplosionRadius;

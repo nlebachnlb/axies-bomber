@@ -26,6 +26,14 @@ public class AbilityHUDv2 : MonoBehaviour
             textDeploymentKey.text = keyCode.ToString();
     }
 
+    public void SetNotAvailable()
+    {
+        textProgress.text = "";
+        mask.gameObject.SetActive(true);
+        progress.fillAmount = 0;
+        textDeploymentKey.text = "-";
+    }
+
     private void OnDestroy()
     {
         Clear();

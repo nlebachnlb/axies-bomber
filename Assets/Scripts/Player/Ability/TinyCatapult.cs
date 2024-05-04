@@ -21,7 +21,7 @@ public class TinyCatapult : AxieAbility<TinyCatapultStats>
 
     private void OnDestroy()
     {
-        axieData.SetExtraParam("cooldownTime", cooldownTime);
+        axieData.SetExtraParam(AxieHeroData.PARAM_COOLDOWN_TIME, cooldownTime);
     }
 
     private void Start()
@@ -65,7 +65,7 @@ public class TinyCatapult : AxieAbility<TinyCatapultStats>
         base.SetExtraParams(axieHero);
         if (axieHero.ability != null)
             Stats = (TinyCatapultStats)Instantiate(axieHero.ability);
-        cooldownTime = (int)axieHero.GetExtraParam("cooldownTime", Stats.cooldownTime);
+        cooldownTime = (int)axieHero.GetExtraParam(AxieHeroData.PARAM_COOLDOWN_TIME, Stats.cooldownTime);
         axieData = axieHero;
         RaiseOnCooldown(cooldownTime, Stats.cooldownTime);
         EventBus.RaiseOnAbilityCooldown(cooldownTime, Stats.cooldownTime, 1);

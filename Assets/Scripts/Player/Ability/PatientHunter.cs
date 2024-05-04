@@ -19,7 +19,7 @@ public class PatientHunter : AxieAbility<PatientHunterStats>
     private void OnDestroy()
     {
         EventBus.onEnemyDeath -= OnEnemyDeath;
-        axieData.SetExtraParam("killedEnemies", killedEnemies);
+        axieData.SetExtraParam(AxieHeroData.PARAM_KILLED_ENEMIES, killedEnemies);
     }
 
     private void Start()
@@ -31,7 +31,7 @@ public class PatientHunter : AxieAbility<PatientHunterStats>
         base.SetExtraParams(axieHero);
         if (axieHero.ability != null)
             Stats = (PatientHunterStats)Instantiate(axieHero.ability);
-        killedEnemies = (int)axieHero.GetExtraParam("killedEnemies", Stats.killsNeeded);
+        killedEnemies = (int)axieHero.GetExtraParam(AxieHeroData.PARAM_KILLED_ENEMIES, Stats.killsNeeded);
         axieData = axieHero;
         RaiseOnCooldown(killedEnemies, Stats.killsNeeded);
         EventBus.RaiseOnAbilityCooldown(killedEnemies, Stats.killsNeeded, 1);

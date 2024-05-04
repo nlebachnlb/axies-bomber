@@ -60,7 +60,7 @@ public class BombController : MonoBehaviour
         axieHeroData.bombsRemaining--;
 
         Bomb bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-        bomb.bombOwner = axieHeroData;
+        bomb.SetOwner(axieHeroData);
 
         bomb.bombFuseTime = axieHeroData.bombStats.bombFuseTime;
         bomb.explosionLength = axieHeroData.axieStats.Calculate().bombExplosionRadius;

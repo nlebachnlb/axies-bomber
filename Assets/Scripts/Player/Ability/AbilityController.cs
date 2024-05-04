@@ -1,57 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
+/// <summary>
+/// One AbilityController per axie
+/// </summary>
 public class AbilityController : MonoBehaviour
 {
-    public AxieAbility Ability { get; private set; }
-    public KeyCode deployKey;
-    public GameObject owner;
+    public Dictionary<SkillType, AxieAbility> Abilities { get; private set; } = new();
+    public GameObject owner { get; private set; }
+    private Dictionary<SkillType, KeyCode> skillDeploymentKeys;
 
-    public void AttachAbility(AxieAbility ability)
+    public void Init(AxieHeroData axieHeroData, GameObject owner)
     {
-        Ability = Instantiate(ability, transform);
-        Ability.Owner = owner;
-    }
+        this.owner = owner;
+        if (axieHeroData == null || axieHeroData.abilityPrefabs == null)
+            return;
 
-    public void DetachAbility()
-    {
-        if (Ability == null) return;
-        Destroy(Ability.gameObject);
+        axieHeroData.abilityInstances ??= new();
+        foreach (var item in axieHeroData.abilityPrefabs)
+        {
+            var abilityInstance = AttachAbility(item.Key, item.Value);
+            abilityInstance.SetExtraParams(axieHeroData);
+            axieHeroData.abilityInstances[item.Key] = abilityInstance;
+        }
     }
 
     private void Awake()
     {
-        EventBus.onSwitchAxieHero += OnSwitchHero;
-        EventBus.onPickSkill += OnPickSkill;
+        skillDeploymentKeys = AppRoot.Instance.Config.inputSettings.skillDeploymentKeys;
     }
 
     private void OnDestroy()
     {
-        EventBus.onSwitchAxieHero -= OnSwitchHero;
-        EventBus.onPickSkill -= OnPickSkill;
     }
 
     private void Update()
     {
-        if (Ability != null && Input.GetKeyDown(deployKey) && Ability.CanDeploy())
+        if (Abilities == null)
+            return;
+
+        foreach (var item in Abilities)
         {
-            Debug.Log("Active ability");
-            Ability.DeployAbility();
+            var skillType = item.Key;
+            var ability = item.Value;
+
+            if (ability == null || !skillDeploymentKeys.TryGetValue(skillType, out var deployKey))
+                continue;
+
+            if (Input.GetKeyDown(deployKey))
+                ability.DeployAbility();
         }
     }
 
-    private void OnSwitchHero(AxieHeroData heroData)
+    private AxieAbility AttachAbility(SkillType skillType, AxieAbility axieAbility)
     {
-        DetachAbility();
-        if (heroData.ability != null)
-        {
-            AttachAbility(heroData.abilityPrefab);
-            Ability.SetExtraParams(heroData);
-        }
-    }
-
-    private void OnPickSkill(SkillConfig skill)
-    {
+        var ability = Instantiate(axieAbility, transform);
+        Abilities[skillType] = ability;
+        ability.Owner = owner;
+        EventBus.RaiseOnAbilityAttached(skillType, ability);
+        return ability;
     }
 }

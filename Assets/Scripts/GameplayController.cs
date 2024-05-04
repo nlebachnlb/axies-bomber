@@ -106,7 +106,7 @@ public class GameplayController : MonoBehaviour
             axie.axieStats = Instantiate(configs[i].axieStats);
             axie.bombStats = Instantiate(configs[i].bombStats);
             axie.abilityPrefab = configs[i].abilityPrefab;
-            axie.abilities = configs[i].abilities;
+            axie.abilityPrefabs = configs[i].abilities;
             axie.ability = null;
 
             Debug.Log("Init: " + axie.identity);

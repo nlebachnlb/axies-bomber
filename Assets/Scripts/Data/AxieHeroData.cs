@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,15 +15,24 @@ public class AxieHeroData
         public int bombMagazine;
     }
 
+    public const string PARAM_KILLED_ENEMIES = "killedEnemies";
+    public const string PARAM_PLACED_BOMBS = "placedBombs";
+    public const string PARAM_COOLDOWN_TIME = "cooldownTime";
+
     [Header("Base stats & config")]
     public AxieIdentity identity;
     public AxieConfig axieConfig;
     public AxieStats axieStats;
     public BombStats bombStats;
+
+    [Obsolete]
     public SkillConfig ability;
+    [Obsolete]
     public AxieAbility abilityPrefab;
-    public Dictionary<SkillType, AxieAbility> abilities;
     public Dictionary<string, float> extraParams = new Dictionary<string, float>();
+
+    public Dictionary<SkillType, AxieAbility> abilityPrefabs = new();
+    public Dictionary<SkillType, AxieAbility> abilityInstances = new();
 
     public int health
     {
@@ -47,6 +57,24 @@ public class AxieHeroData
                 _bombsRemaining = Mathf.Clamp(value, 0, axieStats.Calculate().bombMagazine);
                 onInfoChanged?.Invoke(GetCurrentInfo());
             }
+        }
+    }
+
+    public float bombDamage
+    {
+        get
+        {
+            var buffPercentage = 0f;
+            foreach (var item in abilityInstances)
+            {
+                if (item.Value is IBuff buff)
+                {
+                    buffPercentage += buff.BuffDamage;
+                }
+            }
+
+            Debug.Log($"Bomb damage increase by {buffPercentage * 100f}% by skill");
+            return bombStats.Calculate().damage * (1 + buffPercentage);
         }
     }
 
