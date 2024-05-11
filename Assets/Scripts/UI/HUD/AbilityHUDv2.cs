@@ -1,33 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AbilityHUDv2 : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup group;
-    [SerializeField] private Animator animator;
-    [SerializeField] private Image abilityIcon;
-    [SerializeField] private Image progress;
-    [SerializeField] private TextMeshProUGUI textProgress;
-    [SerializeField] private TextMeshProUGUI textDeploymentKey;
-    [SerializeField] private Image mask;
+    public Animator animator;
+    public Image progress;
+    public TextMeshProUGUI textProgress;
+    public TextMeshProUGUI textAuxilliary;
+    public Image mask;
 
-    private AxieAbility currentAbility;
+    [SerializeField] private TextMeshProUGUI textDeploymentKey;
+
+    [ShowInInspector, HideInEditorMode]
+    public AxieAbility currentAbility { get; private set; }
 
     public void Assign(SkillType skillType, AxieAbility axieAbility)
     {
         Clear();
         currentAbility = axieAbility;
-        currentAbility.OnCooldown += OnAbilityCooldown;
 
         if (AppRoot.Instance.Config.inputSettings.skillDeploymentKeys.TryGetValue(skillType, out var keyCode))
             textDeploymentKey.text = keyCode.ToString();
+
+        if (currentAbility.IsPassive())
+        {
+            gameObject.AddComponent<AbilityPassive>();
+        }
+        else
+        {
+            gameObject.AddComponent<AbilityActive>();
+        }
+
+        if (currentAbility is IEnemyKillTrackBehaviour)
+            gameObject.AddComponent<KilledEnemiesCounter>();
     }
 
     public void SetNotAvailable()
     {
+        Clear();
         textProgress.text = "";
         mask.gameObject.SetActive(true);
         progress.fillAmount = 0;
@@ -41,40 +56,8 @@ public class AbilityHUDv2 : MonoBehaviour
 
     private void Clear()
     {
-        if (currentAbility != null)
-            currentAbility.OnCooldown -= OnAbilityCooldown;
-    }
-
-    private void OnAbilityCooldown(float current, float max, int type)
-    {
-        SetProgress(current, max, currentAbility.DisplayType);
-    }
-
-    private void SetProgress(float current, float max, SkillConfig.DisplayType displayType)
-    {
-        progress.fillAmount = current / max;
-        if (current >= max)
-        {
-            animator.SetTrigger("Charged");
-            mask.gameObject.SetActive(false);
-        }
-        else
-        {
-            mask.gameObject.SetActive(true);
-            animator.SetTrigger("Cooldown");
-        }
-
-        switch (displayType)
-        {
-            case SkillConfig.DisplayType.Percentage:
-                textProgress.text = $"{progress.fillAmount * 100f}%";
-                break;
-            case SkillConfig.DisplayType.CurrentOverMax:
-                textProgress.text = $"{current}/{max}";
-                break;
-            case SkillConfig.DisplayType.Seconds:
-                textProgress.text = $"{max - current} s";
-                break;
-        }
+        var components = GetComponents<AbilityHUDComponent>();
+        for (int i = 0; i < components.Length; ++i)
+            Destroy(components[i]);
     }
 }

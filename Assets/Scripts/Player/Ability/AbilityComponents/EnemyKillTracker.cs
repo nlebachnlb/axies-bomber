@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyKillTracker : MonoBehaviour
 {
+    public event Action OnUpdated;
     public int killedEnemies = 0;
 
     private void OnEnable()
@@ -19,5 +21,6 @@ public class EnemyKillTracker : MonoBehaviour
     private void OnEnemyDeath()
     {
         killedEnemies += 1;
+        OnUpdated?.Invoke();
     }
 }

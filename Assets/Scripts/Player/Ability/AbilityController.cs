@@ -32,10 +32,6 @@ public class AbilityController : MonoBehaviour
         skillDeploymentKeys = AppRoot.Instance.Config.inputSettings.skillDeploymentKeys;
     }
 
-    private void OnDestroy()
-    {
-    }
-
     private void Update()
     {
         if (Abilities == null)
@@ -49,7 +45,7 @@ public class AbilityController : MonoBehaviour
             if (ability == null || !skillDeploymentKeys.TryGetValue(skillType, out var deployKey))
                 continue;
 
-            if (Input.GetKeyDown(deployKey))
+            if (ability.IsPassive() || (Input.GetKeyDown(deployKey) && ability.CanDeploy()))
                 ability.DeployAbility();
         }
     }

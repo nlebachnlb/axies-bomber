@@ -11,9 +11,17 @@ public interface IAxieAbility
 
 public class AxieAbility : MonoBehaviour, IAxieAbility
 {
+    public event Action OnAbilityUpdated;
     public event EventBus.OnAbilityCooldown OnCooldown;
 
     public virtual SkillConfig.DisplayType DisplayType { get; }
+
+    public bool HasEnemyKillTracker => TryGetComponent<EnemyKillTracker>(out var _);
+
+    public virtual bool IsPassive()
+    {
+        return false;
+    }
 
     public virtual bool CanDeploy()
     {
@@ -29,9 +37,15 @@ public class AxieAbility : MonoBehaviour, IAxieAbility
 
     }
 
-    public void RaiseOnCooldown(float current, float max)
+    protected void RaiseOnAbilityUpdated()
+    {
+        OnAbilityUpdated?.Invoke();
+    }
+
+    protected virtual void RaiseOnCooldown(float current, float max)
     {
         OnCooldown?.Invoke(current, max, 0);
+        RaiseOnAbilityUpdated();
     }
 
     public GameObject Owner { get; set; }
