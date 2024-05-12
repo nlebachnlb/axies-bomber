@@ -26,6 +26,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0da5782558e6a4088afe98090a5f656d, type: 2}
     - {fileID: 4564667999815439112, guid: 34a383ee6e82f49e6a899c50863dc7bc, type: 3}
     - {fileID: 3034166757795195046, guid: 9f28adeb03f117e4cb4dd046dd0a37c2, type: 3}
+    - {fileID: 6894936283314566157, guid: 843922eb413f44540819b4ac0bdb989a, type: 3}
     - {fileID: 11400000, guid: 31da111efa11b487c830b364af85818b, type: 2}
     - {fileID: 11400000, guid: d29a2aa3ab09043768cf6329d3c2c197, type: 2}
     - {fileID: 11400000, guid: 0efee0f714bea4a528b4ec0ccc00d3a6, type: 2}
@@ -153,7 +154,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 
@@ -179,6 +180,18 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
@@ -195,13 +208,13 @@ MonoBehaviour:
       Data: 1
     - Name: axieConfig
       Entry: 10
-      Data: 10
+      Data: 11
     - Name: axieStats
       Entry: 10
-      Data: 11
+      Data: 12
     - Name: bombStats
       Entry: 10
-      Data: 12
+      Data: 13
     - Name: skillConfigs
       Entry: 7
       Data: 9|System.Collections.Generic.List`1[[SkillConfigWithLevel, Assembly-CSharp]],
@@ -221,10 +234,10 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 10
-      Data: 13
+      Data: 14
     - Name: 
       Entry: 10
-      Data: 14
+      Data: 15
     - Name: 
       Entry: 13
       Data: 
@@ -249,13 +262,13 @@ MonoBehaviour:
       Data: 3
     - Name: 
       Entry: 10
-      Data: 15
-    - Name: 
-      Entry: 10
       Data: 16
     - Name: 
       Entry: 10
       Data: 17
+    - Name: 
+      Entry: 10
+      Data: 18
     - Name: 
       Entry: 13
       Data: 
@@ -264,7 +277,7 @@ MonoBehaviour:
       Data: 
     - Name: abilityPrefab
       Entry: 10
-      Data: 18
+      Data: 19
     - Name: abilities
       Entry: 6
       Data: 
@@ -279,13 +292,13 @@ MonoBehaviour:
       Data: 2
     - Name: axieConfig
       Entry: 10
-      Data: 19
+      Data: 20
     - Name: axieStats
       Entry: 10
-      Data: 20
+      Data: 21
     - Name: bombStats
       Entry: 10
-      Data: 21
+      Data: 22
     - Name: skillConfigs
       Entry: 7
       Data: 14|System.Collections.Generic.List`1[[SkillConfigWithLevel, Assembly-CSharp]],
@@ -305,10 +318,10 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 10
-      Data: 22
+      Data: 23
     - Name: 
       Entry: 10
-      Data: 23
+      Data: 24
     - Name: 
       Entry: 13
       Data: 
@@ -333,13 +346,13 @@ MonoBehaviour:
       Data: 3
     - Name: 
       Entry: 10
-      Data: 24
-    - Name: 
-      Entry: 10
       Data: 25
     - Name: 
       Entry: 10
       Data: 26
+    - Name: 
+      Entry: 10
+      Data: 27
     - Name: 
       Entry: 13
       Data: 
@@ -348,7 +361,7 @@ MonoBehaviour:
       Data: 
     - Name: abilityPrefab
       Entry: 10
-      Data: 27
+      Data: 28
     - Name: abilities
       Entry: 6
       Data: 

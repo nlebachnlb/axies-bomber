@@ -51,6 +51,11 @@ public class MovementController : MonoBehaviour
         EventBus.onGameOver -= OnGameOver;
     }
 
+    private void OnDisable()
+    {
+        ResetInput();
+    }
+
     private void Update()
     {
         UpdateInput();

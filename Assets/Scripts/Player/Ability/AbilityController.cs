@@ -54,7 +54,7 @@ public class AbilityController : MonoBehaviour
     {
         var ability = Instantiate(axieAbility, transform);
         Abilities[skillType] = ability;
-        ability.Owner = owner;
+        ability.AssignOwner(owner);
         EventBus.RaiseOnAbilityAttached(skillType, ability);
         return ability;
     }

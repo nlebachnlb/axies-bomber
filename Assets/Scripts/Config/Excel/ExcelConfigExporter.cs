@@ -9,7 +9,7 @@ using Sirenix.OdinInspector;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ExcelConfigExporter", menuName = "Configs/ExcelConfigExporter")]
+[CreateAssetMenu(fileName = "ExcelConfigExporter", menuName = "Config/ExcelConfigExporter")]
 public class ExcelConfigExporter : ScriptableObject
 {
     public const string PATH = "Assets/Config/System/ExcelConfigExporter.asset";

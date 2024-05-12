@@ -18,6 +18,11 @@ public class AxieAbility : MonoBehaviour, IAxieAbility
 
     public bool HasEnemyKillTracker => TryGetComponent<EnemyKillTracker>(out var _);
 
+    public virtual void AssignOwner(GameObject owner)
+    {
+        Owner = owner;
+    }
+
     public virtual bool IsPassive()
     {
         return false;
@@ -48,7 +53,7 @@ public class AxieAbility : MonoBehaviour, IAxieAbility
         RaiseOnAbilityUpdated();
     }
 
-    public GameObject Owner { get; set; }
+    public GameObject Owner { get; private set; }
     public bool IsCooldown { get; protected set; }
 }
 

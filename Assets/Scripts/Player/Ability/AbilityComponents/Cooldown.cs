@@ -11,7 +11,9 @@ namespace Ability.Component
 
         private float timer = 0;
 
-        private void Awake()
+        public bool IsAvailable => timer <= 0;
+
+        public void StartCountdown()
         {
             timer = cooldown;
         }
