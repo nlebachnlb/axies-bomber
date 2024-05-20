@@ -4,6 +4,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Control when skill become active/inactive
+/// </summary>
 public class AbilityActive : AbilityHUDComponent
 {
     public Image progress;

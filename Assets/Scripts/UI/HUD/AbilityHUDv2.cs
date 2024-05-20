@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Ability.Component;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
@@ -27,17 +28,7 @@ public class AbilityHUDv2 : MonoBehaviour
         if (AppRoot.Instance.Config.inputSettings.skillDeploymentKeys.TryGetValue(skillType, out var keyCode))
             textDeploymentKey.text = keyCode.ToString();
 
-        if (currentAbility.IsPassive())
-        {
-            gameObject.AddComponent<AbilityPassive>();
-        }
-        else
-        {
-            gameObject.AddComponent<AbilityActive>();
-        }
-
-        if (currentAbility is IEnemyKillTrackBehaviour)
-            gameObject.AddComponent<KilledEnemiesCounter>();
+        AssignUiComponents();
     }
 
     public void SetNotAvailable()
@@ -52,6 +43,24 @@ public class AbilityHUDv2 : MonoBehaviour
     private void OnDestroy()
     {
         Clear();
+    }
+
+    private void AssignUiComponents()
+    {
+        if (currentAbility.IsPassive())
+        {
+            gameObject.AddComponent<AbilityPassive>();
+        }
+        else
+        {
+            gameObject.AddComponent<AbilityActive>();
+        }
+
+        if (currentAbility is IEnemyKillTrackBehaviour)
+            gameObject.AddComponent<KilledEnemiesCounter>();
+
+        if (currentAbility.TryGetComponent<Cooldown>(out var _))
+            gameObject.AddComponent<AbilityCooldownUI>();
     }
 
     private void Clear()

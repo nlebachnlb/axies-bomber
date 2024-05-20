@@ -19,6 +19,9 @@ public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
     private void Awake()
     {
         Stats = Instantiate(defaultStats);
+
+        cooldown.OnStartCountdown += Raise;
+        cooldown.OnCooldownFinished += Raise;
     }
 
     public override void AssignOwner(GameObject owner)
@@ -82,5 +85,10 @@ public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
         landingAreaEffect.gameObject.SetActive(false);
         IsJumpable = false;
         cooldown.StartCountdown();
+    }
+
+    private void Raise()
+    {
+        RaiseOnCooldown(cooldown.CooldownValue - cooldown.RemainingTime, cooldown.CooldownValue);
     }
 }
