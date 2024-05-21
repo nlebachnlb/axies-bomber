@@ -4,6 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
+public enum MovementPermission
+{
+    Auto,
+    Player
+}
+
 [RequireComponent(typeof(Rigidbody))]
 public class MovementController : MonoBehaviour
 {
@@ -18,6 +24,9 @@ public class MovementController : MonoBehaviour
     public AxieConfigReader config;
 
     public Vector3 LastDirection { get; set; } = Vector3.right;
+    public Rigidbody Body => rigidbody;
+
+    [SerializeField] private Transform skinWrapper;
 
     private new Rigidbody rigidbody;
     private Vector3 direction = Vector3.right;
@@ -32,6 +41,29 @@ public class MovementController : MonoBehaviour
 
     private bool isInteract = false;
     private SkillPoolEntrance pool;
+    private Vector3 snapDirection = Vector3.zero;
+
+    public MovementPermission movementPermission;
+
+    public void SetColliderActive(bool active)
+    {
+        GetComponent<Collider>().enabled = active;
+    }
+
+    public void AutoMoveTo(Vector2 destination, Vector2Int direction)
+    {
+        DoAutoMoveTo(destination, direction);
+    }
+
+    private IEnumerator DoAutoMoveTo(Vector2 destination, Vector2Int direction)
+    {
+        ResetInput();
+        movementPermission = MovementPermission.Auto;
+
+        yield return null;
+
+        movementPermission = MovementPermission.Player;
+    }
 
     private void Awake()
     {
@@ -75,7 +107,12 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 position = rigidbody.position;
-        Vector3 translation = direction * stats.Calculate().speed * Time.fixedDeltaTime;
+        Vector3 translation = direction * (stats.Calculate().speed * Time.fixedDeltaTime);
+        Vector3 destination = position + translation;
+
+        // Snap position to integer
+        destination.x = snapDirection.x < 0 ? Mathf.Floor(destination.x) : Mathf.Ceil(destination.x);
+        destination.z = snapDirection.z < 0 ? Mathf.Floor(destination.z) : Mathf.Ceil(destination.z);
 
         rigidbody.MovePosition(position + translation);
     }
@@ -92,9 +129,12 @@ public class MovementController : MonoBehaviour
         if (direction != Vector3.zero)
         {
             LastDirection = direction;
+
+            if (direction.x != 0) snapDirection.x = direction.x;
+            if (direction.z != 0) snapDirection.z = direction.z;
         }
 
-        characterAnimation.gameObject.transform.localScale = new Vector3(-facing, 1f, 1f);
+        skinWrapper.localScale = new Vector3(-facing, 1f, 1f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -102,9 +142,10 @@ public class MovementController : MonoBehaviour
         if (other.CompareTag("MapChanger"))
         {
             Debug.Log("Change map");
-            Destroy(other.gameObject);
-            string nextMap = other.GetComponent<MapChanger>().targetMapId;
-            EventBus.RaiseOnMapChange(nextMap);
+            var mapChanger = other.GetComponent<GateWay>();
+            var nextRoom = mapChanger.targetRoomId;
+            var fromDirection = mapChanger.Direction;
+            EventBus.RaiseOnRoomChange(nextRoom, fromDirection);
         }
 
         if (other.CompareTag("SkillPool"))
@@ -117,6 +158,13 @@ public class MovementController : MonoBehaviour
         if (other.CompareTag("Collectible") && other.TryGetComponent<Collectible>(out Collectible collectible))
         {
             PickCollectible(collectible);
+        }
+
+        if (other.CompareTag("Transport"))
+        {
+            var transport = other.GetComponent<Transport>();
+            EventBus.Instance.OnLeaveToRoomEvent(transport.TargetRoomId);
+            transport.TransportPlayer(this);
         }
     }
 
@@ -151,6 +199,8 @@ public class MovementController : MonoBehaviour
         };
 
         inputStack = new Stack<int>();
+
+        movementPermission = MovementPermission.Player;
     }
 
     public void ResetInput()
@@ -163,6 +213,9 @@ public class MovementController : MonoBehaviour
 
     private void UpdateInput()
     {
+        if (movementPermission != MovementPermission.Player)
+            return;
+
         if (Input.GetKeyDown(KeyCode.E) && isInteract)
         {
             SkillPoolEntrance entrance = pool;

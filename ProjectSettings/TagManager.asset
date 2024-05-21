@@ -10,6 +10,7 @@ TagManager:
   - SkillPool
   - KillField
   - Collectible
+  - Transport
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Bomb
   - Explosion
   - Collectible
-  - 
+  - Minimap
   - 
   - 
   - 

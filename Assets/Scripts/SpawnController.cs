@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Module.MapGeneration.Type;
 
 public class SpawnController : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class SpawnController : MonoBehaviour
     public int coin = 50;
 
     private int currentWave = 0;
+
+    public void OnEnterRoom()
+    {
+        StartCoroutine(WaveProgression());
+    }
 
     private void Awake()
     {
@@ -77,8 +83,8 @@ public class SpawnController : MonoBehaviour
         Time.timeScale = 1f;
 
         yield return new WaitForSecondsRealtime(2f);
-        SkillPoolEntrance entrance = Instantiate(poolEntrance, playerSpawn.transform.position, Quaternion.identity);
-        entrance.isAbilityPool = rewardAbilityPool;
+        // SkillPoolEntrance entrance = Instantiate(poolEntrance, playerSpawn.transform.position, Quaternion.identity);
+        // entrance.isAbilityPool = rewardAbilityPool;
     }
 
     private void OnPickSkill(SkillConfig skill)

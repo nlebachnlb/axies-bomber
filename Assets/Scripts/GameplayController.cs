@@ -82,7 +82,7 @@ public class GameplayController : MonoBehaviour
             slot.ReloadInGameData();
 
         SwitchAxieHero(0);
-        mapController.Reload(defaultMapId);
+        mapController.LoadMap();
 
         collectibleHUD.SetAmount(pickedCollectibles);
 

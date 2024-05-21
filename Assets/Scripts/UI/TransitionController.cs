@@ -11,7 +11,7 @@ public class TransitionController : MonoBehaviour
     private Animator animator;
     public float circleSize = 0;
 
-    [SerializeField] private CanvasGroup loadingFigure;
+    public CanvasGroup loadingFigure;
 
     private void Awake()
     {

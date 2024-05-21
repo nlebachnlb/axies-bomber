@@ -45,8 +45,11 @@ public class EventBus
     public delegate void OnPickSkill(SkillConfig skill);
     public static event OnPickSkill onPickSkill;
 
-    public delegate void OnMapChange(string newId);
+    public delegate void OnMapChange(int newId);
     public static event OnMapChange onMapChange;
+
+    public delegate void OnRoomChange(int newId, Vector2Int fromDirection);
+    public static event OnRoomChange onRoomChange;
 
     public delegate void OnRoomClear();
     public static event OnRoomClear onRoomClear;
@@ -66,6 +69,14 @@ public class EventBus
 
     public static event Action<int> onCurrency1Changed;
     public static event Action<Collectible> onPickCollectible;
+    public delegate void OnEnterRoom(int roomId);
+
+    public event OnEnterRoom EnterRoomEvent;
+
+    public delegate void OnLeaveToRoom(int roomId);
+
+    public event OnEnterRoom LeaveToRoomEvent;
+
 
     public static void RaiseOnBombFuse()
     {
@@ -108,7 +119,7 @@ public class EventBus
         onOpenSkillPool?.Invoke(isAbilityPool);
     }
 
-    public static void RaiseOnMapChange(string newId)
+    public static void RaiseOnMapChange(int newId)
     {
         onMapChange?.Invoke(newId);
     }
@@ -149,5 +160,20 @@ public class EventBus
         onAbilityAttached?.Invoke(skillType, axieAbility);
     }
 
+    public static void  RaiseOnRoomChange(int roomId, Vector2Int fromDirection)
+    {
+        onRoomChange?.Invoke(roomId, fromDirection);
+    }
+
     private static EventBus instance = null;
+
+    public void OnEnterRoomEvent(int roomId)
+    {
+        EnterRoomEvent?.Invoke(roomId);
+    }
+
+    public void OnLeaveToRoomEvent(int roomId)
+    {
+        LeaveToRoomEvent?.Invoke(roomId);
+    }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class CameraFollow : MonoBehaviour
 
@@ -8,6 +9,24 @@ public class CameraFollow : MonoBehaviour
 
     public Vector3 minPosition, maxPosition;
 
+    [SerializeField] private Camera camera;
+
+    public void BoundWithRoom(Room room)
+    {
+        minPosition = room.MinPosition;
+        maxPosition = room.MaxPosition;
+    }
+
+    public void OnLeaveToRoom()
+    {
+        camera.DOFieldOfView(40f, 0.5f);
+    }
+    
+    public void OnEnterRoom()
+    {
+        camera.DOFieldOfView(25f, 0.5f);
+    }
+    
     private void FixedUpdate()
     {
         Vector3 desiredPosition = target.position;
