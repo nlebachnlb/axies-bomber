@@ -16,7 +16,7 @@ public class AxieAbility : MonoBehaviour, IAxieAbility
 
     public virtual SkillConfig.DisplayType DisplayType { get; }
 
-    public bool HasEnemyKillTracker => TryGetComponent<EnemyKillTracker>(out var _);
+    public virtual SkillConfig GetStats() => null;
 
     public virtual void AssignOwner(GameObject owner)
     {
@@ -68,5 +68,10 @@ public class AxieAbility<T> : AxieAbility
         {
             return Stats != null ? Stats.displayType : SkillConfig.DisplayType.CurrentOverMax;
         }
+    }
+
+    public override SkillConfig GetStats()
+    {
+        return Stats;
     }
 }

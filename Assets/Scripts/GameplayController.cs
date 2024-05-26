@@ -35,7 +35,6 @@ public class GameplayController : MonoBehaviour
     [SerializeField] private SkillPickUI skillPickUI;
     [SerializeField] private GameObject clearBannerHUD;
     [SerializeField] private GameObject gameOverBannerHUD;
-    [SerializeField] private AbilityHUD abilityHUD;
     [SerializeField] private CollectibleHUD collectibleHUD;
 
     [Header("Test mode")]

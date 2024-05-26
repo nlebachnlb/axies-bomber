@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Ability.Component;
+
+using Ability.UI;
 using Sirenix.OdinInspector;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AbilityHUDv2 : MonoBehaviour
+public class AbilityHUD : MonoBehaviour
 {
     public Animator animator;
     public Image progress;
     public TextMeshProUGUI textProgress;
     public TextMeshProUGUI textAuxilliary;
     public Image mask;
-
-    [SerializeField] private TextMeshProUGUI textDeploymentKey;
+    public Image card;
+    public TextMeshProUGUI textDeploymentKey;
 
     [ShowInInspector, HideInEditorMode]
     public AxieAbility currentAbility { get; private set; }
@@ -28,6 +29,7 @@ public class AbilityHUDv2 : MonoBehaviour
         if (AppRoot.Instance.Config.inputSettings.skillDeploymentKeys.TryGetValue(skillType, out var keyCode))
             textDeploymentKey.text = keyCode.ToString();
 
+        card.sprite = axieAbility.GetStats().targetAxie;
         AssignUiComponents();
     }
 
@@ -53,19 +55,19 @@ public class AbilityHUDv2 : MonoBehaviour
         }
         else
         {
-            gameObject.AddComponent<AbilityActive>();
+            gameObject.AddComponent<Active>();
         }
 
         if (currentAbility is IEnemyKillTrackBehaviour)
             gameObject.AddComponent<KilledEnemiesCounter>();
 
-        if (currentAbility.TryGetComponent<Cooldown>(out var _))
-            gameObject.AddComponent<AbilityCooldownUI>();
+        if (currentAbility.TryGetComponent<Ability.UI.Cooldown>(out var _))
+            gameObject.AddComponent<Ability.UI.Cooldown>();
     }
 
     private void Clear()
     {
-        var components = GetComponents<AbilityHUDComponent>();
+        var components = GetComponents<AbilityUIComponent>();
         for (int i = 0; i < components.Length; ++i)
             Destroy(components[i]);
     }

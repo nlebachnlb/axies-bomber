@@ -36,6 +36,12 @@ public class TransitionController : MonoBehaviour
 
     public void ShowLoading(bool show)
     {
+        StartCoroutine(ShowLoadingCoroutine(show));
+    }
+
+    private IEnumerator ShowLoadingCoroutine(bool show)
+    {
+        yield return new WaitForEndOfFrame();
         loadingFigure.gameObject.SetActive(show);
     }
 }

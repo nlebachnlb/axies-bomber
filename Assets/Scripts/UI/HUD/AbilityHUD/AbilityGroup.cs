@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AbilityGroup : SerializedMonoBehaviour
 {
-    [SerializeField] Dictionary<SkillType, AbilityHUDv2> huds;
+    [SerializeField] Dictionary<SkillType, AbilityHUD> huds;
 
     private void Awake()
     {

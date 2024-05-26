@@ -61,6 +61,7 @@ MonoBehaviour:
   textProgress: {fileID: 1907993713111397518}
   textAuxilliary: {fileID: 2763630474936706827}
   mask: {fileID: 5479058495372367260}
+  card: {fileID: 759231636218845042}
   textDeploymentKey: {fileID: 1267917932402315837}
 --- !u!225 &1616628612533718856
 CanvasGroup:
