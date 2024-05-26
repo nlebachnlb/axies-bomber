@@ -54,7 +54,6 @@ namespace Ability.UI
 
         private void SetProgress(float current, float max, SkillConfig.DisplayType displayType)
         {
-            progress.fillAmount = current / max;
             if (current >= max)
             {
                 Activate();
@@ -62,19 +61,6 @@ namespace Ability.UI
             else
             {
                 Deactivate();
-            }
-
-            switch (displayType)
-            {
-                case SkillConfig.DisplayType.Percentage:
-                    textProgress.text = $"{progress.fillAmount * 100f}%";
-                    break;
-                case SkillConfig.DisplayType.CurrentOverMax:
-                    textProgress.text = $"{current}/{max}";
-                    break;
-                case SkillConfig.DisplayType.Seconds:
-                    textProgress.text = $"{max - current} s";
-                    break;
             }
         }
     }

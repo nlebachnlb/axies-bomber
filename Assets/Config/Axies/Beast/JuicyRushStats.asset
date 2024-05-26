@@ -21,4 +21,5 @@ MonoBehaviour:
   ownerAxie: {fileID: 11400000, guid: 2d65df6c605a4524bae6063bf4906bf1, type: 2}
   axieIdentity: 3
   level: 0
-  EffectDuration: 3
+  speedBuffPercentage: 1
+  effectDuration: 3

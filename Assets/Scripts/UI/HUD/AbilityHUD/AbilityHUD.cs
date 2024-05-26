@@ -61,7 +61,7 @@ public class AbilityHUD : MonoBehaviour
         if (currentAbility is IEnemyKillTrackBehaviour)
             gameObject.AddComponent<KilledEnemiesCounter>();
 
-        if (currentAbility.TryGetComponent<Cooldown>(out var _))
+        if (currentAbility.TryGetComponent<Ability.Component.Cooldown>(out var _))
             gameObject.AddComponent<Cooldown>();
     }
 

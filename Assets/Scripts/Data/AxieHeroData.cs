@@ -15,10 +15,6 @@ public class AxieHeroData
         public int bombMagazine;
     }
 
-    public const string PARAM_KILLED_ENEMIES = "killedEnemies";
-    public const string PARAM_PLACED_BOMBS = "placedBombs";
-    public const string PARAM_COOLDOWN_TIME = "cooldownTime";
-
     [Header("Base stats & config")]
     public AxieIdentity identity;
     public AxieConfig axieConfig;
@@ -98,6 +94,24 @@ public class AxieHeroData
         onInfoChanged?.Invoke(GetCurrentInfo());
     }
 
+    private InfoPacket GetCurrentInfo()
+    {
+        AxieStats calculated = axieStats.Calculate();
+        InfoPacket info = new InfoPacket();
+        info.health = health;
+        info.bombsRemaining = bombsRemaining;
+        info.healthLimit = calculated.health;
+        info.bombMagazine = calculated.bombMagazine;
+        return info;
+    }
+
+    #region Extra params
+
+    public const string PARAM_KILLED_ENEMIES = "killedEnemies";
+    public const string PARAM_PLACED_BOMBS = "placedBombs";
+    public const string PARAM_COOLDOWN_TIME = "cooldownTime";
+    public const string PARAM_SPEED_MULTIPLIER = "speedMultiplier";
+
     public float GetExtraParam(string key, float defaultValue = 0)
     {
         if (extraParams.ContainsKey(key))
@@ -114,14 +128,5 @@ public class AxieHeroData
             extraParams.Add(key, value);
     }
 
-    private InfoPacket GetCurrentInfo()
-    {
-        AxieStats calculated = axieStats.Calculate();
-        InfoPacket info = new InfoPacket();
-        info.health = health;
-        info.bombsRemaining = bombsRemaining;
-        info.healthLimit = calculated.health;
-        info.bombMagazine = calculated.bombMagazine;
-        return info;
-    }
+    #endregion
 }

@@ -32,7 +32,8 @@ public class MovementController : MonoBehaviour
     private Vector3 direction = Vector3.right;
     private string currentState = "idle";
     private float facing = 1;
-    private AxieStats stats;
+    private AxieHeroData axieHeroData;
+    public float SpeedMultiplier { get; set; } = 1f;
 
     private List<KeyCode> movementInput;
     private List<bool> pressedKeys;
@@ -48,6 +49,11 @@ public class MovementController : MonoBehaviour
     public void SetColliderActive(bool active)
     {
         GetComponent<Collider>().enabled = active;
+    }
+
+    public void SetSpeedMultiplier(float speedMultiplier)
+    {
+        axieHeroData.SetExtraParam(AxieHeroData.PARAM_SPEED_MULTIPLIER, speedMultiplier);
     }
 
     public void AutoMoveTo(Vector2 destination, Vector2Int direction)
@@ -107,7 +113,7 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 position = rigidbody.position;
-        Vector3 translation = direction * (stats.Calculate().speed * Time.fixedDeltaTime);
+        Vector3 translation = direction * (GetSpeed() * Time.fixedDeltaTime);
         Vector3 destination = position + translation;
 
         // Snap position to integer
@@ -309,7 +315,7 @@ public class MovementController : MonoBehaviour
         }
         else if (state.Equals("move"))
         {
-            SetAnimation(config.Axie.animRun, true, 0.25f * stats.speed);
+            SetAnimation(config.Axie.animRun, true, 0.25f * axieHeroData.axieStats.speed);
         }
 
         currentState = state;
@@ -329,9 +335,14 @@ public class MovementController : MonoBehaviour
         Destroy(collectible.gameObject);
     }
 
+    private float GetSpeed()
+    {
+        return axieHeroData.axieStats.Calculate().speed * axieHeroData.GetExtraParam(AxieHeroData.PARAM_SPEED_MULTIPLIER, 1f);
+    }
+
     private void OnSwitchHero(AxieHeroData heroData)
     {
-        stats = heroData.axieStats.Calculate();
+        axieHeroData = heroData;
         currentState = "";
     }
 
