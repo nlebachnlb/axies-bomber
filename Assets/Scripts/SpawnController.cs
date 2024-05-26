@@ -33,7 +33,7 @@ public class SpawnController : MonoBehaviour
     private void Start()
     {
         DistributeCoinsToWaves();
-        StartCoroutine(WaveProgression());
+        // StartCoroutine(WaveProgression());
     }
 
     private void DistributeCoinsToWaves()
