@@ -51,7 +51,7 @@ public class AbilityHUD : MonoBehaviour
     {
         if (currentAbility.IsPassive())
         {
-            gameObject.AddComponent<AbilityPassive>();
+            gameObject.AddComponent<Passive>();
         }
         else
         {
@@ -61,8 +61,8 @@ public class AbilityHUD : MonoBehaviour
         if (currentAbility is IEnemyKillTrackBehaviour)
             gameObject.AddComponent<KilledEnemiesCounter>();
 
-        if (currentAbility.TryGetComponent<Ability.UI.Cooldown>(out var _))
-            gameObject.AddComponent<Ability.UI.Cooldown>();
+        if (currentAbility.TryGetComponent<Cooldown>(out var _))
+            gameObject.AddComponent<Cooldown>();
     }
 
     private void Clear()

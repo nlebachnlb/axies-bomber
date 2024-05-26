@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Ability.UI
 {
-    public class AbilityPassive : AbilityUIComponent
+    public class Passive : AbilityUIComponent
     {
         public GameObject mask;
         public Animator animator;

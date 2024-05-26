@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using Spine.Collections;
+using Sirenix.OdinInspector;
 
 public enum AxieClass
 {
@@ -22,12 +23,13 @@ public class AxieConfig : ScriptableObject
     public List<AnimationReferenceAsset> animRandomIdles;
 
     [Header("Skin")]
-    public Sprite bombSprite;
+
+    [PreviewField] public Sprite bombSprite;
     public Color auraColor;
 
     [Header("Information")]
     public string axieName;
     public AxieClass axieClass;
     public string description;
-    public Sprite icon;
+    [PreviewField] public Sprite icon;
 }

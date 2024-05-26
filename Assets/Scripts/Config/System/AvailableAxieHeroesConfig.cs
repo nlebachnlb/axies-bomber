@@ -8,9 +8,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Available Axies Config", menuName = "Config/System/Available Axies Config")]
 public class AvailableAxieHeroesConfig : SerializedScriptableObject
 {
-    [OdinSerialize, NonSerialized]
+    [OdinSerialize, NonSerialized, ListDrawerSettings(ListElementLabelName = "id")]
     public List<AxiePackedConfig> axiePackedConfigs;
 
+    [NonSerialized]
     private Dictionary<int, AxiePackedConfig> configMap;
 
     public AxiePackedConfig GetAxiePackedConfigById(int id)
@@ -32,6 +33,8 @@ public class AvailableAxieHeroesConfig : SerializedScriptableObject
     public List<SkillConfig> GetAxieSkillConfigsById(int id, int level = 0)
     {
         AxiePackedConfig config = GetAxiePackedConfigById(id);
+        if (level < 0 || level >= config.skillConfigs.Count)
+            return new();
         return config.skillConfigs[level].skills;
     }
 }

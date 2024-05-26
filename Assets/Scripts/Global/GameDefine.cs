@@ -6,7 +6,8 @@ public enum AxieIdentity
 {
     Aquatic = 0,
     Bird = 1,
-    Reptile = 2
+    Reptile = 2,
+    Beast = 3,
 }
 
 public enum Stat

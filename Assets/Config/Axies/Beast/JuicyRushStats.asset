@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825227216e8cad044b0fbc45d7a0527a, type: 3}
+  m_Name: JuicyRushStats
+  m_EditorClassIdentifier: 
+  skillName: Juicy Rush
+  description: 
+  minorDescription: 
+  isAbility: 0
+  displayType: 0
+  targetAxie: {fileID: 21300000, guid: 121f65ec7bc794bb097021a8d9e32a9a, type: 3}
+  ownerAxie: {fileID: 11400000, guid: 2d65df6c605a4524bae6063bf4906bf1, type: 2}
+  axieIdentity: 3
+  level: 0
+  EffectDuration: 3
