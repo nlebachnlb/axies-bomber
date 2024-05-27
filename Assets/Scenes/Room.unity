@@ -767,6 +767,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 280324547947217201, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 280324547947217201, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2777887902344299325, guid: df31bd18b641d0a42a4e21d260cebc41,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -817,6 +827,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4027691862693011117, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 2047
+      objectReference: {fileID: 0}
     - target: {fileID: 5037178869154486863, guid: df31bd18b641d0a42a4e21d260cebc41,
         type: 3}
       propertyPath: boundModel
@@ -836,6 +851,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MinimapHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871118138055886338, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7871118138055886338, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

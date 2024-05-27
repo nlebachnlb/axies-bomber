@@ -321,6 +321,7 @@ MonoBehaviour:
   exitGate: {fileID: 0}
   poolEntrance: {fileID: 12123213872727703, guid: 6ad9e82eb16e7430990c1e832c0971e7,
     type: 3}
+  coin: 50
 --- !u!1 &2790207126034890604
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,10 +22,11 @@ public class SoundManager : MonoBehaviour
 
     public void PlayAudio(AudioType type)
     {
+        Debug.Log("Play audio " + type);
         AudioSource targetSource = new AudioSource();
         switch (type)
         {
-            
+
             case AudioType.IngameBGMType:
                 targetSource = IngameBGM;
                 MenuBGM.Stop();
