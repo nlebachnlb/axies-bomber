@@ -2589,9 +2589,6 @@ MonoBehaviour:
       - {fileID: 7936532511103908301, guid: dfec62d1186cbcb40825472313fc0807, type: 3}
       - {fileID: 7936532511103908301, guid: 39e04045e01a80a419c47baec1349cc3, type: 3}
       - {fileID: 7936532511103908301, guid: 481da07bbc632694d86ca7b202c96a53, type: 3}
-      - {fileID: 7936532511103908301, guid: 9bd620da9a654584b82ac75c55435a05, type: 3}
-      - {fileID: 7936532511103908301, guid: edb91bb8e33ba5a408414323779106ec, type: 3}
-      - {fileID: 7936532511103908301, guid: e906ef690e90ba24190e71c99d62928a, type: 3}
     - roomType: 2
       prefab:
       - {fileID: 7936532511103908301, guid: cedb3f419d48b774494635244595eb03, type: 3}

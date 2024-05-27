@@ -77,6 +77,13 @@ public class EventBus
 
     public event OnEnterRoom LeaveToRoomEvent;
 
+    public delegate void OnRoomSealed(int roomId);
+
+    public event OnRoomSealed RoomSealedEvent;
+
+    public delegate void OnRoomUnsealed(int roomId);
+
+    public event OnRoomUnsealed RoomUnsealedEvent;
 
     public static void RaiseOnBombFuse()
     {
@@ -175,5 +182,15 @@ public class EventBus
     public void OnLeaveToRoomEvent(int roomId)
     {
         LeaveToRoomEvent?.Invoke(roomId);
+    }
+
+    public void OnRoomSealedEvent(int roomId)
+    {
+        RoomSealedEvent?.Invoke(roomId);
+    }
+
+    public void OnRoomUnsealedEvent(int roomId)
+    {
+        RoomUnsealedEvent?.Invoke(roomId);
     }
 }

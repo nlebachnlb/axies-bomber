@@ -41,11 +41,13 @@ namespace Module.MapGeneration.View
             if (roomData.cleared)
             {
                 CallTransports(roomId);
+                EventBus.Instance.OnRoomUnsealedEvent(roomId);
                 return;
             }
 
             var roomObject = roomObjects[roomId];
             roomObject.gameObject.GetComponent<SpawnController>().OnEnterRoom();
+            EventBus.Instance.OnRoomSealedEvent(roomId);
         }
 
         public void OnRoomChange(int oldRoomId, int roomId)
