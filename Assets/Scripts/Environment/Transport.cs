@@ -9,9 +9,11 @@ public class Transport : MonoBehaviour
     public Vector3 Destination { get; set; }
     public Vector3 DestinationSpawnPoint { get; set; }
     public int TargetRoomId { get; set; }
-    
+
     [SerializeField] private Transform visual;
-    
+
+    private Collider col;
+
     public float TransportPlayer(MovementController playerMovement)
     {
         StartCoroutine(DoTransportPlayer(Destination, playerMovement, DestinationSpawnPoint));
@@ -28,6 +30,7 @@ public class Transport : MonoBehaviour
     private void Awake()
     {
         EventBus.Instance.LeaveToRoomEvent += OnLeaveToRoom;
+        col = GetComponent<Collider>();
     }
 
     private void OnDestroy()
@@ -50,16 +53,17 @@ public class Transport : MonoBehaviour
         playerMovement.movementPermission = MovementPermission.Auto;
         var player = playerMovement.transform;
         var position = transform.position;
-        
+
         player.position = new Vector3(position.x, player.position.y, position.z);
         transform.DOMove(destination, 2f);
         playerMovement.transform.DOMove(new Vector3(destination.x, player.position.y, destination.z), 2f);
-        
+
         yield return new WaitForSeconds(2f);
-        
+
         playerMovement.movementPermission = MovementPermission.Player;
         player.position = spawnPosition;
         playerMovement.SetColliderActive(true);
+        col.enabled = false;
 
         transform.DOMoveY(-10f, 1f).SetEase(Ease.InBack);
 

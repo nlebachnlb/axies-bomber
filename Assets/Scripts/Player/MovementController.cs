@@ -268,7 +268,7 @@ public class MovementController : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        if (direction != Vector3.zero)
+        if (rigidbody.velocity != Vector3.zero)
         {
             SetState("move");
         }
