@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 2878728743684143185}
   - component: {fileID: 5346295266284951868}
   - component: {fileID: 2971729412711799894}
+  - component: {fileID: 3930325970956083054}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -169,8 +170,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2787602095110623959}
   serializedVersion: 4
-  m_Mass: 100
-  m_Drag: 100
+  m_Mass: 1
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -185,7 +186,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 2
+  m_Interpolate: 1
   m_Constraints: 116
   m_CollisionDetection: 1
 --- !u!114 &3868202461473630865
@@ -222,6 +223,7 @@ MonoBehaviour:
   characterAnimation: {fileID: 7684370153621896473}
   config: {fileID: 0}
   skinWrapper: {fileID: 4775068318816366232}
+  movementPermission: 0
 --- !u!114 &1988761712901673047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +311,20 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.7, z: 0}
+--- !u!114 &3930325970956083054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2787602095110623959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a603e8b5cfc58342aeec545b304b5ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpPower: 1.5
+  duration: 0.5
 --- !u!1 &4563164485085164348
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,7 +366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3164784574725348509}
-  - component: {fileID: 7388343751773762036}
+  - component: {fileID: 2444243461847432528}
   m_Layer: 0
   m_Name: Ability
   m_TagString: Untagged
@@ -373,7 +389,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5256838370808864509}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7388343751773762036
+--- !u!114 &2444243461847432528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -382,10 +398,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4759725970585930819}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ee0a59d8525b4f5f85e6af06c507e46, type: 3}
+  m_Script: {fileID: 11500000, guid: 00c81d98ae028b74b9e0692e426cac4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deployKey: 113
   owner: {fileID: 2787602095110623959}
 --- !u!1 &5339606241814522456
 GameObject:

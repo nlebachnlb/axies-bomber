@@ -2,6 +2,7 @@ using UnityEngine;
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public enum MovementPermission
 {
@@ -31,7 +32,8 @@ public class MovementController : MonoBehaviour
     private Vector3 direction = Vector3.right;
     private string currentState = "idle";
     private float facing = 1;
-    private AxieStats stats;
+    private AxieHeroData axieHeroData;
+    public float SpeedMultiplier { get; set; } = 1f;
 
     private List<KeyCode> movementInput;
     private List<bool> pressedKeys;
@@ -48,7 +50,12 @@ public class MovementController : MonoBehaviour
     {
         GetComponent<Collider>().enabled = active;
     }
-    
+
+    public void SetSpeedMultiplier(float speedMultiplier)
+    {
+        axieHeroData.SetExtraParam(AxieHeroData.PARAM_SPEED_MULTIPLIER, speedMultiplier);
+    }
+
     public void AutoMoveTo(Vector2 destination, Vector2Int direction)
     {
         DoAutoMoveTo(destination, direction);
@@ -63,7 +70,7 @@ public class MovementController : MonoBehaviour
 
         movementPermission = MovementPermission.Player;
     }
-    
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -80,6 +87,11 @@ public class MovementController : MonoBehaviour
         EventBus.onSwitchAxieHero -= OnSwitchHero;
         EventBus.onPickSkill -= OnPickSkill;
         EventBus.onGameOver -= OnGameOver;
+    }
+
+    private void OnDisable()
+    {
+        ResetInput();
     }
 
     private void Update()
@@ -100,15 +112,7 @@ public class MovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 position = rigidbody.position;
-        Vector3 translation = direction * (stats.Calculate().speed * Time.fixedDeltaTime);
-        Vector3 destination = position + translation;
-        
-        // Snap position to integer
-        destination.x = snapDirection.x < 0 ? Mathf.Floor(destination.x) : Mathf.Ceil(destination.x);
-        destination.z = snapDirection.z < 0 ? Mathf.Floor(destination.z) : Mathf.Ceil(destination.z);
-        
-        rigidbody.MovePosition(position + translation);
+        rigidbody.velocity = direction * GetSpeed();
     }
 
     private void SetDirection(Vector3 newDirection)
@@ -147,6 +151,11 @@ public class MovementController : MonoBehaviour
             other.GetComponent<SkillPoolEntrance>().DisplayInteract(true);
             pool = other.GetComponent<SkillPoolEntrance>();
             isInteract = true;
+        }
+
+        if (other.CompareTag("Collectible") && other.TryGetComponent<Collectible>(out Collectible collectible))
+        {
+            PickCollectible(collectible);
         }
 
         if (other.CompareTag("Transport"))
@@ -204,7 +213,7 @@ public class MovementController : MonoBehaviour
     {
         if (movementPermission != MovementPermission.Player)
             return;
-        
+
         if (Input.GetKeyDown(KeyCode.E) && isInteract)
         {
             SkillPoolEntrance entrance = pool;
@@ -259,7 +268,7 @@ public class MovementController : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        if (direction != Vector3.zero)
+        if (rigidbody.velocity != Vector3.zero)
         {
             SetState("move");
         }
@@ -298,15 +307,34 @@ public class MovementController : MonoBehaviour
         }
         else if (state.Equals("move"))
         {
-            SetAnimation(config.Axie.animRun, true, 0.25f * stats.speed);
+            SetAnimation(config.Axie.animRun, true, 0.25f * axieHeroData.axieStats.speed);
         }
 
         currentState = state;
     }
 
+    private void PickCollectible(Collectible collectible)
+    {
+        GameObject floatingText = Instantiate(AppRoot.Instance.Config.floatingText);
+        floatingText.transform.position = collectible.transform.position;
+
+        TextMeshPro text = floatingText.GetComponent<TextMeshPro>();
+        text.text = $"+{collectible.Amount} <sprite index=0>";
+
+        AppRoot.Instance.UserDataModel.Collect(collectible);
+        EventBus.RaiseOnPickCollectible(collectible);
+
+        Destroy(collectible.gameObject);
+    }
+
+    private float GetSpeed()
+    {
+        return axieHeroData.axieStats.Calculate().speed * axieHeroData.GetExtraParam(AxieHeroData.PARAM_SPEED_MULTIPLIER, 1f);
+    }
+
     private void OnSwitchHero(AxieHeroData heroData)
     {
-        stats = heroData.axieStats.Calculate();
+        axieHeroData = heroData;
         currentState = "";
     }
 

@@ -10,8 +10,8 @@ public class SpawnController : MonoBehaviour
     public List<SpawnTimeline> spawnWaves;
     public bool rewardAbilityPool;
     public GameObject exitGate;
-
-    [SerializeField] private SkillPoolEntrance poolEntrance;
+    public SkillPoolEntrance poolEntrance;
+    public int coin = 50;
 
     private int currentWave = 0;
 
@@ -19,7 +19,7 @@ public class SpawnController : MonoBehaviour
     {
         StartCoroutine(WaveProgression());
     }
-    
+
     private void Awake()
     {
         EventBus.onPickSkill += OnPickSkill;
@@ -28,6 +28,24 @@ public class SpawnController : MonoBehaviour
     private void OnDestroy()
     {
         EventBus.onPickSkill -= OnPickSkill;
+    }
+
+    private void Start()
+    {
+        DistributeCoinsToWaves();
+        // StartCoroutine(WaveProgression());
+    }
+
+    private void DistributeCoinsToWaves()
+    {
+        int waveCount = spawnWaves.Count;
+        int[] coinDistribution = Utility.Distribute(coin, waveCount);
+        for (int i = 0; i < waveCount; ++i)
+        {
+            int coin = coinDistribution[i];
+            spawnWaves[i].Coin = coin;
+            Debug.Log($"Wave {i} receives {coin} coin(s)");
+        }
     }
 
     private IEnumerator WaveProgression()

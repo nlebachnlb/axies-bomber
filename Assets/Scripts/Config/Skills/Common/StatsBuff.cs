@@ -5,21 +5,13 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "New Stats Buff", menuName = "Stats/Buff")]
 public class StatsBuff : SkillConfig
 {
-    public enum BuffType
-    {
-        Speed,
-        BombMagazine,
-        Health,
-        BombExplosionRadius
-    }
-
     public enum BuffUnit
     {
         Unit,
         Percentage
     }
 
-    public BuffType buffType;
+    public Stat buffType;
     public BuffUnit buffUnit;
     public List<float> buffValue;
 

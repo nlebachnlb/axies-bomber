@@ -21,7 +21,7 @@ public class TinyCatapult : AxieAbility<TinyCatapultStats>
 
     private void OnDestroy()
     {
-        axieData.SetExtraParam("cooldownTime", cooldownTime);
+        axieData.SetExtraParam(AxieHeroData.PARAM_COOLDOWN_TIME, cooldownTime);
     }
 
     private void Start()
@@ -37,6 +37,7 @@ public class TinyCatapult : AxieAbility<TinyCatapultStats>
             if (cooldownTime < Stats.cooldownTime)
             {
                 cooldownTime += Time.deltaTime;
+                RaiseOnCooldown(cooldownTime, Stats.cooldownTime);
                 EventBus.RaiseOnAbilityCooldown(cooldownTime, Stats.cooldownTime, 2);
             }
         }
@@ -45,6 +46,7 @@ public class TinyCatapult : AxieAbility<TinyCatapultStats>
             if (sturdyTimer > 0)
             {
                 sturdyTimer -= Time.deltaTime;
+                RaiseOnCooldown(cooldownTime, Stats.cooldownTime);
                 EventBus.RaiseOnAbilityCooldown(sturdyTimer, Stats.sturdyDuration, 2);
                 if (sturdyTimer < 0)
                 {
@@ -61,9 +63,11 @@ public class TinyCatapult : AxieAbility<TinyCatapultStats>
     public override void SetExtraParams(AxieHeroData axieHero)
     {
         base.SetExtraParams(axieHero);
-        Stats = (TinyCatapultStats)Instantiate(axieHero.ability);
-        cooldownTime = (int)axieHero.GetExtraParam("cooldownTime", Stats.cooldownTime);
+        if (axieHero.ability != null)
+            Stats = (TinyCatapultStats)Instantiate(axieHero.ability);
+        cooldownTime = (int)axieHero.GetExtraParam(AxieHeroData.PARAM_COOLDOWN_TIME, Stats.cooldownTime);
         axieData = axieHero;
+        RaiseOnCooldown(cooldownTime, Stats.cooldownTime);
         EventBus.RaiseOnAbilityCooldown(cooldownTime, Stats.cooldownTime, 1);
         Debug.Log("Extra param: " + cooldownTime);
     }
@@ -74,6 +78,7 @@ public class TinyCatapult : AxieAbility<TinyCatapultStats>
             health = Owner.GetComponent<HealthController>();
 
         Debug.Log("TinyCatapult activated");
+        RaiseOnCooldown(cooldownTime, Stats.cooldownTime);
         EventBus.RaiseOnAbilityCooldown(cooldownTime, Stats.cooldownTime, 2);
         sturdyTimer = Stats.sturdyDuration;
         health.SetInvincible(Stats.sturdyDuration);

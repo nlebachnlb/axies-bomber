@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - SkillPool
   - KillField
+  - Collectible
   - Transport
   layers:
   - Default
@@ -20,8 +21,8 @@ TagManager:
   - Stage
   - Bomb
   - Explosion
+  - Collectible
   - Minimap
-  - 
   - 
   - 
   - 
