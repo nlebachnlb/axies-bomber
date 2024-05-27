@@ -1534,7 +1534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 640056823}
-  smoothSpeed: 0.2
+  smoothSpeed: 10
   minPosition: {x: -100, y: 0, z: -100}
   maxPosition: {x: 100, y: 0, z: 100}
   camera: {fileID: 330585545}

@@ -112,17 +112,7 @@ public class MovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 position = rigidbody.position;
-        Vector3 translation = direction * (GetSpeed() * Time.fixedDeltaTime);
-        // Vector3 destination = position + translation;
-
-        // Snap position to integer
-        // destination.x = snapDirection.x < 0 ? Mathf.Floor(destination.x) : Mathf.Ceil(destination.x);
-        // destination.z = snapDirection.z < 0 ? Mathf.Floor(destination.z) : Mathf.Ceil(destination.z);
-
         rigidbody.velocity = direction * GetSpeed();
-        if (rigidbody.velocity != Vector3.zero)
-            Debug.Log(rigidbody.velocity);
     }
 
     private void SetDirection(Vector3 newDirection)

@@ -71,7 +71,7 @@ namespace Module.MapGeneration.View
                 transport.TargetRoomId = left.RoomId;
                 transport.DoEntrance(room.GetGateWay(GateWayDirection.West).transform.position);
             }
-            
+
             if (right)
             {
                 var transport = CreateTransport();
@@ -81,7 +81,7 @@ namespace Module.MapGeneration.View
                 transport.TargetRoomId = right.RoomId;
                 transport.DoEntrance(room.GetGateWay(GateWayDirection.East).transform.position);
             }
-            
+
             if (top)
             {
                 var transport = CreateTransport();
@@ -91,7 +91,7 @@ namespace Module.MapGeneration.View
                 transport.TargetRoomId = top.RoomId;
                 transport.DoEntrance(room.GetGateWay(GateWayDirection.North).transform.position);
             }
-            
+
             if (bottom)
             {
                 var transport = CreateTransport();
@@ -113,14 +113,14 @@ namespace Module.MapGeneration.View
 
             yield return new WaitForSeconds(2f);
 
-            camera.smoothSpeed = 0.05f;
+            camera.smoothSpeed = 5f;
             camera.minPosition = new Vector3(position.x - 3, 0, position.z - 5);
             camera.maxPosition = new Vector3(position.x + 3, 0, position.z + 5);
 
             yield return new WaitForSeconds(1f);
             EventBus.Instance.OnEnterRoomEvent(roomId);
-            camera.smoothSpeed = 0.2f;
-            
+            camera.smoothSpeed = 10f;
+
             camera.OnEnterRoom();
         }
 
@@ -129,7 +129,7 @@ namespace Module.MapGeneration.View
             foreach (var roomObject in roomObjects.Values)
                 Destroy(roomObject.gameObject);
             roomObjects.Clear();
-            
+
             var rooms = boundModel.Rooms;
             foreach (var room in rooms)
             {
@@ -142,10 +142,10 @@ namespace Module.MapGeneration.View
                 roomObjects.Add(room.roomId, roomObject);
                 OpenDoors(roomObject, room.index.x, room.index.y);
             }
-            
+
             loadingMask.gameObject.SetActive(false);
         }
-        
+
         private Vector3 GetPositionFromGridIndex(Vector2Int grid)
         {
             int x = grid.x;
@@ -153,7 +153,7 @@ namespace Module.MapGeneration.View
             var gridSize = boundModel.GridSize;
             return new Vector3(roomSize.x * (x - gridSize.x * 0.5f), 0, roomSize.y * (z - gridSize.y * 0.5f));
         }
-        
+
         private void OpenDoors(Room room, int x, int y)
         {
             var gridSize = boundModel.GridSize;
@@ -161,7 +161,7 @@ namespace Module.MapGeneration.View
             var right = GetRoomComponentAt(new Vector2Int(x + 1, y));
             var top = GetRoomComponentAt(new Vector2Int(x, y + 1));
             var bottom = GetRoomComponentAt(new Vector2Int(x, y - 1));
-            
+
             var currentRoomId = boundModel.RoomGrid[x, y].roomId;
             if (x > 0 && boundModel.IsCellNotNull(x - 1, y) && left)
             {
@@ -197,7 +197,7 @@ namespace Module.MapGeneration.View
             var room = roomObjects.Values.ToList().Find(r => r.RoomIndex == index);
             return room;
         }
-        
+
         private Transport CreateTransport()
         {
             Transport transport = Instantiate(transportPrefab, root);
