@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -60,6 +61,12 @@ public class Bomb : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+        }
+        else
+        {
+            Collider[] colliders = Physics.OverlapSphere(rigidbody.position, 0.1f, LayerMask.GetMask("Explosion"));
+            if (colliders.Length > 0 && !col.isTrigger)
+                Destroy(gameObject);
         }
     }
 
