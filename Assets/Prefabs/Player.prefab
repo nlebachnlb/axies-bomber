@@ -132,8 +132,8 @@ GameObject:
   - component: {fileID: 1061060860249864829}
   - component: {fileID: 1988761712901673047}
   - component: {fileID: 2878728743684143185}
+  - component: {fileID: 3152222501841632516}
   - component: {fileID: 5346295266284951868}
-  - component: {fileID: 2971729412711799894}
   - component: {fileID: 3930325970956083054}
   m_Layer: 3
   m_Name: Player
@@ -170,7 +170,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2787602095110623959}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.0000001
   m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -188,7 +188,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 116
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!114 &3868202461473630865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +267,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeleton: {fileID: 7684370153621896473}
   death: {fileID: 8471732679458721912}
+--- !u!135 &3152222501841632516
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2787602095110623959}
+  m_Material: {fileID: 13400000, guid: e606f99c56f83438187390d10989d0e3, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!95 &5346295266284951868
 Animator:
   serializedVersion: 5
@@ -288,29 +309,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!136 &2971729412711799894
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2787602095110623959}
-  m_Material: {fileID: 13400000, guid: e606f99c56f83438187390d10989d0e3, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!114 &3930325970956083054
 MonoBehaviour:
   m_ObjectHideFlags: 0
