@@ -12,6 +12,8 @@ public class MultiAbilityController : MonoBehaviour
     private AxieHeroData activeAxie;
     private Dictionary<AxieIdentity, AbilityController> abilityControllers = new();
 
+    public AbilityController ActiveController => abilityControllers[activeAxie.identity];
+
     private void Awake()
     {
         EventBus.onSwitchAxieHero += OnSwitchHero;

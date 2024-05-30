@@ -58,4 +58,18 @@ public class AbilityController : MonoBehaviour
         EventBus.RaiseOnAbilityAttached(skillType, ability);
         return ability;
     }
+
+    public bool TryGetAbility<T>(out T ability) where T: AxieAbility
+    {
+        ability = null;
+        foreach (var item in Abilities)
+        {
+            if (item.Value is T result)
+            {
+                ability = result;
+                return true;
+            }
+        }
+        return false;
+    }
 }

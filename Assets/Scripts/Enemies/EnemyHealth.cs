@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public GameObject deathFxPrefab;
     public float hp = 1f;
     public float recoverTime = 0.5f;
 
     private float recoveryTimer = 0f;
-
     private EnemyController enemyController;
-
-    [SerializeField] private GameObject deathFxPrefab;
+    private float startHp;
 
     public void TakeDamage(float damage)
     {
@@ -53,6 +52,7 @@ public class EnemyHealth : MonoBehaviour
     private void Awake()
     {
         enemyController = GetComponent<EnemyController>();
+        startHp = hp;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -63,7 +63,16 @@ public class EnemyHealth : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
         {
             Explosion explosion = other.GetComponent<Explosion>();
-            TakeDamage(explosion.damage);
+
+            if (startHp != 0 && hp / startHp < explosion.criticalThreshold)
+            {
+                // Critical
+                TakeDamage(hp);
+            }
+            else
+            {
+                TakeDamage(explosion.damage);
+            }
             other.enabled = false;
         }
 

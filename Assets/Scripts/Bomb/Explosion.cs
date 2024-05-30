@@ -11,6 +11,10 @@ public class Explosion : MonoBehaviour
     [HideInEditorMode]
     public float damage { get; set; }
 
+    [HideInEditorMode]
+    // Critical hit if the enemy's HP is below this thresholds
+    public float criticalThreshold { get; set; }
+
     private void Start()
     {
         Destroy(gameObject, duration);
