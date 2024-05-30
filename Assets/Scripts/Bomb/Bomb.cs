@@ -8,13 +8,14 @@ public class Bomb : MonoBehaviour
 {
     public float bombFuseTime = 3f;
     public int explosionLength;
-    public System.Action OnBombFuse;
+    public Action OnBombFuse;
     public Explosion explosionPrefab;
     public GameObject lightFx;
     public LayerMask explosionLayerMask;
     public Color color;
     public AxieHeroData bombOwner;
     public float damage = 1;
+    public float criticalThreshold = 0;
 
     private new Rigidbody rigidbody;
     private Vector3 vel = Vector3.zero;
@@ -43,6 +44,11 @@ public class Bomb : MonoBehaviour
     {
         this.bombOwner = bombOwner;
         damage = bombOwner.bombDamage;
+    }
+
+    public void SetCriticalThreshold(float criticalThreshold)
+    {
+        this.criticalThreshold = criticalThreshold;
     }
 
     private void Start()
@@ -122,6 +128,7 @@ public class Bomb : MonoBehaviour
 
         var explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
         explosion.damage = damage;
+        explosion.criticalThreshold = criticalThreshold;
         Explode(position, direction, length - 1);
     }
 }

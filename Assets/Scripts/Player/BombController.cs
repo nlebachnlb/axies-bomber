@@ -13,8 +13,11 @@ public class BombController : MonoBehaviour
     [Header("Explosion")]
     public LayerMask explosionLayerMask;
 
-    public AxieHeroData axieHeroData;
     public AxieConfigReader config;
+    public MultiAbilityController multiAbilityController;
+
+    [HideInInspector]
+    public AxieHeroData axieHeroData;
 
     private void Awake()
     {
@@ -61,6 +64,10 @@ public class BombController : MonoBehaviour
 
         Bomb bomb = Instantiate(bombPrefab, position, Quaternion.identity);
         bomb.SetOwner(axieHeroData);
+
+        var controller = multiAbilityController.ActiveController;
+        if (controller != null && controller.TryGetAbility<ForestHero>(out var forestHero))
+            bomb.SetCriticalThreshold(forestHero.CriticalThreshold);
 
         bomb.bombFuseTime = axieHeroData.bombStats.bombFuseTime;
         bomb.explosionLength = axieHeroData.axieStats.Calculate().bombExplosionRadius;

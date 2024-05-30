@@ -21,6 +21,7 @@ public class SkillConfig : ScriptableObject
     public DisplayType displayType;
 
     [Title("Axie")]
+    [PreviewField]
     public Sprite targetAxie;
     public AxieConfig ownerAxie;
     public AxieIdentity axieIdentity;
