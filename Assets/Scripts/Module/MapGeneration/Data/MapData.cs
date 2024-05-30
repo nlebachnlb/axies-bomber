@@ -14,7 +14,7 @@ namespace Module.MapGeneration.Data
         public int RoomCount => roomCount;
         public int MaxRooms => maxRooms;
         public MapGenerationConfig Config => generationConfig;
-        
+
         public Vector2Int GridSize => gridSize;
 
         public Vector2Int startIndex;
@@ -22,7 +22,7 @@ namespace Module.MapGeneration.Data
         [SerializeField] private int maxRooms = 15;
         [SerializeField] Vector2Int gridSize = new(10, 10);
         [SerializeField] private MapGenerationConfig generationConfig;
-        
+
         private RoomData[,] roomGrid;
         private List<RoomData> rooms;
         private Dictionary<RoomType, int> availableRoomTypes;
@@ -44,14 +44,14 @@ namespace Module.MapGeneration.Data
             string log = "";
             foreach (var x in availableRoomTypes)
                 log += "(" + x.Key + "," + x.Value + ")\n";
-            
+
             Debug.Log("Available:\n" + log);
         }
 
         public void PlaceRoom(Vector2Int index, bool isStartRoom = false)
         {
-            var x = index.x;
-            var y = index.y;
+            int x = index.x;
+            int y = index.y;
             var roomData = GenerateRoomData(index);
             roomGrid[x, y] = roomData;
             rooms.Add(roomData);
@@ -62,7 +62,7 @@ namespace Module.MapGeneration.Data
                 roomData.cleared = true;
             }
         }
-        
+
         public int CountAdjacentRooms(Vector2Int roomIndex)
         {
             int x = roomIndex.x;
@@ -95,12 +95,12 @@ namespace Module.MapGeneration.Data
             var y = index.y;
             return IsCellNotNull(x, y);
         }
-        
+
         public bool IsCellNotNull(int x, int y)
         {
             if (x < 0 || x >= gridSize.x) return false;
             if (y < 0 || y >= gridSize.y) return false;
-            
+
             return roomGrid[x, y] != null;
         }
 
@@ -111,25 +111,26 @@ namespace Module.MapGeneration.Data
                 .SetRoomType(RoomType.NORMAL)
                 .SetDistanceToStartRoom(-1);
         }
-        
+
         private void DistributeRoomType(Vector2Int index)
         {
             if (startIndex.Equals(index))
             {
-                roomGrid[index.x, index.y].SetRoomType(RoomType.NORMAL);
+                roomGrid[index.x, index.y].SetRoomType(RoomType.START);
                 return;
             }
-            
+
             RoomType[] types = (RoomType[])Enum.GetValues(typeof(RoomType));
             foreach (var type in types)
             {
+                if (type is RoomType.NULL or RoomType.START) continue;
                 if (!availableRoomTypes.ContainsKey(type)) continue;
                 if (availableRoomTypes[type] <= 0) continue;
                 if (type == roomGrid[index.x, index.y].roomType) continue;
-                
+
                 var config = generationConfig.GetRoomTypeConfig(type);
                 if (roomGrid[index.x, index.y].distanceToStartRoom < config.minDistance) continue;
-                
+
                 // Conditions met, successful
                 availableRoomTypes[type]--;
                 roomGrid[index.x, index.y].SetRoomType(type);

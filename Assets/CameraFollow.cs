@@ -21,13 +21,13 @@ public class CameraFollow : MonoBehaviour
     {
         camera.DOFieldOfView(40f, 0.5f);
     }
-    
+
     public void OnEnterRoom()
     {
         camera.DOFieldOfView(25f, 0.5f);
     }
-    
-    private void FixedUpdate()
+
+    private void LateUpdate()
     {
         Vector3 desiredPosition = target.position;
         if (desiredPosition.x < minPosition.x)
@@ -40,7 +40,7 @@ public class CameraFollow : MonoBehaviour
         else if (desiredPosition.z > maxPosition.z)
             desiredPosition.z = maxPosition.z;
 
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * smoothSpeed);
         transform.position = smoothedPosition;
     }
 }

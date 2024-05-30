@@ -8,21 +8,18 @@ public class Room : MonoBehaviour
 {
     public Vector2Int RoomIndex => dataModel.index;
     public int RoomId => dataModel.roomId;
-    
-    [SerializeField] GameObject topDoor, bottomDoor, leftDoor, rightDoor;
-    [SerializeField] GameObject topBlock, bottomBlock, leftBlock, rightBlock;
+
+    [SerializeField] private GameObject topDoor, bottomDoor, leftDoor, rightDoor;
+    [SerializeField] private GameObject topBlock, bottomBlock, leftBlock, rightBlock;
     [SerializeField] private int roomWidth, roomHeight;
     [SerializeField] private GateWay topTerminal, bottomTerminal, leftTerminal, rightTerminal;
 
     private RoomData dataModel;
 
-    public delegate void OnCallTransport(int callerRoomId, GateWayDirection gateWayDirection, Vector3 gatePosition);
-    public event OnCallTransport CallTransportEvent;
-
     public Vector3 MinPosition => new(
         transform.position.x - roomWidth * 0.5f, 0,
         transform.position.y - roomHeight * 0.5f);
-    
+
     public Vector3 MaxPosition => new(
         transform.position.x + roomWidth * 0.5f, 0,
         transform.position.y + roomHeight * 0.5f);
@@ -31,7 +28,7 @@ public class Room : MonoBehaviour
     {
         dataModel = data;
     }
-    
+
     public void OpenDoor(Vector2Int direction, int targetRoomId)
     {
         if (direction == Vector2Int.up)
@@ -64,23 +61,6 @@ public class Room : MonoBehaviour
         bottomBlock.SetActive(!bottomDoor.activeInHierarchy);
     }
 
-    public Vector3 GetSpawnPointFromDirection(Vector2Int direction)
-    {
-        if (direction == Vector2Int.up)
-            return bottomTerminal.spawnPoint.position;
-        
-        if (direction == Vector2Int.down)
-            return topTerminal.spawnPoint.position;
-        
-        if (direction == Vector2Int.left)
-            return rightTerminal.spawnPoint.position;
-        
-        if (direction == Vector2Int.right)
-            return leftTerminal.spawnPoint.position;
-
-        return new Vector3(-1, -1, -1);
-    }
-
     public GateWay GetGateWay(GateWayDirection direction)
     {
         return direction switch
@@ -91,29 +71,5 @@ public class Room : MonoBehaviour
             GateWayDirection.South => bottomTerminal,
             _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
         };
-    }
-
-    public void CallTransport(GateWayDirection gateWayDirection)
-    {
-        switch (gateWayDirection)
-        {
-            case GateWayDirection.East:
-                OnCallTransportEvent(dataModel.roomId, gateWayDirection, rightTerminal.transform.position);
-                break;
-            case GateWayDirection.West:
-                OnCallTransportEvent(dataModel.roomId, gateWayDirection, leftTerminal.transform.position);
-                break;
-            case GateWayDirection.North:
-                OnCallTransportEvent(dataModel.roomId, gateWayDirection, topTerminal.transform.position);
-                break;
-            case GateWayDirection.South:
-                OnCallTransportEvent(dataModel.roomId, gateWayDirection, bottomTerminal.transform.position);
-                break;
-        }
-    }
-
-    protected virtual void OnCallTransportEvent(int callerRoomId, GateWayDirection gateWayDirection, Vector3 gatePosition)
-    {
-        CallTransportEvent?.Invoke(callerRoomId, gateWayDirection, gatePosition);
     }
 }

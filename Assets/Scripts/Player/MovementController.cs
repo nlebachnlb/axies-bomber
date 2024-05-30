@@ -112,15 +112,7 @@ public class MovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 position = rigidbody.position;
-        Vector3 translation = direction * (GetSpeed() * Time.fixedDeltaTime);
-        Vector3 destination = position + translation;
-
-        // Snap position to integer
-        destination.x = snapDirection.x < 0 ? Mathf.Floor(destination.x) : Mathf.Ceil(destination.x);
-        destination.z = snapDirection.z < 0 ? Mathf.Floor(destination.z) : Mathf.Ceil(destination.z);
-
-        rigidbody.MovePosition(position + translation);
+        rigidbody.velocity = direction * GetSpeed();
     }
 
     private void SetDirection(Vector3 newDirection)
@@ -276,7 +268,7 @@ public class MovementController : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        if (direction != Vector3.zero)
+        if (rigidbody.velocity != Vector3.zero)
         {
             SetState("move");
         }
@@ -305,18 +297,12 @@ public class MovementController : MonoBehaviour
     private void SetState(string state)
     {
         if (currentState.Equals(state))
-        {
             return;
-        }
 
         if (state.Equals("idle"))
-        {
             SetAnimation(config.Axie.animIdle, true, 1f);
-        }
         else if (state.Equals("move"))
-        {
             SetAnimation(config.Axie.animRun, true, 0.25f * axieHeroData.axieStats.speed);
-        }
 
         currentState = state;
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3700808776455075825}
   - component: {fileID: 7542487712806141568}
-  - component: {fileID: 1173739127712198806}
+  - component: {fileID: 5810735726644092644}
   m_Layer: 8
   m_Name: Explosion
   m_TagString: Untagged
@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2983037419883158800}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.25, y: 0.5, z: -4.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7542487712806141568
 MonoBehaviour:
@@ -48,8 +48,8 @@ MonoBehaviour:
   duration: 0.5
   explosionFx: {fileID: 7444542357010130795, guid: 943ff91a1cbc04f3b89205dfe35999d0,
     type: 3}
---- !u!65 &1173739127712198806
-BoxCollider:
+--- !u!135 &5810735726644092644
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -67,5 +67,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.44
   m_Center: {x: 0, y: 0, z: 0}

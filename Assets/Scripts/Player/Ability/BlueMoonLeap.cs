@@ -46,7 +46,7 @@ public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
         var adjacentTile = position + direction + Vector3.up * 0.5f;
         var nextTile = position + direction * 2 + Vector3.up * 0.5f;
 
-        var halfExtents = Vector3.one * 0.5f;
+        var halfExtents = Vector3.one * 0.45f;
         if (!Physics.CheckBox(adjacentTile, Vector3.one * 0.1f, Quaternion.identity, layerMask))
         {
             IsJumpable = false;
