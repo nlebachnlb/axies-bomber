@@ -245,6 +245,8 @@ MonoBehaviour:
   explosionLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  config: {fileID: 0}
+  multiAbilityController: {fileID: 2444243461847432528}
   axieHeroData:
     identity: 0
     axieConfig: {fileID: 0}
@@ -252,8 +254,6 @@ MonoBehaviour:
     bombStats: {fileID: 0}
     ability: {fileID: 0}
     abilityPrefab: {fileID: 0}
-  config: {fileID: 0}
-  multiAbilityController: {fileID: 2444243461847432528}
 --- !u!114 &2878728743684143185
 MonoBehaviour:
   m_ObjectHideFlags: 0
