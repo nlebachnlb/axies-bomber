@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c301d5cd2b3b849e3b857a8899d40d31, type: 3}
+  m_Name: AxiePlantConfig
+  m_EditorClassIdentifier: 
+  skinData: {fileID: 0}
+  animIdle: {fileID: 0}
+  animRun: {fileID: 0}
+  animHit: {fileID: 0}
+  animRandomIdles: []
+  bombSprite: {fileID: 21300000, guid: daa7a31102ff945c3a7aff7e4fc8d5ad, type: 3}
+  auraColor: {r: 0.3234247, g: 0.8679245, b: 0.47919515, a: 1}
+  axieName: Olek
+  axieClass: 1
+  description: 
+  icon: {fileID: 620280955, guid: d61406cdea6f04f9396a442220d1798b, type: 3}
