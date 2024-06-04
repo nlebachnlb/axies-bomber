@@ -16,10 +16,11 @@ public class AxiePackedConfig
     public AxieConfig axieConfig;
     public AxieStats axieStats;
     public BombStats bombStats;
-    [InfoBox("Depricated", InfoMessageType.Warning)]
-    public List<SkillConfigWithLevel> skillConfigs;
-    [InfoBox("Depricated", InfoMessageType.Warning)]
-    public List<SkillConfig> ability;
     public AxieAbility abilityPrefab;
     public Dictionary<SkillType, AxieAbility> abilities;
+
+    [Obsolete]
+    public List<SkillConfigWithLevel> skillConfigs;
+    [Obsolete]
+    public List<SkillConfig> ability;
 }
