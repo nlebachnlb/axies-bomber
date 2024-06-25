@@ -8,6 +8,7 @@ public enum AxieIdentity
     Bird = 1,
     Reptile = 2,
     Beast = 3,
+    Plant = 4,
 }
 
 public enum Stat
