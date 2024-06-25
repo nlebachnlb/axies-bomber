@@ -10,7 +10,6 @@ public class EnemyController : MonoBehaviour
 {
     public System.Action onDeath;
     [SerializeField] private SkeletonAnimation anim;
-    //[SerializeField] private AnimationReferenceAsset animDie;
 
     [ShowInInspector, HideInEditorMode]
     public int Coin { get; set; }
@@ -28,5 +27,26 @@ public class EnemyController : MonoBehaviour
         onDeath?.Invoke();
         EventBus.RaiseOnEnemyDeath();
         Destroy(gameObject);
+    }
+
+    public void AddForce(Vector3 force, float stuntDuration)
+    {
+        var movement = GetComponent<SimpleSlimeMovement>();
+        var rigidbody = GetComponent<Rigidbody>();
+        if (movement != null && rigidbody != null)
+        {
+            movement.enabled = false;
+            collider.isTrigger = false;
+            rigidbody.AddForce(force, ForceMode.VelocityChange);
+            Invoke(nameof(Reenable), stuntDuration);
+        }
+    }
+
+    private void Reenable()
+    {
+        if (TryGetComponent<SimpleSlimeMovement>(out var movement))
+            movement.enabled = true;
+
+        collider.isTrigger = true;
     }
 }

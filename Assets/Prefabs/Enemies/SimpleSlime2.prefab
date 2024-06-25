@@ -43778,8 +43778,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8109458365826362036}
   serializedVersion: 4
-  m_Mass: 100
-  m_Drag: 100
+  m_Mass: 1
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -43830,10 +43830,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d6fb2eccd5344998c943fa57a96c2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 1
-  recoverTime: 0.5
   deathFxPrefab: {fileID: 2425048706644700282, guid: c9581146f12f646af9e06097ea86a09c,
     type: 3}
+  hp: 1
+  recoverTime: 0.5
 --- !u!114 &1788387171439078746
 MonoBehaviour:
   m_ObjectHideFlags: 0

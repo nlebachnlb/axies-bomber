@@ -76,7 +76,7 @@ public class EnemyHealth : MonoBehaviour
             other.enabled = false;
         }
 
-        if (other.CompareTag("KillField"))
+        if (other.CompareTag(Tag.KILL_FIELD))
         {
             TakeDamage(100f);
         }
