@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
@@ -5,9 +6,6 @@ using UnityEngine;
 
 public class JumpController : MonoBehaviour
 {
-    public float jumpPower = 1;
-    public float duration = 1f;
-
     public bool IsJumping { get; private set; }
 
     private new Rigidbody rigidbody;
@@ -19,7 +17,7 @@ public class JumpController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    public void Jump(Vector3 target)
+    public void Jump(Vector3 target, float jumpPower, float duration, Action onCompleted = null)
     {
         IsJumping = true;
         rigidbody.isKinematic = true;
@@ -30,6 +28,7 @@ public class JumpController : MonoBehaviour
             rigidbody.isKinematic = false;
             movementController.enabled = true;
             IsJumping = false;
+            onCompleted?.Invoke();
         });
     }
 }

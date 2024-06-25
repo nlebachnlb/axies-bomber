@@ -81,7 +81,7 @@ public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
 
     public override void DeployAbility()
     {
-        jumpController.Jump(JumpTarget);
+        jumpController.Jump(JumpTarget, 1.5f, 0.5f);
         landingAreaEffect.gameObject.SetActive(false);
         IsJumpable = false;
         cooldown.StartCountdown();

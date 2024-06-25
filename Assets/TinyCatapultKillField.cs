@@ -12,7 +12,7 @@ public class TinyCatapultKillField : MonoBehaviour
         {
             foreach (var col in cols)
             {
-                if (col.CompareTag("Enemy"))
+                if (col.CompareTag(Tag.ENEMY))
                 {
                     col.GetComponent<EnemyHealth>().TakeDamage(100);
                 }
