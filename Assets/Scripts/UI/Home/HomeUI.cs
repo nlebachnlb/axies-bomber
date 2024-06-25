@@ -13,7 +13,7 @@ public class HomeUI : MonoBehaviour
 
     public void AutoPick()
     {
-        int[] ids = { 0, 1, 3 };
+        int[] ids = { 0, 1, 4 };
         for (int i = 0; i < 3; ++i)
         {
             AxiePackedConfig config = AppRoot.Instance.Config.availableAxies.GetAxiePackedConfigById(ids[i]);

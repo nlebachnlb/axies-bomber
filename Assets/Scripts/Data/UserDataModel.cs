@@ -44,6 +44,7 @@ public class UserDataModel : MonoBehaviour
         user.ownedAxieIds.Add((int)AxieIdentity.Bird);
         user.ownedAxieIds.Add((int)AxieIdentity.Reptile);
         user.ownedAxieIds.Add((int)AxieIdentity.Beast);
+        user.ownedAxieIds.Add((int)AxieIdentity.Plant);
 
         return user;
     }
