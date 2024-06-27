@@ -5,7 +5,6 @@ using UnityEngine;
 public class TinyCatapult : AxieAbility<TinyCatapultStats>
 {
     [SerializeField] private ParticleSystem fx;
-    [SerializeField] private TinyCatapultStats defaultStats;
     [SerializeField] private TinyCatapultKillField killField;
 
     private int state = 0;
@@ -13,11 +12,6 @@ public class TinyCatapult : AxieAbility<TinyCatapultStats>
     private float sturdyTimer;
     private AxieHeroData axieData;
     private HealthController health;
-
-    private void Awake()
-    {
-        Stats = Instantiate(defaultStats);
-    }
 
     private void OnDestroy()
     {

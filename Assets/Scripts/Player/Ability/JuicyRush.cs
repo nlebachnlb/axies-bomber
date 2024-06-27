@@ -5,16 +5,10 @@ using UnityEngine;
 
 public class JuicyRush : AxieAbility<JuicyRushStats>
 {
-    [SerializeField] private JuicyRushStats defaultStats;
     [SerializeField] private Cooldown cooldown;
 
     private bool isTimerSet;
     private float timer = 0;
-
-    private void Awake()
-    {
-        Stats = Instantiate(defaultStats);
-    }
 
     private void Update()
     {
@@ -28,7 +22,7 @@ public class JuicyRush : AxieAbility<JuicyRushStats>
 
             var movementController = Owner.GetComponent<MovementController>();
             movementController.SetSpeedMultiplier(1);
-            cooldown.StartCountdown();
+            cooldown.StartCountdown(3);
         }
         else
         {

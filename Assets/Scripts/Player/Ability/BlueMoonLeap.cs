@@ -6,7 +6,6 @@ using UnityEngine;
 public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
 {
     [SerializeField] private Cooldown cooldown;
-    [SerializeField] private BlueMoonLeapStats defaultStats;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private ParticleSystem landingAreaEffect;
 
@@ -16,9 +15,9 @@ public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
     private MovementController movementController;
     private JumpController jumpController;
 
-    private void Awake()
+    protected override void Awake()
     {
-        Stats = Instantiate(defaultStats);
+        base.Awake();
 
         cooldown.OnStartCountdown += Raise;
         cooldown.OnCooldownFinished += Raise;
@@ -84,11 +83,11 @@ public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
         jumpController.Jump(JumpTarget, 1.5f, 0.5f);
         landingAreaEffect.gameObject.SetActive(false);
         IsJumpable = false;
-        cooldown.StartCountdown();
+        cooldown.StartCountdown(4);
     }
 
     private void Raise()
     {
-        RaiseOnCooldown(cooldown.CooldownValue - cooldown.RemainingTime, cooldown.CooldownValue);
+        RaiseOnCooldown(cooldown.CurrentCooldownValue - cooldown.RemainingTime, cooldown.CurrentCooldownValue);
     }
 }

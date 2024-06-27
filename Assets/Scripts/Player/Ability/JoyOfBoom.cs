@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class JoyOfBoom : AxieAbility<JoyOfBoomStats>, IBuff, IEnemyKillTrackBehaviour
 {
-    [SerializeField] private JoyOfBoomStats defaultStats;
     public EnemyKillTracker enemyKillTracker;
 
     public int KilledEnemies => enemyKillTracker.killedEnemies;
     public float BuffDamage => enemyKillTracker.killedEnemies * Stats.damageBuffPerKill;
 
-    private void Awake()
+    protected override void Awake()
     {
-        Stats = Instantiate(defaultStats);
+        base.Awake();
+
         enemyKillTracker.OnUpdated += RaiseOnAbilityUpdated;
     }
 
