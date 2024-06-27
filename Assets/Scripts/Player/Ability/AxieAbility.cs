@@ -62,6 +62,13 @@ public class AxieAbility<T> : AxieAbility
 {
     public T Stats { get; set; }
 
+    [SerializeField] private T defaultStats;
+
+    protected virtual void Awake()
+    {
+        Stats = Instantiate(defaultStats);
+    }
+
     public override SkillConfig.DisplayType DisplayType
     {
         get

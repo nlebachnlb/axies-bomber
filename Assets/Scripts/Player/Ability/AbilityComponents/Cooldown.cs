@@ -11,17 +11,17 @@ namespace Ability.Component
         public event Action OnStartCountdown;
         public event Action OnCooldownFinished;
 
-        [SerializeField] private float cooldown;
+        public bool IsAvailable => timer <= 0;
+        public float CurrentCooldownValue => cooldown;
+        public float RemainingTime => timer;
+        public float RemainingTimeAsPercentage => cooldown == 0 ? 0 : timer / cooldown;
 
+        private float cooldown;
         private float timer = 0;
 
-        public bool IsAvailable => timer <= 0;
-        public float CooldownValue => cooldown;
-        public float RemainingTime => timer;
-        public float RemainingTimeAsPercentage => timer / cooldown;
-
-        public void StartCountdown()
+        public void StartCountdown(float cooldown)
         {
+            this.cooldown = cooldown;
             timer = cooldown;
             OnStartCountdown?.Invoke();
         }

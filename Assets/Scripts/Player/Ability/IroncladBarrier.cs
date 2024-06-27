@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class IroncladBarrier : AxieAbility<IroncladBarrierStats>
 {
-    [SerializeField] private IroncladBarrierStats defaultStats;
     [SerializeField] private Cooldown cooldown;
 
     private JumpController jumpController;
-
-    private void Awake()
-    {
-        Stats = Instantiate(defaultStats);
-    }
 
     public override void AssignOwner(GameObject owner)
     {
@@ -28,7 +22,7 @@ public class IroncladBarrier : AxieAbility<IroncladBarrierStats>
 
     public override void DeployAbility()
     {
-        cooldown.StartCountdown();
+        cooldown.StartCountdown(Stats.Cooldown);
         jumpController.Jump(Owner.transform.position, 1, 0.25f, onCompleted: PerformPush);
     }
 

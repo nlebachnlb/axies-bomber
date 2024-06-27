@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class SneakySketch : AxieAbility<SneakySketchStats>
 {
-    [SerializeField] private SneakySketchStats defaultStats;
     [SerializeField] private Cooldown cooldown;
 
     private SkeletonAnimation skeletonAnimation;
@@ -15,11 +14,6 @@ public class SneakySketch : AxieAbility<SneakySketchStats>
 
     private bool isDeployed;
     private float effectTimer = 0;
-
-    private void Awake()
-    {
-        Stats = Instantiate(defaultStats);
-    }
 
     public override void AssignOwner(GameObject owner)
     {
@@ -40,7 +34,7 @@ public class SneakySketch : AxieAbility<SneakySketchStats>
             effectTimer = 0;
             skeletonAnimation.skeleton.A = 1;
             collider.enabled = true;
-            cooldown.StartCountdown();
+            cooldown.StartCountdown(Stats.cooldown);
         }
     }
 

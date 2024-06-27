@@ -5,14 +5,12 @@ using UnityEngine;
 public class PatientHunter : AxieAbility<PatientHunterStats>
 {
     [SerializeField] private ParticleSystem fx;
-    [SerializeField] private PatientHunterStats defaultStats;
 
     private int killedEnemies = 0;
     private AxieHeroData axieData;
 
-    private void Awake()
+    protected override void Awake()
     {
-        Stats = Instantiate(defaultStats);
         EventBus.onEnemyDeath += OnEnemyDeath;
     }
 
@@ -20,10 +18,6 @@ public class PatientHunter : AxieAbility<PatientHunterStats>
     {
         EventBus.onEnemyDeath -= OnEnemyDeath;
         axieData.SetExtraParam(AxieHeroData.PARAM_KILLED_ENEMIES, killedEnemies);
-    }
-
-    private void Start()
-    {
     }
 
     public override void SetExtraParams(AxieHeroData axieHero)

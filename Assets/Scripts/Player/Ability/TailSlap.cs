@@ -5,15 +5,15 @@ using UnityEngine;
 public class TailSlap : AxieAbility<TailSlapStats>
 {
     [SerializeField] private ParticleSystem fx;
-    [SerializeField] private TailSlapStats defaultStats;
     [SerializeField] private Bomb bombPrefab;
 
     private int placedBombs;
     private AxieHeroData axieData;
 
-    private void Awake()
+    protected override void Awake()
     {
-        Stats = Instantiate(defaultStats);
+        base.Awake();
+
         EventBus.onBombPlace += OnBombPlace;
     }
 
@@ -21,10 +21,6 @@ public class TailSlap : AxieAbility<TailSlapStats>
     {
         EventBus.onBombPlace -= OnBombPlace;
         axieData.SetExtraParam(AxieHeroData.PARAM_PLACED_BOMBS, placedBombs);
-    }
-
-    private void Start()
-    {
     }
 
     public override void SetExtraParams(AxieHeroData axieHero)
@@ -68,7 +64,7 @@ public class TailSlap : AxieAbility<TailSlapStats>
         {
             bomb.bombOwner.bombsRemaining++;
         };
-        bomb.SetMoving(movement.LastDirection * defaultStats.speed);
+        bomb.SetMoving(movement.LastDirection * Stats.speed);
 
         placedBombs = 0;
         RaiseOnCooldown(placedBombs, Stats.placedBombsNeeded);
