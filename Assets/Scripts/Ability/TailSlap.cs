@@ -2,37 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TailSlap : AxieAbility<TailSlapStats>
+public class TailSlap : AxieAbility<TailSlapStats>, IEnemyKillTrackBehaviour
 {
     [SerializeField] private ParticleSystem fx;
+    [SerializeField] private EnemyKillTracker enemyKillTracker;
     [SerializeField] private Bomb bombPrefab;
 
-    private int placedBombs;
+    public int KilledEnemies => enemyKillTracker.killedEnemies;
+
+    //private int placedBombs;
     private AxieHeroData axieData;
 
     protected override void Awake()
     {
         base.Awake();
 
-        EventBus.onBombPlace += OnBombPlace;
+        //EventBus.onBombPlace += OnBombPlace;
     }
 
     private void OnDestroy()
     {
-        EventBus.onBombPlace -= OnBombPlace;
-        axieData.SetExtraParam(AxieHeroData.PARAM_PLACED_BOMBS, placedBombs);
+        //EventBus.onBombPlace -= OnBombPlace;
+        //axieData.SetExtraParam(AxieHeroData.PARAM_PLACED_BOMBS, placedBombs);
     }
 
     public override void SetExtraParams(AxieHeroData axieHero)
     {
         base.SetExtraParams(axieHero);
-        if (axieHero.ability != null)
-            Stats = (TailSlapStats)Instantiate(axieHero.ability);
-        placedBombs = (int)axieHero.GetExtraParam(AxieHeroData.PARAM_PLACED_BOMBS, Stats.placedBombsNeeded);
+        //if (axieHero.ability != null)
+        //    Stats = (TailSlapStats)Instantiate(axieHero.ability);
+        //placedBombs = (int)axieHero.GetExtraParam(AxieHeroData.PARAM_PLACED_BOMBS, Stats.placedBombsNeeded);
         axieData = axieHero;
-        RaiseOnCooldown(placedBombs, Stats.placedBombsNeeded);
-        EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
-        Debug.Log("Extra param: " + placedBombs);
+        //RaiseOnCooldown(placedBombs, Stats.placedBombsNeeded);
+        //EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
+        //Debug.Log("Extra param: " + placedBombs);
+    }
+
+    public override bool CanDeploy()
+    {
+        return enemyKillTracker.killedEnemies > 0 && enemyKillTracker.killedEnemies > Stats.enemyKillNeeded;
     }
 
     public override void DeployAbility()
@@ -66,21 +74,8 @@ public class TailSlap : AxieAbility<TailSlapStats>
         };
         bomb.SetMoving(movement.LastDirection * Stats.speed);
 
-        placedBombs = 0;
-        RaiseOnCooldown(placedBombs, Stats.placedBombsNeeded);
-        EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
-    }
-
-    public override bool CanDeploy()
-    {
-        return placedBombs >= Stats.placedBombsNeeded;
-    }
-
-    private void OnBombPlace(AxieHeroData owner)
-    {
-        placedBombs++;
-        RaiseOnCooldown(placedBombs, Stats.placedBombsNeeded);
-        EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
-        Debug.Log("Place bomb: " + placedBombs);
+        enemyKillTracker.killedEnemies = 0;
+        RaiseOnCooldown(enemyKillTracker.killedEnemies / Stats.enemyKillNeeded, Stats.enemyKillNeeded);
+        EventBus.RaiseOnAbilityCooldown(enemyKillTracker.killedEnemies, Stats.enemyKillNeeded, 1);
     }
 }

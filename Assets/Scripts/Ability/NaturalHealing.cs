@@ -7,6 +7,8 @@ public class NaturalHealing : AxieAbility<NaturalHealingStats>
 {
     [SerializeField] Cooldown cooldown;
 
+    public Cooldown Cooldown => cooldown;
+
     private AxieHeroDataHolder axieHeroDataHolder;
 
     public override void AssignOwner(GameObject owner)
