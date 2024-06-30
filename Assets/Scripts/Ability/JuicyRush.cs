@@ -7,6 +7,8 @@ public class JuicyRush : AxieAbility<JuicyRushStats>
 {
     [SerializeField] private Cooldown cooldown;
 
+    public Cooldown Cooldown => cooldown;
+
     private bool isTimerSet;
     private float timer = 0;
 

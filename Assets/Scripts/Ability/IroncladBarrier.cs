@@ -7,6 +7,7 @@ public class IroncladBarrier : AxieAbility<IroncladBarrierStats>
 {
     [SerializeField] private Cooldown cooldown;
 
+    public Cooldown Cooldown => cooldown;
     private JumpController jumpController;
 
     public override void AssignOwner(GameObject owner)

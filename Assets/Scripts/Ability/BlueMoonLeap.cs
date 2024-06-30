@@ -11,6 +11,8 @@ public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
 
     public bool IsJumpable { get; private set; } = false;
     public Vector3 JumpTarget { get; private set; }
+    public bool IsInCooldown => !cooldown.IsAvailable;
+    public Cooldown Cooldown => cooldown;
 
     private MovementController movementController;
     private JumpController jumpController;

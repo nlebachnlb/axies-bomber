@@ -9,6 +9,7 @@ public class SneakySketch : AxieAbility<SneakySketchStats>
 {
     [SerializeField] private Cooldown cooldown;
 
+    public Cooldown Cooldown => cooldown;
     private SkeletonAnimation skeletonAnimation;
     private new Collider collider;
 
