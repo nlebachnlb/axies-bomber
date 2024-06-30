@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 5256838370808864509}
   - component: {fileID: 8007257411264251923}
   - component: {fileID: 3868202461473630865}
+  - component: {fileID: 3119128893792449525}
   - component: {fileID: 1061060860249864829}
   - component: {fileID: 1988761712901673047}
   - component: {fileID: 2878728743684143185}
@@ -204,6 +205,18 @@ MonoBehaviour:
   skin: {fileID: 7684370153621896473}
   aura: {fileID: 8044154319396496804}
   spawnRayLight: {fileID: 914397851915865948}
+--- !u!114 &3119128893792449525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2787602095110623959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74230b749c5d90f4e8959d89b659392b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1061060860249864829
 MonoBehaviour:
   m_ObjectHideFlags: 0
