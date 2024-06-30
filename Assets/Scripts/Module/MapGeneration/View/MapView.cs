@@ -42,12 +42,14 @@ namespace Module.MapGeneration.View
             {
                 CallTransports(roomId);
                 EventBus.Instance.OnRoomUnsealedEvent(roomId);
+                player.movementPermission = MovementPermission.Player;
                 return;
             }
 
             var roomObject = roomObjects[roomId];
             roomObject.gameObject.GetComponent<SpawnController>().OnEnterRoom();
             EventBus.Instance.OnRoomSealedEvent(roomId);
+            player.movementPermission = MovementPermission.Player;
         }
 
         public void OnRoomChange(int oldRoomId, int roomId)
@@ -122,7 +124,6 @@ namespace Module.MapGeneration.View
             yield return new WaitForSeconds(1f);
             EventBus.Instance.OnEnterRoomEvent(roomId);
             camera.smoothSpeed = 10f;
-
             camera.OnEnterRoom();
         }
 

@@ -297,18 +297,12 @@ public class MovementController : MonoBehaviour
     private void SetState(string state)
     {
         if (currentState.Equals(state))
-        {
             return;
-        }
 
         if (state.Equals("idle"))
-        {
             SetAnimation(config.Axie.animIdle, true, 1f);
-        }
         else if (state.Equals("move"))
-        {
             SetAnimation(config.Axie.animRun, true, 0.25f * axieHeroData.axieStats.speed);
-        }
 
         currentState = state;
     }

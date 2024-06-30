@@ -60,7 +60,6 @@ public class Transport : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        playerMovement.movementPermission = MovementPermission.Player;
         player.position = spawnPosition;
         playerMovement.SetColliderActive(true);
         col.enabled = false;

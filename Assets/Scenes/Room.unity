@@ -847,6 +847,40 @@ PrefabInstance:
       propertyPath: roomSize.y
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 5037178869154486863, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: prefabs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5037178869154486863, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: prefabs.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 8544508556002789967, guid: a0d34ca690c12da41b997654882eea31,
+        type: 3}
+    - target: {fileID: 5037178869154486863, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: prefabs.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 8544508556002789967, guid: 40b4d9a1aac8b3549a86e3d4d482ff53,
+        type: 3}
+    - target: {fileID: 5037178869154486863, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: prefabs.Array.data[3].prefab
+      value: 
+      objectReference: {fileID: 8544508556002789967, guid: 322cd4c6b04cbc749a0231a8097735e5,
+        type: 3}
+    - target: {fileID: 5037178869154486863, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: prefabs.Array.data[5].prefab
+      value: 
+      objectReference: {fileID: 8544508556002789967, guid: 3734c4f475609994398117ca0be26369,
+        type: 3}
+    - target: {fileID: 5037178869154486863, guid: df31bd18b641d0a42a4e21d260cebc41,
+        type: 3}
+      propertyPath: prefabs.Array.data[5].roomType
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6456539490807453642, guid: df31bd18b641d0a42a4e21d260cebc41,
         type: 3}
       propertyPath: m_Name
@@ -2580,24 +2614,21 @@ MonoBehaviour:
       minQuantity: 0
       maxQuantity: 0
       minDistance: 3
+    - roomType: 1
+      minQuantity: 1
+      maxQuantity: 1
+      minDistance: 0
     roomPrefabConfigs:
     - roomType: 1
       prefab:
       - {fileID: 7936532511103908301, guid: eab654f01ee849844b4c20419ed5034c, type: 3}
+    - roomType: 2
+      prefab:
       - {fileID: 7936532511103908301, guid: d407c224369ebc9498eeede056085736, type: 3}
       - {fileID: 7936532511103908301, guid: bf26c8f4fda21ec45b76f98ee861f16a, type: 3}
       - {fileID: 7936532511103908301, guid: dfec62d1186cbcb40825472313fc0807, type: 3}
       - {fileID: 7936532511103908301, guid: 39e04045e01a80a419c47baec1349cc3, type: 3}
       - {fileID: 7936532511103908301, guid: 481da07bbc632694d86ca7b202c96a53, type: 3}
-    - roomType: 2
-      prefab:
-      - {fileID: 7936532511103908301, guid: cedb3f419d48b774494635244595eb03, type: 3}
-    - roomType: 5
-      prefab:
-      - {fileID: 7936532511103908301, guid: 77e4c38ebe977d6469b10a86771b90dc, type: 3}
-    - roomType: 4
-      prefab:
-      - {fileID: 7936532511103908301, guid: 823b1b732288f5349a35c4b2537434a5, type: 3}
 --- !u!1 &7757064705139603883
 GameObject:
   m_ObjectHideFlags: 0

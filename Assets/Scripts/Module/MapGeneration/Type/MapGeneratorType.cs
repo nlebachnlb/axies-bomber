@@ -7,6 +7,7 @@ namespace Module.MapGeneration.Type
     public enum RoomType
     {
         NULL,
+        START,
         NORMAL,
         MINIBOSS,
         BOSS,
@@ -45,7 +46,7 @@ namespace Module.MapGeneration.Type
             index = value;
             return this;
         }
-        
+
         public RoomData SetId(int value)
         {
             roomId = value;
