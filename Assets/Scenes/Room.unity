@@ -2375,6 +2375,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 513974237536153718, guid: 735c9c10583d80843a239560f721f768,
         type: 3}
+      propertyPath: serializationData.ReferencedUnityObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 840702563}
+    - target: {fileID: 513974237536153718, guid: 735c9c10583d80843a239560f721f768,
+        type: 3}
+      propertyPath: serializationData.ReferencedUnityObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1732230327}
+    - target: {fileID: 513974237536153718, guid: 735c9c10583d80843a239560f721f768,
+        type: 3}
+      propertyPath: serializationData.ReferencedUnityObjects.Array.data[2]
+      value: 
+      objectReference: {fileID: 1891376847}
+    - target: {fileID: 513974237536153718, guid: 735c9c10583d80843a239560f721f768,
+        type: 3}
+      propertyPath: serializationData.ReferencedUnityObjects.Array.data[3]
+      value: 
+      objectReference: {fileID: 774217930}
+    - target: {fileID: 513974237536153718, guid: 735c9c10583d80843a239560f721f768,
+        type: 3}
       propertyPath: serializationData.PrefabModificationsReferencedUnityObjects.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -2461,7 +2481,7 @@ PrefabInstance:
     - target: {fileID: 6630898839175507586, guid: 735c9c10583d80843a239560f721f768,
         type: 3}
       propertyPath: m_Name
-      value: AbilityGroup
+      value: AbilityHUD
       objectReference: {fileID: 0}
     - target: {fileID: 7485586006930687544, guid: 735c9c10583d80843a239560f721f768,
         type: 3}

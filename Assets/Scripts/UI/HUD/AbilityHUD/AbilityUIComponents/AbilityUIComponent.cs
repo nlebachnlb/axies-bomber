@@ -6,11 +6,11 @@ namespace Ability.UI
 {
     public class AbilityUIComponent : MonoBehaviour
     {
-        protected AbilityHUD hud;
+        protected AbilitySlot hud;
 
         protected virtual void Awake()
         {
-            hud = GetComponent<AbilityHUD>();
+            hud = GetComponent<AbilitySlot>();
         }
     }
 }
