@@ -1,74 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-
-using Ability.UI;
 using Sirenix.OdinInspector;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class AbilityHUD : MonoBehaviour
+public class AbilityHUD : SerializedMonoBehaviour
 {
-    public Animator animator;
-    public Image progress;
-    public TextMeshProUGUI textProgress;
-    public TextMeshProUGUI textAuxilliary;
-    public Image mask;
-    public Image card;
-    public TextMeshProUGUI textDeploymentKey;
+    [SerializeField] Dictionary<SkillType, AbilitySlot> slots;
 
-    [ShowInInspector, HideInEditorMode]
-    public AxieAbility currentAbility { get; private set; }
-
-    public void Assign(SkillType skillType, AxieAbility axieAbility)
+    private void Awake()
     {
-        Clear();
-        currentAbility = axieAbility;
-
-        if (AppRoot.Instance.Config.inputSettings.skillDeploymentKeys.TryGetValue(skillType, out var keyCode))
-            textDeploymentKey.text = keyCode.ToString();
-
-        card.sprite = axieAbility.GetStats().targetAxie;
-        AssignUiComponents();
-    }
-
-    public void SetNotAvailable()
-    {
-        Clear();
-        textProgress.text = "";
-        mask.gameObject.SetActive(true);
-        progress.fillAmount = 0;
-        textDeploymentKey.text = "-";
+        EventBus.onPostSwitchAxieHero += OnPostSwitchAxieHero;
+        EventBus.onAbilityAttached += OnAbilityAttached;
     }
 
     private void OnDestroy()
     {
-        Clear();
+        EventBus.onAbilityAttached -= OnAbilityAttached;
+        EventBus.onPostSwitchAxieHero -= OnPostSwitchAxieHero;
     }
 
-    private void AssignUiComponents()
+    private void OnPostSwitchAxieHero(AxieHeroData axieHeroData)
     {
-        if (currentAbility.IsPassive())
+        foreach (var item in slots)
         {
-            gameObject.AddComponent<Passive>();
-        }
-        else
-        {
-            gameObject.AddComponent<Active>();
-        }
+            var type = item.Key;
+            var hud = item.Value;
 
-        if (currentAbility is IEnemyKillTrackBehaviour)
-            gameObject.AddComponent<KilledEnemiesCounter>();
-
-        if (currentAbility.TryGetComponent<Ability.Component.Cooldown>(out var _))
-            gameObject.AddComponent<Cooldown>();
+            if (axieHeroData.abilityInstances.TryGetValue(type, out var ability))
+                hud.Assign(type, ability);
+            else
+                hud.SetNotAvailable();
+        }
     }
 
-    private void Clear()
+    private void OnAbilityAttached(SkillType skillType, AxieAbility axieAbility)
     {
-        var components = GetComponents<AbilityUIComponent>();
-        for (int i = 0; i < components.Length; ++i)
-            Destroy(components[i]);
+        // if (huds.TryGetValue(skillType, out var hud))
+        //     hud.Assign(skillType, axieAbility);
     }
 }
