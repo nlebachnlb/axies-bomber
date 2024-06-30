@@ -1,6 +1,13 @@
-using UnityEngine;
-using System.Collections;
+using System;
 using System.Collections.Generic;
+using UnityEngine;
+
+[Serializable]
+public class GenericStatBuff
+{
+    public Stat Stat;
+    public float BuffValue;
+}
 
 [CreateAssetMenu(fileName = "New Axie Stat", menuName = "Stats/Axie")]
 public class AxieStats : ScriptableObject
@@ -13,6 +20,7 @@ public class AxieStats : ScriptableObject
     public float recoveryTimeAfterDamage = 1f;
 
     public List<StatsBuff> buffs { get; private set; } = new List<StatsBuff>();
+    public List<GenericStatBuff> genericStatBuffs { get; private set; } = new();
     public UpgradeBuff upgradeBuff { get; private set; } = new();
 
     public float GetBaseValue(Stat stat)
@@ -41,6 +49,11 @@ public class AxieStats : ScriptableObject
         buffs.Add(buff);
     }
 
+    public void AddBuff(GenericStatBuff buff)
+    {
+        genericStatBuffs.Add(buff);
+    }
+
     public void RemoveBuff(StatsBuff buff)
     {
         if (buffs.Contains(buff))
@@ -50,6 +63,11 @@ public class AxieStats : ScriptableObject
     public void ResetBuffs()
     {
         buffs.Clear();
+    }
+
+    public void AddUpgradeBuff(UpgradeBuff upgradeBuff)
+    {
+        this.upgradeBuff = upgradeBuff;
     }
 
     public AxieStats Calculate()
@@ -76,17 +94,32 @@ public class AxieStats : ScriptableObject
                     break;
             }
         }
+
+        foreach (var genericStatBuff in genericStatBuffs)
+        {
+            switch (genericStatBuff.Stat)
+            {
+                case Stat.Speed:
+                    result.speed += genericStatBuff.BuffValue;
+                    break;
+                case Stat.BombMagazine:
+                    result.bombMagazine += (int)genericStatBuff.BuffValue;
+                    break;
+                case Stat.Health:
+                    result.health += (int)genericStatBuff.BuffValue;
+                    break;
+                case Stat.BombExplosionRadius:
+                    result.bombExplosionRadius += (int)genericStatBuff.BuffValue;
+                    break;
+            }
+        }
+
         result.speed += upgradeBuff.speed;
         result.bombExplosionRadius += upgradeBuff.bombExplosionRadius;
         result.bombMagazine += upgradeBuff.bombMagazine;
         result.health += upgradeBuff.health;
         //Debug.Log("After: " + result);
         return result;
-    }
-
-    public void AddUpgradeBuff(UpgradeBuff upgradeBuff)
-    {
-        this.upgradeBuff = upgradeBuff;
     }
 
     public override string ToString()

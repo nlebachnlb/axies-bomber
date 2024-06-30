@@ -1,11 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SucculentBloom : AxieAbility<SucculentBloomStats>
 {
     [SerializeField] private ParticleSystem effect;
+
+    private AxieHeroDataHolder axieHeroDataHolder;
 
     private void OnEnable()
     {
@@ -17,11 +16,19 @@ public class SucculentBloom : AxieAbility<SucculentBloomStats>
         EventBus.onRoomClear -= OnRoomClear;
     }
 
+    public override void AssignOwner(GameObject owner)
+    {
+        base.AssignOwner(owner);
+        axieHeroDataHolder = owner.GetComponent<AxieHeroDataHolder>();
+    }
+
     private void OnRoomClear()
     {
-        if (UnityEngine.Random.Range(0f, 1f) < Stats.Rate)
+        if (true || Random.Range(0f, 1f) < Stats.Rate)
         {
-            Debug.Log("TODO: Buff HP");
+            Debug.Log($"[Ability] SucculentBloom HP Buff: {Stats.HpBuff}");
+            axieHeroDataHolder.Data.axieStats.AddBuff(new GenericStatBuff() { Stat = Stat.Health, BuffValue = Stats.HpBuff });
+            axieHeroDataHolder.Data.RaiseUpdateInfo();
         }
     }
 }
