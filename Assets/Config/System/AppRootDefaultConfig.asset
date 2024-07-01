@@ -15,6 +15,7 @@ MonoBehaviour:
   startSceneName: Start
   playScene: Room
   homeScene: Home
+  inputSettings: {fileID: 11400000, guid: 57d5a024b15784b3b8e74bb2611e7f5f, type: 2}
   availableAxies: {fileID: 11400000, guid: bb1161db249dc419c8d9e96d7fb11331, type: 2}
   mapConfigs:
   - id: 1-1
@@ -62,3 +63,8 @@ MonoBehaviour:
   - id: 3-5
     tilemap: {fileID: 5828305884576650255, guid: 15e16a932298711498d70d90add22198,
       type: 3}
+  axieUpgrades: {fileID: 11400000, guid: 7253246006ecb404ea375b3002814674, type: 2}
+  coinPrefab: {fileID: 420350988183878650, guid: ac4809ffaec9f6e469f4de87e38e1782,
+    type: 3}
+  floatingText: {fileID: 4719816079783705643, guid: 38c51778842e620498b0f0aa7fef847b,
+    type: 3}

@@ -10,14 +10,14 @@ public class AppRoot : MonoBehaviour
         Normal,
         TestPlayground
     }
-    
+
     public static AppRoot Instance { get; private set; }
     public TransitionController transitionController;
     public TransitionController fastTransitionController;
     public AppRootConfig Config { get => config; }
     public UserDataModel UserDataModel { get; private set; }
     public SoundManager SoundManager { get; private set; }
-    
+
     public PlayMode Mode => mode;
 
     [SerializeField] private AppRootConfig config;
@@ -67,8 +67,11 @@ public class AppRoot : MonoBehaviour
         SceneManager.LoadSceneAsync(sceneName);
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) =>
         {
-            transitionController.ShowLoading(false);
-            transitionController.TransitionIn();
+            if (transitionController != null)
+            {
+                transitionController.ShowLoading(false);
+                transitionController.TransitionIn();
+            }
         };
     }
 }

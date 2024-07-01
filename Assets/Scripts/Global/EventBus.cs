@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,9 @@ public class EventBus
     public delegate void OnSwitchAxieHero(AxieHeroData axieHeroData);
     public static event OnSwitchAxieHero onSwitchAxieHero;
 
+    public delegate void OnPostSwitchAxieHero(AxieHeroData axieHeroData);
+    public static event OnPostSwitchAxieHero onPostSwitchAxieHero;
+
     public delegate void OnAxieHeroDeath(AxieHeroData axieHeroData);
     public static event OnAxieHeroDeath onAxieHeroDeath;
 
@@ -43,7 +47,7 @@ public class EventBus
 
     public delegate void OnMapChange(int newId);
     public static event OnMapChange onMapChange;
-    
+
     public delegate void OnRoomChange(int newId, Vector2Int fromDirection);
     public static event OnRoomChange onRoomChange;
 
@@ -53,20 +57,33 @@ public class EventBus
     public delegate void OnEnemyDeath();
     public static event OnEnemyDeath onEnemyDeath;
 
+    [Obsolete]
     public delegate void OnAbilityCooldown(float current, float max, int displayType);
     public static event OnAbilityCooldown onAbilityCooldown;
 
     public delegate void OnGameOver();
     public static event OnGameOver onGameOver;
 
+    public delegate void OnAbilityAttached(SkillType skillType, AxieAbility ability);
+    public static event OnAbilityAttached onAbilityAttached;
+
+    public static event Action<int> onCurrency1Changed;
+    public static event Action<Collectible> onPickCollectible;
     public delegate void OnEnterRoom(int roomId);
 
     public event OnEnterRoom EnterRoomEvent;
-    
+
     public delegate void OnLeaveToRoom(int roomId);
 
     public event OnEnterRoom LeaveToRoomEvent;
 
+    public delegate void OnRoomSealed(int roomId);
+
+    public event OnRoomSealed RoomSealedEvent;
+
+    public delegate void OnRoomUnsealed(int roomId);
+
+    public event OnRoomUnsealed RoomUnsealedEvent;
 
     public static void RaiseOnBombFuse()
     {
@@ -81,6 +98,7 @@ public class EventBus
     public static void RaiseOnSwitchAxieHero(AxieHeroData axieHeroData)
     {
         onSwitchAxieHero?.Invoke(axieHeroData);
+        onPostSwitchAxieHero?.Invoke(axieHeroData);
     }
 
     public static void RaiseOnAxieHeroDeath(AxieHeroData axieHeroData)
@@ -123,6 +141,7 @@ public class EventBus
         onEnemyDeath?.Invoke();
     }
 
+    [Obsolete]
     public static void RaiseOnAbilityCooldown(float current, float max, int displayType)
     {
         onAbilityCooldown?.Invoke(current, max, displayType);
@@ -131,6 +150,21 @@ public class EventBus
     public static void RaiseOnGameOver()
     {
         onGameOver?.Invoke();
+    }
+
+    public static void RaiseOnCurrency1Changed(int value)
+    {
+        onCurrency1Changed?.Invoke(value);
+    }
+
+    public static void RaiseOnPickCollectible(Collectible collectible)
+    {
+        onPickCollectible?.Invoke(collectible);
+    }
+
+    public static void RaiseOnAbilityAttached(SkillType skillType, AxieAbility axieAbility)
+    {
+        onAbilityAttached?.Invoke(skillType, axieAbility);
     }
 
     public static void  RaiseOnRoomChange(int roomId, Vector2Int fromDirection)
@@ -148,5 +182,15 @@ public class EventBus
     public void OnLeaveToRoomEvent(int roomId)
     {
         LeaveToRoomEvent?.Invoke(roomId);
+    }
+
+    public void OnRoomSealedEvent(int roomId)
+    {
+        RoomSealedEvent?.Invoke(roomId);
+    }
+
+    public void OnRoomUnsealedEvent(int roomId)
+    {
+        RoomUnsealedEvent?.Invoke(roomId);
     }
 }

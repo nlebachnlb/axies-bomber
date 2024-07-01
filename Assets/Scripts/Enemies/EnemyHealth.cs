@@ -20,8 +20,16 @@ public class EnemyHealth : MonoBehaviour
         {
             enemyController.OnDeath();
             Instantiate(deathFxPrefab, transform.position, Quaternion.identity);
+
+            if (enemyController.Coin > 0)
+            {
+                GameObject collectibleGameObject = Instantiate(AppRoot.Instance.Config.coinPrefab, transform.position, Quaternion.identity);
+                Collectible collectible = collectibleGameObject.GetComponent<Collectible>();
+                collectible.Amount = enemyController.Coin;
+            }
             AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.Slime);
         }
+        Debug.Log($"Took damage: {damage}");
     }
 
     private void Update()
@@ -54,7 +62,8 @@ public class EnemyHealth : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Explosion"))
         {
-            TakeDamage(1f);
+            Explosion explosion = other.GetComponent<Explosion>();
+            TakeDamage(explosion.damage);
             other.enabled = false;
         }
 

@@ -13,6 +13,28 @@ public class AxieStats : ScriptableObject
     public float recoveryTimeAfterDamage = 1f;
 
     public List<StatsBuff> buffs { get; private set; } = new List<StatsBuff>();
+    public UpgradeBuff upgradeBuff { get; private set; } = new();
+
+    public float GetBaseValue(Stat stat)
+    {
+        float baseValue = 0;
+        switch (stat)
+        {
+            case Stat.Speed:
+                baseValue = speed;
+                break;
+            case Stat.BombMagazine:
+                baseValue = bombMagazine;
+                break;
+            case Stat.Health:
+                baseValue = health;
+                break;
+            case Stat.BombExplosionRadius:
+                baseValue = bombExplosionRadius;
+                break;
+        }
+        return baseValue;
+    }
 
     public void AddBuff(StatsBuff buff)
     {
@@ -38,24 +60,33 @@ public class AxieStats : ScriptableObject
         {
             switch (buff.buffType)
             {
-                case StatsBuff.BuffType.Speed:
+                case Stat.Speed:
                     //Debug.Log("Speed buff: " + result.speed + " + " + buff.GetDeltaValueFromBase(speed));
                     result.speed += buff.GetDeltaValueFromBase(speed);
                     break;
-                case StatsBuff.BuffType.BombMagazine:
+                case Stat.BombMagazine:
                     //Debug.Log("Bomb buff: " + result.bombMagazine + " + " + buff.GetDeltaValueFromBase(bombMagazine));
                     result.bombMagazine += (int)buff.GetDeltaValueFromBase(bombMagazine);
                     break;
-                case StatsBuff.BuffType.Health:
+                case Stat.Health:
                     result.health += (int)buff.GetDeltaValueFromBase(health);
                     break;
-                case StatsBuff.BuffType.BombExplosionRadius:
+                case Stat.BombExplosionRadius:
                     result.bombExplosionRadius += (int)buff.GetDeltaValueFromBase(bombExplosionRadius);
                     break;
             }
         }
+        result.speed += upgradeBuff.speed;
+        result.bombExplosionRadius += upgradeBuff.bombExplosionRadius;
+        result.bombMagazine += upgradeBuff.bombMagazine;
+        result.health += upgradeBuff.health;
         //Debug.Log("After: " + result);
         return result;
+    }
+
+    public void AddUpgradeBuff(UpgradeBuff upgradeBuff)
+    {
+        this.upgradeBuff = upgradeBuff;
     }
 
     public override string ToString()

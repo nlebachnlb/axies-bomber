@@ -10,7 +10,7 @@ namespace Module.MapGeneration.Controller
         public MapData DataModel => dataModel;
 
         [SerializeField] private MapData dataModel;
-        
+
         private readonly Queue<Vector2Int> roomQueue = new();
         private bool generationComplete = false;
 
@@ -26,11 +26,11 @@ namespace Module.MapGeneration.Controller
             roomQueue.Enqueue(roomIndex);
             DataModel.PlaceRoom(roomIndex, true);
         }
-        
+
         private void Update()
         {
-            var roomCount = DataModel.RoomCount;
-            var maxRooms = DataModel.MaxRooms;
+            int roomCount = DataModel.RoomCount;
+            int maxRooms = DataModel.MaxRooms;
             if (roomQueue.Count > 0 && roomCount < maxRooms && !generationComplete)
             {
                 Vector2Int roomIndex = roomQueue.Dequeue();
@@ -60,7 +60,7 @@ namespace Module.MapGeneration.Controller
             var gridSize = DataModel.GridSize;
             var roomCount = DataModel.RoomCount;
             var maxRooms = DataModel.MaxRooms;
-            
+
             int x = roomIndex.x;
             int y = roomIndex.y;
 

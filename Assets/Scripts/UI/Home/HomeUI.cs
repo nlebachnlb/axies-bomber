@@ -13,7 +13,7 @@ public class HomeUI : MonoBehaviour
 
     public void AutoPick()
     {
-        int[] ids = { 0, 1, 2 };
+        int[] ids = { 0, 1, 3 };
         for (int i = 0; i < 3; ++i)
         {
             AxiePackedConfig config = AppRoot.Instance.Config.availableAxies.GetAxiePackedConfigById(ids[i]);
@@ -33,6 +33,7 @@ public class HomeUI : MonoBehaviour
     private void Awake()
     {
         buttonPlay.onClick.AddListener(OnSelectPlay);
+        buttonUpgrade.onClick.AddListener(OnSelectUpgrade);
     }
 
     private void OnSelectPlay()
@@ -46,5 +47,10 @@ public class HomeUI : MonoBehaviour
         AppRoot.Instance.SoundManager.StopMenuBGM();
         AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.Confirm);
         AppRoot.Instance.TransitionToScene(AppRoot.Instance.Config.playScene, true);
+    }
+
+    private void OnSelectUpgrade()
+    {
+        ViewController.Instance.upgradeUI.Open();
     }
 }

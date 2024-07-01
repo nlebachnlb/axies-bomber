@@ -27,6 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4010170348540224192}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.49, y: 0, z: 1.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,7 +35,6 @@ Transform:
   m_Children:
   - {fileID: 8509694491074226313}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &3046522670206376493
 Animator:
@@ -124,7 +124,7 @@ MonoBehaviour:
   lightFx: {fileID: 4801253483039309079, guid: 3a7bf2e3f5ea44a8abcd41863e3c8b1e, type: 3}
   explosionLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   color: {r: 0, g: 0, b: 0, a: 0}
   bombOwner:
     identity: 0
@@ -133,10 +133,11 @@ MonoBehaviour:
     bombStats: {fileID: 0}
     ability: {fileID: 0}
     abilityPrefab: {fileID: 0}
+  damage: 1
   spriteRenderer: {fileID: 6091454820242364596}
   explodingCollisionMask:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 321
 --- !u!1 &4489134433151916544
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +161,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4489134433151916544}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -167,7 +169,6 @@ Transform:
   m_Children:
   - {fileID: 473707573362036412}
   m_Father: {fileID: 2945844528104523874}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4735095472701508201
 GameObject:
@@ -193,13 +194,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4735095472701508201}
+  serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: -0, z: -0, w: 0.8660254}
   m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 0.24, y: 0.24, z: 0.24}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8509694491074226313}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 60, y: 0, z: 0}
 --- !u!212 &6091454820242364596
 SpriteRenderer:

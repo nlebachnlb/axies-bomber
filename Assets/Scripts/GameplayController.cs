@@ -14,6 +14,9 @@ public class GameplayController : MonoBehaviour
     public AxieStats axieBaseStats;
     public BombStats bombBaseStats;
 
+    [Header("Map")]
+    [SerializeField] private string defaultMapId;
+
     [Header("Axie Heroes Slots")]
     public List<AxieHeroData> slots;
     public List<KeyCode> inputSlotMap;
@@ -32,13 +35,14 @@ public class GameplayController : MonoBehaviour
     [SerializeField] private SkillPickUI skillPickUI;
     [SerializeField] private GameObject clearBannerHUD;
     [SerializeField] private GameObject gameOverBannerHUD;
-    [SerializeField] private AbilityHUD abilityHUD;
+    [SerializeField] private CollectibleHUD collectibleHUD;
 
     [Header("Test mode")]
     [SerializeField] private bool testMap;
     [SerializeField] private string testMapId;
 
     private int currentSlot = -1;
+    private int pickedCollectibles = 0;
     private MapController mapController;
     private SkillPoolController skillController;
 
@@ -50,6 +54,7 @@ public class GameplayController : MonoBehaviour
         EventBus.onOpenSkillPool += OnOpenSkillPool;
         EventBus.onPickSkill += OnPickSkill;
         EventBus.onRoomClear += OnRoomClear;
+        EventBus.onPickCollectible += OnPickCollectible;
 
         mapController = GetComponent<MapController>();
         skillController = GetComponent<SkillPoolController>();
@@ -63,6 +68,7 @@ public class GameplayController : MonoBehaviour
         EventBus.onOpenSkillPool -= OnOpenSkillPool;
         EventBus.onPickSkill -= OnPickSkill;
         EventBus.onRoomClear -= OnRoomClear;
+        EventBus.onPickCollectible -= OnPickCollectible;
     }
 
     private void Start()
@@ -75,29 +81,38 @@ public class GameplayController : MonoBehaviour
             slot.ReloadInGameData();
 
         SwitchAxieHero(0);
-        
         mapController.LoadMap();
+
+        collectibleHUD.SetAmount(pickedCollectibles);
+
+        AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.IngameBGMType);
     }
 
     private void InitAxieHeroDataSlots()
     {
         slots = new List<AxieHeroData>();
-        UserData model = AppRoot.Instance.UserDataModel.User;
-        List<AxiePackedConfig> configs = model.currentPickedAxies.Select(id => AppRoot.Instance.Config.availableAxies.GetAxiePackedConfigById(id)).ToList();
+        UserDataModel userDataModel = AppRoot.Instance.UserDataModel;
+        UserData userData = userDataModel.User;
+        List<AxiePackedConfig> configs = userData.currentPickedAxies.Select(id => AppRoot.Instance.Config.availableAxies.GetAxiePackedConfigById(id)).ToList();
 
         Debug.Log("Initiating...");
         for (int i = 0; i < configs.Count; ++i)
         {
             AxieHeroData axie = new AxieHeroData();
+            UpgradeBuff upgradeBuff = userDataModel.GetUpgradeBuff(configs[i].id);
             axie.identity = (AxieIdentity)configs[i].id;
             axie.axieConfig = Instantiate(configs[i].axieConfig);
             axie.axieStats = Instantiate(configs[i].axieStats);
             axie.bombStats = Instantiate(configs[i].bombStats);
             axie.abilityPrefab = configs[i].abilityPrefab;
+            axie.abilityPrefabs = configs[i].abilities;
             axie.ability = null;
 
             Debug.Log("Init: " + axie.identity);
             axie.axieStats.ResetBuffs();
+            axie.axieStats.AddUpgradeBuff(upgradeBuff);
+            axie.bombStats.AddUpgradeBuff(upgradeBuff);
+
             slots.Add(axie);
         }
     }
@@ -249,5 +264,11 @@ public class GameplayController : MonoBehaviour
     private void OnRoomClear()
     {
         Instantiate(clearBannerHUD, canvas.transform);
+    }
+
+    private void OnPickCollectible(Collectible collectible)
+    {
+        pickedCollectibles += collectible.Amount;
+        collectibleHUD.SetAmount(pickedCollectibles);
     }
 }
