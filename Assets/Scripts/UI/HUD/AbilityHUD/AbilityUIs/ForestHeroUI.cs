@@ -7,11 +7,11 @@ public class ForestHeroUI : AbilityUI<ForestHero>
     public override void Init(AbilitySlot slot, ForestHero ability)
     {
         base.Init(slot, ability);
-        slot.SetActivateState(true);
+        slot.SetCardChargedState(true);
     }
 
     public override void OnDispose()
     {
-        slot.SetActivateState(false);
+        slot.SetCardChargedState(false);
     }
 }

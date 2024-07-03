@@ -14,13 +14,15 @@ public class AxieAbility : MonoBehaviour, IAxieAbility
     public event Action OnAbilityUpdated;
     public event EventBus.OnAbilityCooldown OnCooldown;
 
-    public virtual SkillConfig.DisplayType DisplayType { get; }
+    protected AbilityController controller;
+    public GameObject Owner => controller.Owner;
+    public bool IsCooldown { get; protected set; }
 
     public virtual SkillConfig GetStats() => null;
 
-    public virtual void AssignOwner(GameObject owner)
+    public virtual void Init(AbilityController controller)
     {
-        Owner = owner;
+        this.controller = controller;
     }
 
     public virtual bool IsPassive()
@@ -53,12 +55,9 @@ public class AxieAbility : MonoBehaviour, IAxieAbility
         RaiseOnAbilityUpdated();
     }
 
-    public GameObject Owner { get; private set; }
-    public bool IsCooldown { get; protected set; }
 }
 
-public class AxieAbility<T> : AxieAbility
-    where T : SkillConfig
+public class AxieAbility<T> : AxieAbility where T : SkillConfig
 {
     public T Stats { get; set; }
 
@@ -67,14 +66,6 @@ public class AxieAbility<T> : AxieAbility
     protected virtual void Awake()
     {
         Stats = Instantiate(defaultStats);
-    }
-
-    public override SkillConfig.DisplayType DisplayType
-    {
-        get
-        {
-            return Stats != null ? Stats.displayType : SkillConfig.DisplayType.CurrentOverMax;
-        }
     }
 
     public override SkillConfig GetStats()

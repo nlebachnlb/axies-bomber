@@ -10,10 +10,11 @@ public class IroncladBarrier : AxieAbility<IroncladBarrierStats>
     public Cooldown Cooldown => cooldown;
     private JumpController jumpController;
 
-    public override void AssignOwner(GameObject owner)
+    public override void Init(AbilityController controller)
     {
-        base.AssignOwner(owner);
-        jumpController = owner.GetComponent<JumpController>();
+        base.Init(controller);
+
+        jumpController = Owner.GetComponent<JumpController>();
     }
 
     public override bool CanDeploy()

@@ -1,5 +1,4 @@
 using Sirenix.OdinInspector;
-using Spine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,8 +13,7 @@ public class AbilitySlot : MonoBehaviour
     public Image card;
     public TextMeshProUGUI textDeploymentKey;
 
-    [ShowInInspector, HideInEditorMode]
-    public AxieAbility currentAbility { get; private set; }
+    [ShowInInspector, HideInEditorMode] public AxieAbility currentAbility { get; private set; }
 
     private bool isActivated = false;
 
@@ -33,16 +31,18 @@ public class AbilitySlot : MonoBehaviour
             textDeploymentKey.text = keyCode.ToString();
 
         card.sprite = axieAbility.GetStats().targetAxie;
-        AssignUI();
+        AssignAbilityUI();
+        gameObject.SetActive(true);
     }
 
     public void SetNotAvailable()
     {
         Clear();
         SetDefaultState();
+        gameObject.SetActive(false);
     }
 
-    public void SetActivateState(bool state)
+    public void SetCardChargedState(bool state)
     {
         if (state && !isActivated)
         {
@@ -60,7 +60,7 @@ public class AbilitySlot : MonoBehaviour
     public void SetDefaultState()
     {
         textProgress.text = "";
-        SetActivateState(false);
+        SetCardChargedState(false);
         progress.fillAmount = 0;
         textDeploymentKey.text = "-";
     }
@@ -81,7 +81,7 @@ public class AbilitySlot : MonoBehaviour
         }
     }
 
-    private void AssignUI()
+    private void AssignAbilityUI()
     {
         switch (currentAbility)
         {
@@ -115,17 +115,17 @@ public class AbilitySlot : MonoBehaviour
         }
     }
 
-    private void AssignUI<T, K>(AxieAbility ability) where T: AxieAbility where K: AbilityUI<T>
+    private void AssignUI<T, K>(AxieAbility ability) where T : AxieAbility where K : AbilityUI<T>
     {
         gameObject.AddComponent<K>().Init(this, ability as T);
     }
 
     private void Clear()
     {
-        if (TryGetComponent<BaseAbilityUI>(out var controller))
+        if (TryGetComponent<BaseAbilityUI>(out var baseAbilityUi))
         {
-            controller.OnDispose();
-            Destroy(controller);
+            baseAbilityUi.OnDispose();
+            Destroy(baseAbilityUi);
         }
     }
 }

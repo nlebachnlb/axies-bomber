@@ -4,7 +4,7 @@ public class JoyOfBoomUI : AbilityUI<JoyOfBoom>
     {
         base.Init(slot, ability);
 
-        slot.SetActivateState(true);
+        slot.SetCardChargedState(true);
         slot.textAuxilliary.gameObject.SetActive(true);
         SetText();
         ability.OnAbilityUpdated += OnAbilityUpdated;
@@ -12,7 +12,7 @@ public class JoyOfBoomUI : AbilityUI<JoyOfBoom>
 
     public override void OnDispose()
     {
-        slot.SetActivateState(false);
+        slot.SetCardChargedState(false);
         slot.textAuxilliary.gameObject.SetActive(false);
         ability.OnAbilityUpdated -= OnAbilityUpdated;
     }

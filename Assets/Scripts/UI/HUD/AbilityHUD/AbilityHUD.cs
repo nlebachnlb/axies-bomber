@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,12 +9,10 @@ public class AbilityHUD : SerializedMonoBehaviour
     private void Awake()
     {
         EventBus.onPostSwitchAxieHero += OnPostSwitchAxieHero;
-        EventBus.onAbilityAttached += OnAbilityAttached;
     }
 
     private void OnDestroy()
     {
-        EventBus.onAbilityAttached -= OnAbilityAttached;
         EventBus.onPostSwitchAxieHero -= OnPostSwitchAxieHero;
     }
 
@@ -25,18 +21,12 @@ public class AbilityHUD : SerializedMonoBehaviour
         foreach (var item in slots)
         {
             var type = item.Key;
-            var hud = item.Value;
+            var slot = item.Value;
 
             if (axieHeroData.abilityInstances.TryGetValue(type, out var ability))
-                hud.Assign(type, ability);
+                slot.Assign(type, ability);
             else
-                hud.SetNotAvailable();
+                slot.SetNotAvailable();
         }
-    }
-
-    private void OnAbilityAttached(SkillType skillType, AxieAbility axieAbility)
-    {
-        // if (huds.TryGetValue(skillType, out var hud))
-        //     hud.Assign(skillType, axieAbility);
     }
 }

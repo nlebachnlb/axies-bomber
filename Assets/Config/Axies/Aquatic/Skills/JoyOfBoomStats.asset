@@ -15,11 +15,9 @@ MonoBehaviour:
   skillName: Joy of BOOM
   description: 
   minorDescription: 
-  isAbility: 0
-  displayType: 0
+  isAbility: 1
   targetAxie: {fileID: 21300000, guid: 722d69eb485c04beab86ad40e0ba7b35, type: 3}
   ownerAxie: {fileID: 11400000, guid: 370c57ecf1bea4619b6421f53194f43b, type: 2}
   axieIdentity: 0
   level: 0
-  damageBuffDelta: 0.01
-  killCap: 10
+  damageBuffPerKill: 0.01

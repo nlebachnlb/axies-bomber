@@ -9,19 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 244187d888e62d54e972646b8929fa58, type: 3}
-  m_Name: NaturalHealingStats
+  m_Script: {fileID: 11500000, guid: 9d0b2cb42b6928444b449b0dce774e1a, type: 3}
+  m_Name: IroncladBarrierStats
   m_EditorClassIdentifier: 
-  skillName: NaturalHealing
+  skillName: Ironclad Barrier
   description: 
   minorDescription: 
-  isAbility: 0
-  displayType: 0
-  targetAxie: {fileID: 21300000, guid: 1b52986d2ec174f6282334149212f1e2, type: 3}
+  isAbility: 1
+  targetAxie: {fileID: 21300000, guid: 9b5afba48afe146828057d171349f81a, type: 3}
   ownerAxie: {fileID: 11400000, guid: c14956422ce5660498ad212adaf8f30e, type: 2}
   axieIdentity: 4
   level: 0
-  Cooldown: 3
-  SelfHealHp: 1
-  AllyHealRate: 0.2
-  AllyHealHp: 1
+  EffectRadius: 10
+  Cooldown: 2

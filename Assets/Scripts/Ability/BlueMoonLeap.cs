@@ -25,12 +25,12 @@ public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
         cooldown.OnCooldownFinished += Raise;
     }
 
-    public override void AssignOwner(GameObject owner)
+    public override void Init(AbilityController controller)
     {
-        base.AssignOwner(owner);
+        base.Init(controller);
 
-        movementController = Owner.GetComponent<MovementController>();
-        jumpController = Owner.GetComponent<JumpController>();
+        movementController = controller.Owner.GetComponent<MovementController>();
+        jumpController = controller.Owner.GetComponent<JumpController>();
     }
 
     private void Update()

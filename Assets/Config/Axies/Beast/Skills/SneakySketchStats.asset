@@ -15,8 +15,7 @@ MonoBehaviour:
   skillName: Sneaky Sketch
   description: 
   minorDescription: 
-  isAbility: 0
-  displayType: 0
+  isAbility: 1
   targetAxie: {fileID: 21300000, guid: a76b42118d41f4259bf59371dfe37da6, type: 3}
   ownerAxie: {fileID: 11400000, guid: 2d65df6c605a4524bae6063bf4906bf1, type: 2}
   axieIdentity: 3

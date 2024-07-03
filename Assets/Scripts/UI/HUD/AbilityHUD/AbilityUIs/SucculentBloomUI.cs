@@ -7,11 +7,11 @@ public class SucculentBloomUI : AbilityUI<SucculentBloom>
     public override void Init(AbilitySlot slot, SucculentBloom ability)
     {
         base.Init(slot, ability);
-        slot.SetActivateState(true);
+        slot.SetCardChargedState(true);
     }
 
     public override void OnDispose()
     {
-        slot.SetActivateState(false);
+        slot.SetCardChargedState(false);
     }
 }

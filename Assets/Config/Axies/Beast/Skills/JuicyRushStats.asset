@@ -9,16 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 164f1f9ec495d0c40a62d347b472e928, type: 3}
-  m_Name: ForestHeroStats
+  m_Script: {fileID: 11500000, guid: 825227216e8cad044b0fbc45d7a0527a, type: 3}
+  m_Name: JuicyRushStats
   m_EditorClassIdentifier: 
-  skillName: ForestHero
+  skillName: Juicy Rush
   description: 
   minorDescription: 
-  isAbility: 0
-  displayType: 0
-  targetAxie: {fileID: 21300000, guid: 5123242ad45bc42dcad9c8f42439d9db, type: 3}
+  isAbility: 1
+  targetAxie: {fileID: 21300000, guid: 121f65ec7bc794bb097021a8d9e32a9a, type: 3}
   ownerAxie: {fileID: 11400000, guid: 2d65df6c605a4524bae6063bf4906bf1, type: 2}
   axieIdentity: 3
   level: 0
-  criticalThreshold: 0.2
+  speedBuffPercentage: 1
+  effectDuration: 3

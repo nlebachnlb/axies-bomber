@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using Ability.Component;
-using Spine;
 using Spine.Unity;
 using UnityEngine;
 
@@ -16,11 +13,12 @@ public class SneakySketch : AxieAbility<SneakySketchStats>
     private bool isDeployed;
     private float effectTimer = 0;
 
-    public override void AssignOwner(GameObject owner)
+    public override void Init(AbilityController controller)
     {
-        base.AssignOwner(owner);
-        skeletonAnimation = owner.GetComponent<AxieConfigReader>().Skin;
-        collider = owner.GetComponent<Collider>();
+        base.Init(controller);
+
+        skeletonAnimation = Owner.GetComponent<AxieConfigReader>().Skin;
+        collider = Owner.GetComponent<Collider>();
     }
 
     private void Update()

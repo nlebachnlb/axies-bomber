@@ -6,7 +6,7 @@ public class TailSlapUI : AbilityUI<TailSlap>
     {
         base.Init(slot, ability);
 
-        slot.SetActivateState(ability.CanDeploy());
+        slot.SetCardChargedState(ability.CanDeploy());
         slot.textAuxilliary.gameObject.SetActive(true);
 
         ability.OnAbilityUpdated += OnAbilityUpdated;
@@ -22,7 +22,7 @@ public class TailSlapUI : AbilityUI<TailSlap>
 
     private void Update()
     {
-        slot.SetActivateState(ability.CanDeploy());
+        slot.SetCardChargedState(ability.CanDeploy());
     }
 
     private void OnEnemyDeath() => SetText();

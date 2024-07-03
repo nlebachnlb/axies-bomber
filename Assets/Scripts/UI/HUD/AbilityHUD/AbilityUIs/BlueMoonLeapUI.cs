@@ -11,7 +11,7 @@ public class BlueMoonLeapUI : AbilityUI<BlueMoonLeap>
         base.Init(slot, ability);
 
         cooldown = ability.Cooldown;
-        slot.SetActivateState(ability.CanDeploy());
+        slot.SetCardChargedState(ability.CanDeploy());
     }
 
     public override void OnDispose()
@@ -29,7 +29,7 @@ public class BlueMoonLeapUI : AbilityUI<BlueMoonLeap>
 
     private void UpdateState()
     {
-        slot.SetActivateState(ability.CanDeploy());
+        slot.SetCardChargedState(ability.CanDeploy());
     }
 
     private void UpdateCooldown()

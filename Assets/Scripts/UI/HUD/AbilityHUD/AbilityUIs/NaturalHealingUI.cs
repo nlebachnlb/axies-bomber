@@ -9,17 +9,17 @@ public class NaturalHealingUI : AbilityUI<NaturalHealing>
         base.Init(slot, ability);
 
         cooldown = ability.Cooldown;
-        slot.SetActivateState(ability.CanDeploy());
+        slot.SetCardChargedState(ability.CanDeploy());
     }
 
     public override void OnDispose()
     {
-        slot.SetActivateState(false);
+        slot.SetCardChargedState(false);
     }
 
     private void Update()
     {
-        slot.SetActivateState(ability.CanDeploy());
+        slot.SetCardChargedState(ability.CanDeploy());
         slot.SetCountdownState(!cooldown.IsAvailable, cooldown.RemainingTime, cooldown.RemainingTimeAsPercentage);
     }
 }
