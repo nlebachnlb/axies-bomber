@@ -6,6 +6,7 @@ using UnityEngine;
 [Serializable]
 public class UpgradeBuff
 {
+    public float bombDamage;
     public int bombExplosionRadius;
     public int bombMagazine;
     public int health;

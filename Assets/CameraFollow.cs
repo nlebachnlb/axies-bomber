@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class CameraFollow : MonoBehaviour
 
@@ -8,7 +9,25 @@ public class CameraFollow : MonoBehaviour
 
     public Vector3 minPosition, maxPosition;
 
-    private void FixedUpdate()
+    [SerializeField] private Camera camera;
+
+    public void BoundWithRoom(Room room)
+    {
+        minPosition = room.MinPosition;
+        maxPosition = room.MaxPosition;
+    }
+
+    public void OnLeaveToRoom()
+    {
+        camera.DOFieldOfView(40f, 0.5f);
+    }
+
+    public void OnEnterRoom()
+    {
+        camera.DOFieldOfView(25f, 0.5f);
+    }
+
+    private void LateUpdate()
     {
         Vector3 desiredPosition = target.position;
         if (desiredPosition.x < minPosition.x)
@@ -21,7 +40,7 @@ public class CameraFollow : MonoBehaviour
         else if (desiredPosition.z > maxPosition.z)
             desiredPosition.z = maxPosition.z;
 
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * smoothSpeed);
         transform.position = smoothedPosition;
     }
 }

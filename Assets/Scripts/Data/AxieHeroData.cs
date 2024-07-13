@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,9 +20,15 @@ public class AxieHeroData
     public AxieConfig axieConfig;
     public AxieStats axieStats;
     public BombStats bombStats;
+
+    [Obsolete]
     public SkillConfig ability;
+    [Obsolete]
     public AxieAbility abilityPrefab;
     public Dictionary<string, float> extraParams = new Dictionary<string, float>();
+
+    public Dictionary<SkillType, AxieAbility> abilityPrefabs = new();
+    public Dictionary<SkillType, AxieAbility> abilityInstances = new();
 
     public int health
     {
@@ -49,6 +56,24 @@ public class AxieHeroData
         }
     }
 
+    public float bombDamage
+    {
+        get
+        {
+            var buffPercentage = 0f;
+            foreach (var item in abilityInstances)
+            {
+                if (item.Value is IBuff buff)
+                {
+                    buffPercentage += buff.BuffDamage;
+                }
+            }
+
+            Debug.Log($"Bomb damage increase by {buffPercentage * 100f}% by skill");
+            return bombStats.Calculate().damage * (1 + buffPercentage);
+        }
+    }
+
     private int _health;
     private int _bombsRemaining;
 
@@ -69,6 +94,24 @@ public class AxieHeroData
         onInfoChanged?.Invoke(GetCurrentInfo());
     }
 
+    private InfoPacket GetCurrentInfo()
+    {
+        AxieStats calculated = axieStats.Calculate();
+        InfoPacket info = new InfoPacket();
+        info.health = health;
+        info.bombsRemaining = bombsRemaining;
+        info.healthLimit = calculated.health;
+        info.bombMagazine = calculated.bombMagazine;
+        return info;
+    }
+
+    #region Extra params
+
+    public const string PARAM_KILLED_ENEMIES = "killedEnemies";
+    public const string PARAM_PLACED_BOMBS = "placedBombs";
+    public const string PARAM_COOLDOWN_TIME = "cooldownTime";
+    public const string PARAM_SPEED_MULTIPLIER = "speedMultiplier";
+
     public float GetExtraParam(string key, float defaultValue = 0)
     {
         if (extraParams.ContainsKey(key))
@@ -85,14 +128,5 @@ public class AxieHeroData
             extraParams.Add(key, value);
     }
 
-    private InfoPacket GetCurrentInfo()
-    {
-        AxieStats calculated = axieStats.Calculate();
-        InfoPacket info = new InfoPacket();
-        info.health = health;
-        info.bombsRemaining = bombsRemaining;
-        info.healthLimit = calculated.health;
-        info.bombMagazine = calculated.bombMagazine;
-        return info;
-    }
+    #endregion
 }

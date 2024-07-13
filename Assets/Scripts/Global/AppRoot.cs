@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class AppRoot : MonoBehaviour
 {
+    public enum PlayMode
+    {
+        Normal,
+        TestPlayground
+    }
+
     public static AppRoot Instance { get; private set; }
     public TransitionController transitionController;
     public TransitionController fastTransitionController;
@@ -12,7 +18,10 @@ public class AppRoot : MonoBehaviour
     public UserDataModel UserDataModel { get; private set; }
     public SoundManager SoundManager { get; private set; }
 
+    public PlayMode Mode => mode;
+
     [SerializeField] private AppRootConfig config;
+    [SerializeField] private PlayMode mode = PlayMode.Normal;
 
     private void Awake()
     {
@@ -25,8 +34,14 @@ public class AppRoot : MonoBehaviour
 
     private void Start()
     {
-        TransitionToScene(config.startSceneName);
-        SoundManager.PlayAudio(SoundManager.AudioType.MenuBGMType);
+        if (mode == PlayMode.Normal)
+        {
+            TransitionToScene(config.startSceneName);
+            SoundManager.PlayAudio(SoundManager.AudioType.MenuBGMType);
+            return;
+        }
+
+        SceneManager.LoadSceneAsync(config.homeScene);
     }
 
     public void TransitionToScene(string sceneName, bool needLoading = false)
@@ -52,8 +67,11 @@ public class AppRoot : MonoBehaviour
         SceneManager.LoadSceneAsync(sceneName);
         SceneManager.sceneLoaded += (Scene scene, LoadSceneMode mode) =>
         {
-            transitionController.ShowLoading(false);
-            transitionController.TransitionIn();
+            if (transitionController != null)
+            {
+                transitionController.ShowLoading(false);
+                transitionController.TransitionIn();
+            }
         };
     }
 }

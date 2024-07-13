@@ -43,6 +43,7 @@ public class UserDataModel : MonoBehaviour
         user.ownedAxieIds.Add((int)AxieIdentity.Aquatic);
         user.ownedAxieIds.Add((int)AxieIdentity.Bird);
         user.ownedAxieIds.Add((int)AxieIdentity.Reptile);
+        user.ownedAxieIds.Add((int)AxieIdentity.Beast);
 
         return user;
     }
@@ -135,6 +136,19 @@ public class UserDataModel : MonoBehaviour
             bombExplosionRadius = axieUpgradeConfig.GetBombExplosionRadiusUpgrade(id, GetAxieStatLevel(axieId, Stat.BombExplosionRadius)),
             bombMagazine = axieUpgradeConfig.GetBombMagazineUpgrade(id, GetAxieStatLevel(axieId, Stat.BombMagazine))
         };
+    }
+
+    public void Collect(Collectible collectible)
+    {
+        if (collectible == null)
+            return;
+
+        switch (collectible.Type)
+        {
+            case CollectibleType.Coin:
+                User.Currency1 += collectible.Amount;
+                break;
+        }
     }
 
     private void Awake()

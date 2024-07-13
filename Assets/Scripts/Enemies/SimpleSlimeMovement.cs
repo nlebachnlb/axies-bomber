@@ -40,6 +40,7 @@ public class SimpleSlimeMovement : MonoBehaviour
     private new Rigidbody rigidbody;
     private Vector3 direction;
     private EnemyHealth health;
+    private LayerMask layerMask;
     private float timer = 0f;
 
     private void Awake()
@@ -48,6 +49,7 @@ public class SimpleSlimeMovement : MonoBehaviour
         colBox = GetComponent<Collider>();
         rigidbody = GetComponent<Rigidbody>();
         health = GetComponent<EnemyHealth>();
+        layerMask = ~LayerMask.GetMask("Collectible");
     }
 
     private IEnumerator Start()
@@ -111,11 +113,11 @@ public class SimpleSlimeMovement : MonoBehaviour
         if (state == EnemyState.Normal)
         {
             Vector3 position = rigidbody.position;
-            Vector3 translation = direction * moveSpeed * Time.fixedDeltaTime;
+            Vector3 translation = moveSpeed * Time.fixedDeltaTime * direction;
 
             rigidbody.MovePosition(position + translation);
 
-            Collider[] colliders = Physics.OverlapSphere(transform.position + direction * 0.5f, 0.1f);
+            Collider[] colliders = Physics.OverlapSphere(transform.position + direction * 0.5f, 0.1f, layerMask);
             if (colliders.Length > 0 || (autoChangeDirectionTime > 0f && timer <= 0f))
             {
                 if (axis != MovementAxis.Both)

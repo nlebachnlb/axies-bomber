@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
     public float duration;
     public GameObject explosionFx;
+
+    [HideInEditorMode]
+    public float damage { get; set; }
 
     private void Start()
     {

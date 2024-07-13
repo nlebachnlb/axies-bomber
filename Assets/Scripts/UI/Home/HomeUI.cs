@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +10,25 @@ public class HomeUI : MonoBehaviour
     [SerializeField] private Button buttonPlay;
     [SerializeField] private Button buttonUpgrade;
     [SerializeField] private List<AxieSlot> pickedSlots;
+
+    public void AutoPick()
+    {
+        int[] ids = { 0, 1, 3 };
+        for (int i = 0; i < 3; ++i)
+        {
+            AxiePackedConfig config = AppRoot.Instance.Config.availableAxies.GetAxiePackedConfigById(ids[i]);
+            EventBus.RaiseOnPickAxie(i, config);
+        }
+    }
+
+    private void Start()
+    {
+        if (AppRoot.Instance.Mode == AppRoot.PlayMode.TestPlayground)
+        {
+            AutoPick();
+            OnSelectPlay();
+        }
+    }
 
     private void Awake()
     {

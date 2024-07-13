@@ -20,7 +20,7 @@ public class TailSlap : AxieAbility<TailSlapStats>
     private void OnDestroy()
     {
         EventBus.onBombPlace -= OnBombPlace;
-        axieData.SetExtraParam("placedBombs", placedBombs);
+        axieData.SetExtraParam(AxieHeroData.PARAM_PLACED_BOMBS, placedBombs);
     }
 
     private void Start()
@@ -30,9 +30,11 @@ public class TailSlap : AxieAbility<TailSlapStats>
     public override void SetExtraParams(AxieHeroData axieHero)
     {
         base.SetExtraParams(axieHero);
-        Stats = (TailSlapStats)Instantiate(axieHero.ability);
-        placedBombs = (int)axieHero.GetExtraParam("placedBombs", Stats.placedBombsNeeded);
+        if (axieHero.ability != null)
+            Stats = (TailSlapStats)Instantiate(axieHero.ability);
+        placedBombs = (int)axieHero.GetExtraParam(AxieHeroData.PARAM_PLACED_BOMBS, Stats.placedBombsNeeded);
         axieData = axieHero;
+        RaiseOnCooldown(placedBombs, Stats.placedBombsNeeded);
         EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
         Debug.Log("Extra param: " + placedBombs);
     }
@@ -56,7 +58,7 @@ public class TailSlap : AxieAbility<TailSlapStats>
         bombController.axieHeroData.bombsRemaining--;
 
         Bomb bomb = Instantiate(bombPrefab, position, Quaternion.identity);
-        bomb.bombOwner = bombController.axieHeroData;
+        bomb.SetOwner(bombController.axieHeroData);
 
         bomb.bombFuseTime = bombController.axieHeroData.bombStats.bombFuseTime;
         bomb.explosionLength = bombController.axieHeroData.axieStats.Calculate().bombExplosionRadius;
@@ -69,6 +71,7 @@ public class TailSlap : AxieAbility<TailSlapStats>
         bomb.SetMoving(movement.LastDirection * defaultStats.speed);
 
         placedBombs = 0;
+        RaiseOnCooldown(placedBombs, Stats.placedBombsNeeded);
         EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
     }
 
@@ -80,6 +83,7 @@ public class TailSlap : AxieAbility<TailSlapStats>
     private void OnBombPlace(AxieHeroData owner)
     {
         placedBombs++;
+        RaiseOnCooldown(placedBombs, Stats.placedBombsNeeded);
         EventBus.RaiseOnAbilityCooldown(placedBombs, Stats.placedBombsNeeded, 1);
         Debug.Log("Place bomb: " + placedBombs);
     }

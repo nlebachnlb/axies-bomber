@@ -12,46 +12,454 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f5280812b22f4c44a983fcdd682ea3a, type: 3}
   m_Name: AvailableAxiesConfig
   m_EditorClassIdentifier: 
-  axiePackedConfigs:
-  - id: 0
-    axieConfig: {fileID: 11400000, guid: 370c57ecf1bea4619b6421f53194f43b, type: 2}
-    axieStats: {fileID: 11400000, guid: f3db209d9ca99455b924ebbca2afa7b9, type: 2}
-    bombStats: {fileID: 11400000, guid: c22b7a04e7812427193e938aca0b694d, type: 2}
-    skillConfigs:
-    - skills:
-      - {fileID: 11400000, guid: 1a4b25e4344614f928c6ba02404c4bed, type: 2}
-      - {fileID: 11400000, guid: 1c5736ff16d284fd2ba02471f75ae398, type: 2}
-    ability:
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 370c57ecf1bea4619b6421f53194f43b, type: 2}
+    - {fileID: 11400000, guid: f3db209d9ca99455b924ebbca2afa7b9, type: 2}
+    - {fileID: 11400000, guid: c22b7a04e7812427193e938aca0b694d, type: 2}
+    - {fileID: 11400000, guid: 1a4b25e4344614f928c6ba02404c4bed, type: 2}
+    - {fileID: 11400000, guid: 1c5736ff16d284fd2ba02471f75ae398, type: 2}
     - {fileID: 11400000, guid: e03f4de97ea81488b99d08b02a3c0da7, type: 2}
     - {fileID: 11400000, guid: e21ad080cff3a4c5eb9b6ab4c9419909, type: 2}
     - {fileID: 11400000, guid: 0da5782558e6a4088afe98090a5f656d, type: 2}
-    abilityPrefab: {fileID: 4564667999815439112, guid: 34a383ee6e82f49e6a899c50863dc7bc,
-      type: 3}
-  - id: 1
-    axieConfig: {fileID: 11400000, guid: 31da111efa11b487c830b364af85818b, type: 2}
-    axieStats: {fileID: 11400000, guid: d29a2aa3ab09043768cf6329d3c2c197, type: 2}
-    bombStats: {fileID: 11400000, guid: 0efee0f714bea4a528b4ec0ccc00d3a6, type: 2}
-    skillConfigs:
-    - skills:
-      - {fileID: 11400000, guid: 67eb017db84f34013a5025bc8ece5f54, type: 2}
-      - {fileID: 11400000, guid: e29c39c6a431a40c2ac93b54b26afead, type: 2}
-    ability:
+    - {fileID: 4564667999815439112, guid: 34a383ee6e82f49e6a899c50863dc7bc, type: 3}
+    - {fileID: 3034166757795195046, guid: 9f28adeb03f117e4cb4dd046dd0a37c2, type: 3}
+    - {fileID: 6894936283314566157, guid: 843922eb413f44540819b4ac0bdb989a, type: 3}
+    - {fileID: 11400000, guid: 31da111efa11b487c830b364af85818b, type: 2}
+    - {fileID: 11400000, guid: d29a2aa3ab09043768cf6329d3c2c197, type: 2}
+    - {fileID: 11400000, guid: 0efee0f714bea4a528b4ec0ccc00d3a6, type: 2}
+    - {fileID: 11400000, guid: 67eb017db84f34013a5025bc8ece5f54, type: 2}
+    - {fileID: 11400000, guid: e29c39c6a431a40c2ac93b54b26afead, type: 2}
     - {fileID: 11400000, guid: a9123958c1d9e43f7ae3d46266c016f5, type: 2}
     - {fileID: 11400000, guid: f93b4918c71b646b7968a1171e29ab37, type: 2}
     - {fileID: 11400000, guid: 99f0aed55dcea4c09bab33aea853bf9b, type: 2}
-    abilityPrefab: {fileID: 7165475212485695643, guid: 60dd5fcb695dc493593e59cb88e33365,
-      type: 3}
-  - id: 2
-    axieConfig: {fileID: 11400000, guid: bed49f4034e14438c99d520aee8e510b, type: 2}
-    axieStats: {fileID: 11400000, guid: 494e9fd63c3ad4e2db0c29405503da83, type: 2}
-    bombStats: {fileID: 11400000, guid: a1233dcf731b6484bbf2d1d5e0a1db53, type: 2}
-    skillConfigs:
-    - skills:
-      - {fileID: 11400000, guid: e45f90b28fab14106bc04754e5a56299, type: 2}
-      - {fileID: 11400000, guid: 8bdcc5927568d46ab80c942e5cbb3464, type: 2}
-    ability:
+    - {fileID: 7165475212485695643, guid: 60dd5fcb695dc493593e59cb88e33365, type: 3}
+    - {fileID: 11400000, guid: bed49f4034e14438c99d520aee8e510b, type: 2}
+    - {fileID: 11400000, guid: 494e9fd63c3ad4e2db0c29405503da83, type: 2}
+    - {fileID: 11400000, guid: a1233dcf731b6484bbf2d1d5e0a1db53, type: 2}
+    - {fileID: 11400000, guid: e45f90b28fab14106bc04754e5a56299, type: 2}
+    - {fileID: 11400000, guid: 8bdcc5927568d46ab80c942e5cbb3464, type: 2}
     - {fileID: 11400000, guid: 21a92011e36ad440eb2cd772ec8459e2, type: 2}
     - {fileID: 11400000, guid: 2d8e3997c0d684f7f95d048d8a32fc39, type: 2}
     - {fileID: 11400000, guid: 40a79468222104c9b9a5f4a24df5c6d6, type: 2}
-    abilityPrefab: {fileID: 7950587030973305949, guid: 40c02578fc1b64d199740da31568a7ec,
-      type: 3}
+    - {fileID: 7950587030973305949, guid: 40c02578fc1b64d199740da31568a7ec, type: 3}
+    - {fileID: 11400000, guid: 2d65df6c605a4524bae6063bf4906bf1, type: 2}
+    - {fileID: 11400000, guid: 9b7895320314e39459ba1ab346bf0ce6, type: 2}
+    - {fileID: 11400000, guid: ec8dd12f140c5824eb0347d5fbdcaffd, type: 2}
+    - {fileID: 5559135443826721289, guid: b5a55ae5a538b1e4a8226c3dc3509ba2, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: axiePackedConfigs
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[AxiePackedConfig, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 4
+    - Name: 
+      Entry: 7
+      Data: 1|AxiePackedConfig, Assembly-CSharp
+    - Name: id
+      Entry: 3
+      Data: 0
+    - Name: axieConfig
+      Entry: 10
+      Data: 0
+    - Name: axieStats
+      Entry: 10
+      Data: 1
+    - Name: bombStats
+      Entry: 10
+      Data: 2
+    - Name: skillConfigs
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[SkillConfigWithLevel, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 3|SkillConfigWithLevel, Assembly-CSharp
+    - Name: skills
+      Entry: 7
+      Data: 4|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ability
+      Entry: 7
+      Data: 5|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 10
+      Data: 6
+    - Name: 
+      Entry: 10
+      Data: 7
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: abilityPrefab
+      Entry: 10
+      Data: 8
+    - Name: abilities
+      Entry: 7
+      Data: 6|System.Collections.Generic.Dictionary`2[[SkillType, Assembly-CSharp],[AxieAbility,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 7|System.Collections.Generic.EnumEqualityComparer`1[[SkillType, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|AxiePackedConfig, Assembly-CSharp
+    - Name: id
+      Entry: 3
+      Data: 1
+    - Name: axieConfig
+      Entry: 10
+      Data: 11
+    - Name: axieStats
+      Entry: 10
+      Data: 12
+    - Name: bombStats
+      Entry: 10
+      Data: 13
+    - Name: skillConfigs
+      Entry: 7
+      Data: 9|System.Collections.Generic.List`1[[SkillConfigWithLevel, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 10|SkillConfigWithLevel, Assembly-CSharp
+    - Name: skills
+      Entry: 7
+      Data: 11|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 14
+    - Name: 
+      Entry: 10
+      Data: 15
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ability
+      Entry: 7
+      Data: 12|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 16
+    - Name: 
+      Entry: 10
+      Data: 17
+    - Name: 
+      Entry: 10
+      Data: 18
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: abilityPrefab
+      Entry: 10
+      Data: 19
+    - Name: abilities
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 13|AxiePackedConfig, Assembly-CSharp
+    - Name: id
+      Entry: 3
+      Data: 2
+    - Name: axieConfig
+      Entry: 10
+      Data: 20
+    - Name: axieStats
+      Entry: 10
+      Data: 21
+    - Name: bombStats
+      Entry: 10
+      Data: 22
+    - Name: skillConfigs
+      Entry: 7
+      Data: 14|System.Collections.Generic.List`1[[SkillConfigWithLevel, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 15|SkillConfigWithLevel, Assembly-CSharp
+    - Name: skills
+      Entry: 7
+      Data: 16|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 23
+    - Name: 
+      Entry: 10
+      Data: 24
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ability
+      Entry: 7
+      Data: 17|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 10
+      Data: 25
+    - Name: 
+      Entry: 10
+      Data: 26
+    - Name: 
+      Entry: 10
+      Data: 27
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: abilityPrefab
+      Entry: 10
+      Data: 28
+    - Name: abilities
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 18|AxiePackedConfig, Assembly-CSharp
+    - Name: id
+      Entry: 3
+      Data: 3
+    - Name: axieConfig
+      Entry: 10
+      Data: 29
+    - Name: axieStats
+      Entry: 10
+      Data: 30
+    - Name: bombStats
+      Entry: 10
+      Data: 31
+    - Name: skillConfigs
+      Entry: 7
+      Data: 19|System.Collections.Generic.List`1[[SkillConfigWithLevel, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ability
+      Entry: 7
+      Data: 20|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: abilityPrefab
+      Entry: 6
+      Data: 
+    - Name: abilities
+      Entry: 7
+      Data: 21|System.Collections.Generic.Dictionary`2[[SkillType, Assembly-CSharp],[AxieAbility,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 22|System.Collections.Generic.EnumEqualityComparer`1[[SkillType, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 32
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

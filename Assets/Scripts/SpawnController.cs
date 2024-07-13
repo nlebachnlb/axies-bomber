@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Module.MapGeneration.Type;
 
 public class SpawnController : MonoBehaviour
 {
@@ -9,10 +10,15 @@ public class SpawnController : MonoBehaviour
     public List<SpawnTimeline> spawnWaves;
     public bool rewardAbilityPool;
     public GameObject exitGate;
-
-    [SerializeField] private SkillPoolEntrance poolEntrance;
+    public SkillPoolEntrance poolEntrance;
+    public int coin = 50;
 
     private int currentWave = 0;
+
+    public void OnEnterRoom()
+    {
+        StartCoroutine(WaveProgression());
+    }
 
     private void Awake()
     {
@@ -26,7 +32,20 @@ public class SpawnController : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(WaveProgression());
+        DistributeCoinsToWaves();
+        // StartCoroutine(WaveProgression());
+    }
+
+    private void DistributeCoinsToWaves()
+    {
+        int waveCount = spawnWaves.Count;
+        int[] coinDistribution = Utility.Distribute(coin, waveCount);
+        for (int i = 0; i < waveCount; ++i)
+        {
+            int coin = coinDistribution[i];
+            spawnWaves[i].Coin = coin;
+            Debug.Log($"Wave {i} receives {coin} coin(s)");
+        }
     }
 
     private IEnumerator WaveProgression()
@@ -64,8 +83,8 @@ public class SpawnController : MonoBehaviour
         Time.timeScale = 1f;
 
         yield return new WaitForSecondsRealtime(2f);
-        SkillPoolEntrance entrance = Instantiate(poolEntrance, playerSpawn.transform.position, Quaternion.identity);
-        entrance.isAbilityPool = rewardAbilityPool;
+        // SkillPoolEntrance entrance = Instantiate(poolEntrance, playerSpawn.transform.position, Quaternion.identity);
+        // entrance.isAbilityPool = rewardAbilityPool;
     }
 
     private void OnPickSkill(SkillConfig skill)

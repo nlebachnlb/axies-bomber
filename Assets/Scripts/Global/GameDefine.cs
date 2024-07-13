@@ -6,9 +6,9 @@ public enum AxieIdentity
 {
     Aquatic = 0,
     Bird = 1,
-    Reptile = 2
+    Reptile = 2,
+    Beast = 3,
 }
-
 
 public enum Stat
 {
@@ -16,4 +16,17 @@ public enum Stat
     BombMagazine,
     Health,
     BombExplosionRadius
+}
+
+public enum CollectibleType
+{
+    Coin,
+}
+
+public enum SkillType
+{
+    Mouth,
+    Horn,
+    Back,
+    Tail
 }

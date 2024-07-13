@@ -9,6 +9,9 @@ public class AppRootConfig : ScriptableObject
     public string playScene;
     public string homeScene;
 
+    [Header("Input")]
+    public InputSetting inputSettings;
+
     [Header("Axies")]
     public AvailableAxieHeroesConfig availableAxies;
 
@@ -25,6 +28,9 @@ public class AppRootConfig : ScriptableObject
 
     [Header("Upgrades")]
     public AxieUpgradeConfig axieUpgrades;
+
+    public GameObject coinPrefab;
+    public GameObject floatingText;
 
     private void GenerateIndexedMapConfig()
     {
