@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TailSlapStats", menuName = "Stats/Ability/Tail Slap")]
 public class TailSlapStats : SkillConfig
 {
-    public int placedBombsNeeded;
+    public int enemyKillNeeded;
     public float speed = 5f;
 
     public override string GenerateDescription()
@@ -15,6 +15,6 @@ public class TailSlapStats : SkillConfig
 
     public override string GenerateMinorDescription()
     {
-        return minorDescription.Replace("{placedBombsNeeded}", "" + placedBombsNeeded);
+        return minorDescription.Replace("{placedBombsNeeded}", "" + enemyKillNeeded);
     }
 }

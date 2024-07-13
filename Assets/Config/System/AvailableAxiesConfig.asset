@@ -19,36 +19,44 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 370c57ecf1bea4619b6421f53194f43b, type: 2}
     - {fileID: 11400000, guid: f3db209d9ca99455b924ebbca2afa7b9, type: 2}
     - {fileID: 11400000, guid: c22b7a04e7812427193e938aca0b694d, type: 2}
+    - {fileID: 4564667999815439112, guid: 34a383ee6e82f49e6a899c50863dc7bc, type: 3}
+    - {fileID: 3034166757795195046, guid: 9f28adeb03f117e4cb4dd046dd0a37c2, type: 3}
+    - {fileID: 6894936283314566157, guid: 843922eb413f44540819b4ac0bdb989a, type: 3}
     - {fileID: 11400000, guid: 1a4b25e4344614f928c6ba02404c4bed, type: 2}
     - {fileID: 11400000, guid: 1c5736ff16d284fd2ba02471f75ae398, type: 2}
     - {fileID: 11400000, guid: e03f4de97ea81488b99d08b02a3c0da7, type: 2}
     - {fileID: 11400000, guid: e21ad080cff3a4c5eb9b6ab4c9419909, type: 2}
     - {fileID: 11400000, guid: 0da5782558e6a4088afe98090a5f656d, type: 2}
-    - {fileID: 4564667999815439112, guid: 34a383ee6e82f49e6a899c50863dc7bc, type: 3}
-    - {fileID: 3034166757795195046, guid: 9f28adeb03f117e4cb4dd046dd0a37c2, type: 3}
-    - {fileID: 6894936283314566157, guid: 843922eb413f44540819b4ac0bdb989a, type: 3}
     - {fileID: 11400000, guid: 31da111efa11b487c830b364af85818b, type: 2}
     - {fileID: 11400000, guid: d29a2aa3ab09043768cf6329d3c2c197, type: 2}
     - {fileID: 11400000, guid: 0efee0f714bea4a528b4ec0ccc00d3a6, type: 2}
+    - {fileID: 7165475212485695643, guid: 60dd5fcb695dc493593e59cb88e33365, type: 3}
     - {fileID: 11400000, guid: 67eb017db84f34013a5025bc8ece5f54, type: 2}
     - {fileID: 11400000, guid: e29c39c6a431a40c2ac93b54b26afead, type: 2}
     - {fileID: 11400000, guid: a9123958c1d9e43f7ae3d46266c016f5, type: 2}
     - {fileID: 11400000, guid: f93b4918c71b646b7968a1171e29ab37, type: 2}
     - {fileID: 11400000, guid: 99f0aed55dcea4c09bab33aea853bf9b, type: 2}
-    - {fileID: 7165475212485695643, guid: 60dd5fcb695dc493593e59cb88e33365, type: 3}
     - {fileID: 11400000, guid: bed49f4034e14438c99d520aee8e510b, type: 2}
     - {fileID: 11400000, guid: 494e9fd63c3ad4e2db0c29405503da83, type: 2}
     - {fileID: 11400000, guid: a1233dcf731b6484bbf2d1d5e0a1db53, type: 2}
+    - {fileID: 7950587030973305949, guid: 40c02578fc1b64d199740da31568a7ec, type: 3}
     - {fileID: 11400000, guid: e45f90b28fab14106bc04754e5a56299, type: 2}
     - {fileID: 11400000, guid: 8bdcc5927568d46ab80c942e5cbb3464, type: 2}
     - {fileID: 11400000, guid: 21a92011e36ad440eb2cd772ec8459e2, type: 2}
     - {fileID: 11400000, guid: 2d8e3997c0d684f7f95d048d8a32fc39, type: 2}
     - {fileID: 11400000, guid: 40a79468222104c9b9a5f4a24df5c6d6, type: 2}
-    - {fileID: 7950587030973305949, guid: 40c02578fc1b64d199740da31568a7ec, type: 3}
     - {fileID: 11400000, guid: 2d65df6c605a4524bae6063bf4906bf1, type: 2}
     - {fileID: 11400000, guid: 9b7895320314e39459ba1ab346bf0ce6, type: 2}
     - {fileID: 11400000, guid: ec8dd12f140c5824eb0347d5fbdcaffd, type: 2}
     - {fileID: 5559135443826721289, guid: b5a55ae5a538b1e4a8226c3dc3509ba2, type: 3}
+    - {fileID: 990856790194272499, guid: 1bc5a078e3d00fd4baea9dcd48b50eee, type: 3}
+    - {fileID: 2989698362900838997, guid: 2db0783463c37a24c978e3996e7b1881, type: 3}
+    - {fileID: 11400000, guid: c14956422ce5660498ad212adaf8f30e, type: 2}
+    - {fileID: 11400000, guid: 5c118fa9d4bcbbf43bc672b0b1334891, type: 2}
+    - {fileID: 11400000, guid: 6e1f881084422304ebc888d75b30fb68, type: 2}
+    - {fileID: 4477431706095277206, guid: b7bc18142d689894395fe04ac03e7246, type: 3}
+    - {fileID: 8816080209453438898, guid: 5578550f759f0ae41aeb8f6482cb611d, type: 3}
+    - {fileID: 2205024046990609172, guid: 6f6f2a414240b8e4f9601f6631d24305, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -60,7 +68,7 @@ MonoBehaviour:
         mscorlib
     - Name: 
       Entry: 12
-      Data: 4
+      Data: 5
     - Name: 
       Entry: 7
       Data: 1|AxiePackedConfig, Assembly-CSharp
@@ -76,29 +84,94 @@ MonoBehaviour:
     - Name: bombStats
       Entry: 10
       Data: 2
+    - Name: abilityPrefab
+      Entry: 10
+      Data: 3
+    - Name: abilities
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[SkillType, Assembly-CSharp],[AxieAbility,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.EnumEqualityComparer`1[[SkillType, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
     - Name: skillConfigs
       Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[SkillConfigWithLevel, Assembly-CSharp]],
+      Data: 4|System.Collections.Generic.List`1[[SkillConfigWithLevel, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
       Data: 1
     - Name: 
       Entry: 7
-      Data: 3|SkillConfigWithLevel, Assembly-CSharp
+      Data: 5|SkillConfigWithLevel, Assembly-CSharp
     - Name: skills
       Entry: 7
-      Data: 4|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
+      Data: 6|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
       Data: 2
     - Name: 
       Entry: 10
-      Data: 3
+      Data: 6
     - Name: 
       Entry: 10
-      Data: 4
+      Data: 7
     - Name: 
       Entry: 13
       Data: 
@@ -116,85 +189,20 @@ MonoBehaviour:
       Data: 
     - Name: ability
       Entry: 7
-      Data: 5|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
+      Data: 7|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
       Data: 3
     - Name: 
-      Entry: 10
-      Data: 5
-    - Name: 
-      Entry: 10
-      Data: 6
-    - Name: 
-      Entry: 10
-      Data: 7
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: abilityPrefab
       Entry: 10
       Data: 8
-    - Name: abilities
-      Entry: 7
-      Data: 6|System.Collections.Generic.Dictionary`2[[SkillType, Assembly-CSharp],[AxieAbility,
-        Assembly-CSharp]], mscorlib
-    - Name: comparer
-      Entry: 7
-      Data: 7|System.Collections.Generic.EnumEqualityComparer`1[[SkillType, Assembly-CSharp]],
-        mscorlib
     - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 12
-      Data: 3
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 0
-    - Name: $v
       Entry: 10
       Data: 9
     - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 3
-    - Name: $v
-      Entry: 10
-      Data: 8
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 3
-      Data: 2
-    - Name: $v
       Entry: 10
       Data: 10
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: 
       Entry: 13
       Data: 
@@ -219,6 +227,12 @@ MonoBehaviour:
     - Name: bombStats
       Entry: 10
       Data: 13
+    - Name: abilityPrefab
+      Entry: 10
+      Data: 14
+    - Name: abilities
+      Entry: 6
+      Data: 
     - Name: skillConfigs
       Entry: 7
       Data: 9|System.Collections.Generic.List`1[[SkillConfigWithLevel, Assembly-CSharp]],
@@ -238,10 +252,10 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 10
-      Data: 14
+      Data: 15
     - Name: 
       Entry: 10
-      Data: 15
+      Data: 16
     - Name: 
       Entry: 13
       Data: 
@@ -266,24 +280,18 @@ MonoBehaviour:
       Data: 3
     - Name: 
       Entry: 10
-      Data: 16
-    - Name: 
-      Entry: 10
       Data: 17
     - Name: 
       Entry: 10
       Data: 18
     - Name: 
+      Entry: 10
+      Data: 19
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
-      Data: 
-    - Name: abilityPrefab
-      Entry: 10
-      Data: 19
-    - Name: abilities
-      Entry: 6
       Data: 
     - Name: 
       Entry: 8
@@ -303,6 +311,12 @@ MonoBehaviour:
     - Name: bombStats
       Entry: 10
       Data: 22
+    - Name: abilityPrefab
+      Entry: 10
+      Data: 23
+    - Name: abilities
+      Entry: 6
+      Data: 
     - Name: skillConfigs
       Entry: 7
       Data: 14|System.Collections.Generic.List`1[[SkillConfigWithLevel, Assembly-CSharp]],
@@ -322,10 +336,10 @@ MonoBehaviour:
       Data: 2
     - Name: 
       Entry: 10
-      Data: 23
+      Data: 24
     - Name: 
       Entry: 10
-      Data: 24
+      Data: 25
     - Name: 
       Entry: 13
       Data: 
@@ -350,24 +364,18 @@ MonoBehaviour:
       Data: 3
     - Name: 
       Entry: 10
-      Data: 25
-    - Name: 
-      Entry: 10
       Data: 26
     - Name: 
       Entry: 10
       Data: 27
     - Name: 
+      Entry: 10
+      Data: 28
+    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
-      Data: 
-    - Name: abilityPrefab
-      Entry: 10
-      Data: 28
-    - Name: abilities
-      Entry: 6
       Data: 
     - Name: 
       Entry: 8
@@ -387,42 +395,16 @@ MonoBehaviour:
     - Name: bombStats
       Entry: 10
       Data: 31
-    - Name: skillConfigs
-      Entry: 7
-      Data: 19|System.Collections.Generic.List`1[[SkillConfigWithLevel, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: ability
-      Entry: 7
-      Data: 20|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
     - Name: abilityPrefab
       Entry: 6
       Data: 
     - Name: abilities
       Entry: 7
-      Data: 21|System.Collections.Generic.Dictionary`2[[SkillType, Assembly-CSharp],[AxieAbility,
+      Data: 19|System.Collections.Generic.Dictionary`2[[SkillType, Assembly-CSharp],[AxieAbility,
         Assembly-CSharp]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 22|System.Collections.Generic.EnumEqualityComparer`1[[SkillType, Assembly-CSharp]],
+      Data: 20|System.Collections.Generic.EnumEqualityComparer`1[[SkillType, Assembly-CSharp]],
         mscorlib
     - Name: 
       Entry: 12
@@ -435,7 +417,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 1
+      Data: 3
     - Name: 
       Entry: 7
       Data: 
@@ -448,6 +430,165 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 33
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 34
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: skillConfigs
+      Entry: 7
+      Data: 21|System.Collections.Generic.List`1[[SkillConfigWithLevel, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ability
+      Entry: 7
+      Data: 22|System.Collections.Generic.List`1[[SkillConfig, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 23|AxiePackedConfig, Assembly-CSharp
+    - Name: id
+      Entry: 3
+      Data: 4
+    - Name: axieConfig
+      Entry: 10
+      Data: 35
+    - Name: axieStats
+      Entry: 10
+      Data: 36
+    - Name: bombStats
+      Entry: 10
+      Data: 37
+    - Name: abilityPrefab
+      Entry: 6
+      Data: 
+    - Name: abilities
+      Entry: 7
+      Data: 24|System.Collections.Generic.Dictionary`2[[SkillType, Assembly-CSharp],[AxieAbility,
+        Assembly-CSharp]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 25|System.Collections.Generic.EnumEqualityComparer`1[[SkillType, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 38
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 39
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 10
+      Data: 40
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: skillConfigs
+      Entry: 7
+      Data: 26|Cathei.BakingSheet.VerticalList`1[[SkillConfigWithLevel, Assembly-CSharp]],
+        BakingSheet
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: ability
+      Entry: 7
+      Data: 27|Cathei.BakingSheet.VerticalList`1[[SkillConfig, Assembly-CSharp]],
+        BakingSheet
+    - Name: 
+      Entry: 12
+      Data: 0
     - Name: 
       Entry: 13
       Data: 

@@ -245,6 +245,8 @@ MonoBehaviour:
   explosionLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  config: {fileID: 0}
+  multiAbilityController: {fileID: 2444243461847432528}
   axieHeroData:
     identity: 0
     axieConfig: {fileID: 0}
@@ -252,7 +254,6 @@ MonoBehaviour:
     bombStats: {fileID: 0}
     ability: {fileID: 0}
     abilityPrefab: {fileID: 0}
-  config: {fileID: 0}
 --- !u!114 &2878728743684143185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,8 +322,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a603e8b5cfc58342aeec545b304b5ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 1.5
-  duration: 0.5
 --- !u!1 &4563164485085164348
 GameObject:
   m_ObjectHideFlags: 0

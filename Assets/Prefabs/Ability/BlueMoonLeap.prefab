@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a728838e32f80e43826820bbb0db520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultStats: {fileID: 11400000, guid: 9932206f53640f947b9fe9f05083b2dc, type: 2}
   cooldown: {fileID: 6323867937067234687}
   defaultStats: {fileID: 11400000, guid: 9932206f53640f947b9fe9f05083b2dc, type: 2}
   layerMask:
@@ -64,7 +65,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00374a6ce6815ef459f5ff78813c4190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 4
 --- !u!1001 &8335917083006015661
 PrefabInstance:
   m_ObjectHideFlags: 0

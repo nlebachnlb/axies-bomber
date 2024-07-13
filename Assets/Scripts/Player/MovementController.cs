@@ -137,7 +137,7 @@ public class MovementController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("MapChanger"))
+        if (other.CompareTag(Tag.MAP_CHANGER))
         {
             Debug.Log("Change map");
             var mapChanger = other.GetComponent<GateWay>();
@@ -146,19 +146,19 @@ public class MovementController : MonoBehaviour
             EventBus.RaiseOnRoomChange(nextRoom, fromDirection);
         }
 
-        if (other.CompareTag("SkillPool"))
+        if (other.CompareTag(Tag.SKILL_POOL))
         {
             other.GetComponent<SkillPoolEntrance>().DisplayInteract(true);
             pool = other.GetComponent<SkillPoolEntrance>();
             isInteract = true;
         }
 
-        if (other.CompareTag("Collectible") && other.TryGetComponent<Collectible>(out Collectible collectible))
+        if (other.CompareTag(Tag.COLLECTIBLE) && other.TryGetComponent<Collectible>(out Collectible collectible))
         {
             PickCollectible(collectible);
         }
 
-        if (other.CompareTag("Transport"))
+        if (other.CompareTag(Tag.TRANSPORT))
         {
             var transport = other.GetComponent<Transport>();
             EventBus.Instance.OnLeaveToRoomEvent(transport.TargetRoomId);
@@ -168,7 +168,7 @@ public class MovementController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("SkillPool"))
+        if (other.CompareTag(Tag.SKILL_POOL))
         {
             other.GetComponent<SkillPoolEntrance>().DisplayInteract(false);
             isInteract = false;

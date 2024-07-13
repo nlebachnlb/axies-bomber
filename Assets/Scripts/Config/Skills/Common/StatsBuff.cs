@@ -1,8 +1,10 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 [CreateAssetMenu(fileName = "New Stats Buff", menuName = "Stats/Buff")]
+[Obsolete]
 public class StatsBuff : SkillConfig
 {
     public enum BuffUnit
