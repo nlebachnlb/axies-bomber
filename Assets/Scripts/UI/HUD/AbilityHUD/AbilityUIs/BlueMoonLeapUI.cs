@@ -1,10 +1,8 @@
-using DG.Tweening;
-using Unity.VisualScripting;
+using Ability.Component;
 
 public class BlueMoonLeapUI : AbilityUI<BlueMoonLeap>
 {
-    private Tweener blinkTween;
-    private Ability.Component.Cooldown cooldown;
+    private Cooldown cooldown;
 
     public override void Init(AbilitySlot slot, BlueMoonLeap ability)
     {
@@ -16,14 +14,14 @@ public class BlueMoonLeapUI : AbilityUI<BlueMoonLeap>
 
     public override void OnDispose()
     {
-        DisableBlinking();
+        SetCardAlpha(1);
         slot.SetDefaultState();
     }
 
     private void LateUpdate()
     {
         UpdateCooldown();
-        UpdateBlinking();
+        UpdateAlpha();
         UpdateState();
     }
 
@@ -36,36 +34,26 @@ public class BlueMoonLeapUI : AbilityUI<BlueMoonLeap>
     {
         slot.SetCountdownState(!cooldown.IsAvailable, cooldown.RemainingTime, cooldown.RemainingTimeAsPercentage);
         if (!cooldown.IsAvailable)
-            DisableBlinking();
+            SetCardAlpha(1);
     }
 
-    private void UpdateBlinking()
+    private void UpdateAlpha()
     {
         if (!cooldown.IsAvailable)
             return;
 
         if (!ability.IsJumpable)
         {
-            EnableBlinking();
+            SetCardAlpha(0.5f);
         }
         else
         {
-            DisableBlinking();
+            SetCardAlpha(1);
         }
     }
 
-    private void EnableBlinking()
+    private void SetCardAlpha(float alpha)
     {
-        if (blinkTween == null)
-        {
-            blinkTween = slot.card.DOFade(0.5f, 0.25f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
-        }
-    }
-
-    private void DisableBlinking()
-    {
-        blinkTween?.Kill();
-        blinkTween = null;
-        slot.card.color = slot.card.color.WithAlpha(1);
+        slot.card.color = slot.card.color.WithAlpha(alpha);
     }
 }

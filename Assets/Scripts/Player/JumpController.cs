@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class JumpController : MonoBehaviour
 {
+    [SerializeField] CameraFollow cameraFollow;
+
     public bool IsJumping { get; private set; }
 
     private new Rigidbody rigidbody;
@@ -22,11 +24,13 @@ public class JumpController : MonoBehaviour
         IsJumping = true;
         rigidbody.isKinematic = true;
         movementController.enabled = false;
+        cameraFollow.freezeY = true;
 
         transform.DOJump(target, jumpPower, 1, duration).OnComplete(() =>
         {
             rigidbody.isKinematic = false;
             movementController.enabled = true;
+            cameraFollow.freezeY = false;
             IsJumping = false;
             onCompleted?.Invoke();
         });

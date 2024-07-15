@@ -772,6 +772,11 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 3930325970956083054, guid: 4fc55d22c1690487fb7c93ef57f2d1ab,
+        type: 3}
+      propertyPath: cameraFollow
+      value: 
+      objectReference: {fileID: 1342699089}
     - target: {fileID: 4813522279972414414, guid: 4fc55d22c1690487fb7c93ef57f2d1ab,
         type: 3}
       propertyPath: m_Mesh
@@ -1826,6 +1831,7 @@ MonoBehaviour:
   minPosition: {x: -100, y: 0, z: -100}
   maxPosition: {x: 100, y: 0, z: 100}
   camera: {fileID: 330585545}
+  freezeY: 0
 --- !u!1 &1398546203
 GameObject:
   m_ObjectHideFlags: 0

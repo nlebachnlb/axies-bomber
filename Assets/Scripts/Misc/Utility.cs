@@ -16,4 +16,10 @@ public static class Utility
         }
         return result;
     }
+
+    public static Color WithAlpha(this Color color, float alpha)
+    {
+        color.a = alpha;
+        return color;
+    }
 }
