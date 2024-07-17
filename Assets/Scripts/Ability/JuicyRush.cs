@@ -6,6 +6,7 @@ using UnityEngine;
 public class JuicyRush : AxieAbility<JuicyRushStats>
 {
     [SerializeField] private Timer timer;
+    [SerializeField] private ParticleSystem effect;
 
     public Timer Timer => timer;
 
@@ -25,6 +26,8 @@ public class JuicyRush : AxieAbility<JuicyRushStats>
             var movementController = Owner.GetComponent<MovementController>();
             movementController.SetSpeedMultiplier(1);
             timer.StartCountdown(3);
+            effect.Stop();
+            effect.gameObject.SetActive(false);
         }
         else
         {
@@ -46,6 +49,8 @@ public class JuicyRush : AxieAbility<JuicyRushStats>
 
             isTimerSet = true;
             effectDurationTimer = Stats.effectDuration;
+            effect.gameObject.SetActive(true);
+            effect.Play();
         }
     }
 }
