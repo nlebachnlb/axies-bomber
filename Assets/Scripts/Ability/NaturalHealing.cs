@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using Ability.Component;
 using UnityEngine;
 
 public class NaturalHealing : AxieAbility<NaturalHealingStats>
 {
-    [SerializeField] Cooldown cooldown;
+    [SerializeField] Timer cooldown;
+    [SerializeField] ParticleSystem effect;
 
-    public Cooldown Cooldown => cooldown;
+    public Timer Timer => cooldown;
 
     public override bool CanDeploy()
     {
@@ -17,8 +16,9 @@ public class NaturalHealing : AxieAbility<NaturalHealingStats>
     public override void DeployAbility()
     {
         cooldown.StartCountdown(Stats.Cooldown);
-        controller.AxieHeroData.health += 1;
+        controller.AxieHeroData.health += (int)Stats.SelfHealHp;
         controller.AxieHeroData.RaiseUpdateInfo();
+        effect.Play();
 
         if (Random.Range(0f, 1f) < Stats.AllyHealRate)
         {

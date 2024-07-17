@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class IroncladBarrier : AxieAbility<IroncladBarrierStats>
 {
-    [SerializeField] private Cooldown cooldown;
+    [SerializeField] private Timer timer;
 
-    public Cooldown Cooldown => cooldown;
+    public Timer Cooldown => timer;
     private JumpController jumpController;
 
     public override void Init(AbilityController controller)
@@ -19,12 +19,12 @@ public class IroncladBarrier : AxieAbility<IroncladBarrierStats>
 
     public override bool CanDeploy()
     {
-        return cooldown.IsAvailable;
+        return timer.IsAvailable;
     }
 
     public override void DeployAbility()
     {
-        cooldown.StartCountdown(Stats.Cooldown);
+        timer.StartCountdown(Stats.Cooldown);
         jumpController.Jump(Owner.transform.position, 1, 0.25f, onCompleted: PerformPush);
     }
 

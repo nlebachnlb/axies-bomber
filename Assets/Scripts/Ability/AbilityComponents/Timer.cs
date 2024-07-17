@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Ability.Component
 {
-    public class Cooldown : MonoBehaviour
+    public class Timer : MonoBehaviour
     {
         public event Action OnStartCountdown;
         public event Action OnCooldownFinished;

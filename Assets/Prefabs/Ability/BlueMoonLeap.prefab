@@ -47,8 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultStats: {fileID: 11400000, guid: 9932206f53640f947b9fe9f05083b2dc, type: 2}
-  cooldown: {fileID: 6323867937067234687}
-  defaultStats: {fileID: 11400000, guid: 9932206f53640f947b9fe9f05083b2dc, type: 2}
+  timer: {fileID: 6323867937067234687}
   layerMask:
     serializedVersion: 2
     m_Bits: 64

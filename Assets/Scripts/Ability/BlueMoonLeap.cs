@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
 {
-    [SerializeField] private Cooldown cooldown;
+    [SerializeField] private Timer timer;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private ParticleSystem landingAreaEffect;
 
     public bool IsJumpable { get; private set; } = false;
     public Vector3 JumpTarget { get; private set; }
-    public bool IsInCooldown => !cooldown.IsAvailable;
-    public Cooldown Cooldown => cooldown;
+    public bool IsInCooldown => !timer.IsAvailable;
+    public Timer Timer => timer;
 
     private MovementController movementController;
     private JumpController jumpController;
@@ -21,8 +21,8 @@ public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
     {
         base.Awake();
 
-        cooldown.OnStartCountdown += Raise;
-        cooldown.OnCooldownFinished += Raise;
+        timer.OnStartCountdown += Raise;
+        timer.OnCooldownFinished += Raise;
     }
 
     public override void Init(AbilityController controller)
@@ -35,7 +35,7 @@ public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
 
     private void Update()
     {
-        if (!cooldown.IsAvailable || jumpController.IsJumping)
+        if (!timer.IsAvailable || jumpController.IsJumping)
         {
             IsJumpable = false;
             return;
@@ -77,7 +77,7 @@ public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
 
     public override bool CanDeploy()
     {
-        return IsJumpable && cooldown.IsAvailable;
+        return IsJumpable && timer.IsAvailable;
     }
 
     public override void DeployAbility()
@@ -85,11 +85,11 @@ public class BlueMoonLeap : AxieAbility<BlueMoonLeapStats>
         jumpController.Jump(JumpTarget, 1.5f, 0.5f);
         landingAreaEffect.gameObject.SetActive(false);
         IsJumpable = false;
-        cooldown.StartCountdown(4);
+        timer.StartCountdown(4);
     }
 
     private void Raise()
     {
-        RaiseOnCooldown(cooldown.CurrentCooldownValue - cooldown.RemainingTime, cooldown.CurrentCooldownValue);
+        RaiseOnCooldown(timer.CurrentCooldownValue - timer.RemainingTime, timer.CurrentCooldownValue);
     }
 }

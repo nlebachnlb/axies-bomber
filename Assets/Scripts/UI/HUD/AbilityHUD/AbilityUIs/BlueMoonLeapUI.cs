@@ -2,13 +2,13 @@ using Ability.Component;
 
 public class BlueMoonLeapUI : AbilityUI<BlueMoonLeap>
 {
-    private Cooldown cooldown;
+    private Timer cooldown;
 
     public override void Init(AbilitySlot slot, BlueMoonLeap ability)
     {
         base.Init(slot, ability);
 
-        cooldown = ability.Cooldown;
+        cooldown = ability.Timer;
         slot.SetCardChargedState(ability.CanDeploy());
     }
 

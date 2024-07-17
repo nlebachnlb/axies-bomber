@@ -5,36 +5,36 @@ using UnityEngine;
 
 public class JuicyRush : AxieAbility<JuicyRushStats>
 {
-    [SerializeField] private Cooldown cooldown;
+    [SerializeField] private Timer timer;
 
-    public Cooldown Cooldown => cooldown;
+    public Timer Timer => timer;
 
     private bool isTimerSet;
-    private float timer = 0;
+    private float effectDurationTimer = 0;
 
     private void Update()
     {
         if (!isTimerSet)
             return;
 
-        if (timer < 0)
+        if (effectDurationTimer < 0)
         {
             isTimerSet = false;
-            timer = 0;
+            effectDurationTimer = 0;
 
             var movementController = Owner.GetComponent<MovementController>();
             movementController.SetSpeedMultiplier(1);
-            cooldown.StartCountdown(3);
+            timer.StartCountdown(3);
         }
         else
         {
-            timer -= Time.deltaTime;
+            effectDurationTimer -= Time.deltaTime;
         }
     }
 
     public override bool CanDeploy()
     {
-        return cooldown.IsAvailable;
+        return timer.IsAvailable;
     }
 
     public override void DeployAbility()
@@ -45,7 +45,7 @@ public class JuicyRush : AxieAbility<JuicyRushStats>
             movementController.SetSpeedMultiplier(1 + Stats.speedBuffPercentage);
 
             isTimerSet = true;
-            timer = Stats.effectDuration;
+            effectDurationTimer = Stats.effectDuration;
         }
     }
 }

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultStats: {fileID: 11400000, guid: 59e4dc6334e42df4c90868ea71564c6d, type: 2}
-  cooldown: {fileID: 7639726381442097424}
+  timer: {fileID: 7639726381442097424}
 --- !u!114 &7639726381442097424
 MonoBehaviour:
   m_ObjectHideFlags: 0

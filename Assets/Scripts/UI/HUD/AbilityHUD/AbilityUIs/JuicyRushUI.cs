@@ -2,13 +2,13 @@ using Ability.Component;
 
 public class JuicyRushUI : AbilityUI<JuicyRush>
 {
-    private Cooldown cooldown;
+    private Timer timer;
 
     public override void Init(AbilitySlot slot, JuicyRush ability)
     {
         base.Init(slot, ability);
 
-        cooldown = ability.Cooldown;
+        timer = ability.Timer;
         slot.SetCardChargedState(ability.CanDeploy());
     }
 
@@ -20,6 +20,6 @@ public class JuicyRushUI : AbilityUI<JuicyRush>
     private void Update()
     {
         slot.SetCardChargedState(ability.CanDeploy());
-        slot.SetCountdownState(!cooldown.IsAvailable, cooldown.RemainingTime, cooldown.RemainingTimeAsPercentage);
+        slot.SetCountdownState(!timer.IsAvailable, timer.RemainingTime, timer.RemainingTimeAsPercentage);
     }
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SneakySketch : AxieAbility<SneakySketchStats>
 {
-    [SerializeField] private Cooldown cooldown;
+    [SerializeField] private Timer timer;
 
-    public Cooldown Cooldown => cooldown;
+    public Timer Timer => timer;
     private SkeletonAnimation skeletonAnimation;
     private new Collider collider;
 
@@ -33,13 +33,13 @@ public class SneakySketch : AxieAbility<SneakySketchStats>
             effectTimer = 0;
             skeletonAnimation.skeleton.A = 1;
             collider.enabled = true;
-            cooldown.StartCountdown(Stats.cooldown);
+            timer.StartCountdown(Stats.cooldown);
         }
     }
 
     public override bool CanDeploy()
     {
-        return cooldown.IsAvailable;
+        return timer.IsAvailable;
     }
 
     public override void DeployAbility()

@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class SneakySketchUI : AbilityUI<SneakySketch>
 {
-    private Cooldown cooldown;
+    private Timer cooldown;
 
     public override void Init(AbilitySlot slot, SneakySketch ability)
     {
         base.Init(slot, ability);
 
-        cooldown = ability.Cooldown;
+        cooldown = ability.Timer;
         slot.SetCardChargedState(ability.CanDeploy());
     }
 

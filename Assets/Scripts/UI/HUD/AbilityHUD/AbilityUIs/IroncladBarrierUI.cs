@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class IroncladBarrierUI : AbilityUI<IroncladBarrier>
 {
-    private Cooldown cooldown;
+    private Timer cooldown;
 
     public override void Init(AbilitySlot slot, IroncladBarrier ability)
     {
