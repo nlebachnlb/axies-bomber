@@ -31,7 +31,8 @@ public enum Stat
 
 public enum CollectibleType
 {
-    Coin,
+    Oil,
+    Gear,
 }
 
 public enum SkillType

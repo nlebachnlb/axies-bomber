@@ -153,7 +153,7 @@ public class MovementController : MonoBehaviour
             isInteract = true;
         }
 
-        if (other.CompareTag(Tag.COLLECTIBLE) && other.TryGetComponent<Collectible>(out Collectible collectible))
+        if (other.CompareTag(Tag.COLLECTIBLE) && other.TryGetComponent(out Collectible collectible))
         {
             PickCollectible(collectible);
         }
@@ -315,7 +315,6 @@ public class MovementController : MonoBehaviour
         TextMeshPro text = floatingText.GetComponent<TextMeshPro>();
         text.text = $"+{collectible.Amount} <sprite index=0>";
 
-        AppRoot.Instance.UserDataModel.Collect(collectible);
         EventBus.RaiseOnPickCollectible(collectible);
 
         Destroy(collectible.gameObject);

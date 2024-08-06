@@ -43,7 +43,7 @@ public class SpawnController : MonoBehaviour
         for (int i = 0; i < waveCount; ++i)
         {
             int coin = coinDistribution[i];
-            spawnWaves[i].Coin = coin;
+            spawnWaves[i].TotalReward = coin;
             Debug.Log($"Wave {i} receives {coin} coin(s)");
         }
     }

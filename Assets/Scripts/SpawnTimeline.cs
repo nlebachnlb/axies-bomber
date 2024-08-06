@@ -13,7 +13,7 @@ public class SpawnRecord
     public bool spawned = false;
 
     [ShowInInspector, HideInEditorMode]
-    public int Coin { get; set; }
+    public int Reward { get; set; }
 }
 
 public class SpawnTimeline : MonoBehaviour
@@ -26,14 +26,14 @@ public class SpawnTimeline : MonoBehaviour
     public bool isCleared = false;
 
     [ShowInInspector, HideInEditorMode]
-    public int Coin { get; set; }
+    public int TotalReward { get; set; }
 
     private int cnt = 0;
     private float timer = 0f;
 
     public void Activate()
     {
-        DistributeCoinToRecords();
+        DistributeRewardsToRecords();
         StartCoroutine(ActivateProgress());
         remainingEnemies = 0;
         cnt = 0;
@@ -41,13 +41,13 @@ public class SpawnTimeline : MonoBehaviour
         isActivated = true;
     }
 
-    private void DistributeCoinToRecords()
+    private void DistributeRewardsToRecords()
     {
         int timelineCount = timeline.Count;
-        int[] coinDistribution = Utility.Distribute(Coin, timelineCount);
+        int[] rewardDistribution = Utility.Distribute(TotalReward, timelineCount);
         for (int i = 0; i < timelineCount; ++i)
         {
-            timeline[i].Coin = coinDistribution[i];
+            timeline[i].Reward = rewardDistribution[i];
         }
     }
 
@@ -67,14 +67,14 @@ public class SpawnTimeline : MonoBehaviour
                 {
                     timer = 0f;
                     int enemyCount = timeline[cnt].spawnPoints.Count;
-                    int[] coinDistribution = Utility.Distribute(timeline[cnt].Coin, enemyCount);
+                    int[] coinDistribution = Utility.Distribute(timeline[cnt].Reward, enemyCount);
                     remainingEnemies += enemyCount;
                     for (int i = 0; i < enemyCount; ++i)
                     {
                         Transform trans = timeline[cnt].spawnPoints[i];
                         EnemyController enemy = Instantiate(timeline[cnt].enemyPrefab, trans.position, Quaternion.identity);
-                        enemy.Coin = coinDistribution[i];
-                        Debug.Log($"Assigned {enemy.Coin} coin(s) for enemy");
+                        enemy.Reward = coinDistribution[i];
+                        Debug.Log($"Assigned {enemy.Reward} coin(s) for enemy");
                         enemy.onDeath = () =>
                         {
                             remainingEnemies--;

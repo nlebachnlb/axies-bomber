@@ -38,13 +38,13 @@ public class StatItem : MonoBehaviour
     private void OnEnable()
     {
         upgradeButton.onClick.AddListener(OnClick_UpgradeButton);
-        EventBus.onCurrency1Changed += OnCurrency1Changed;
+        EventBus.onGearChanged += OnGearChanged;
     }
 
     private void OnDisable()
     {
         upgradeButton.onClick.RemoveListener(OnClick_UpgradeButton);
-        EventBus.onCurrency1Changed -= OnCurrency1Changed;
+        EventBus.onGearChanged -= OnGearChanged;
     }
 
     public void Init(int axieId, int currentStatLevel)
@@ -82,7 +82,7 @@ public class StatItem : MonoBehaviour
     private void LoadPriceText()
     {
         string priceText = currentPrice.ToString();
-        if (AppRoot.Instance.UserDataModel.User.Currency1 < currentPrice)
+        if (AppRoot.Instance.UserDataModel.User.Gear < currentPrice)
             priceText = $"<color=#FF5F00>{priceText}</color>";
         upgradePrice.text = isMaxedLevel ? "<color=#2CC4E5>MAXED</color>" :
                                            $"{priceText} <sprite index=0>";
@@ -90,15 +90,15 @@ public class StatItem : MonoBehaviour
 
     private void OnClick_UpgradeButton()
     {
-        if (!isMaxedLevel && AppRoot.Instance.UserDataModel.User.Currency1 >= currentPrice)
+        if (!isMaxedLevel && AppRoot.Instance.UserDataModel.User.Gear >= currentPrice)
         {
-            AppRoot.Instance.UserDataModel.User.Currency1 -= currentPrice;
+            AppRoot.Instance.UserDataModel.User.Gear -= currentPrice;
             level = AppRoot.Instance.UserDataModel.IncreaseStatLevel(id, statType);
             LoadUI();
         }
     }
 
-    private void OnCurrency1Changed(int obj)
+    private void OnGearChanged(int obj)
     {
         LoadPriceText();
     }

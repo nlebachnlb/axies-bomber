@@ -67,7 +67,8 @@ public class EventBus
     public delegate void OnAbilityAttached(SkillType skillType, AxieAbility ability);
     public static event OnAbilityAttached onAbilityAttached;
 
-    public static event Action<int> onCurrency1Changed;
+    public static event Action<int> onOilChanged;
+    public static event Action<int> onGearChanged;
     public static event Action<Collectible> onPickCollectible;
     public delegate void OnEnterRoom(int roomId);
 
@@ -152,9 +153,14 @@ public class EventBus
         onGameOver?.Invoke();
     }
 
-    public static void RaiseOnCurrency1Changed(int value)
+    public static void RaiseOnOilChanged(int value)
     {
-        onCurrency1Changed?.Invoke(value);
+        onOilChanged?.Invoke(value);
+    }
+
+    public static void RaiseOnGearChanged(int value)
+    {
+        onGearChanged?.Invoke(value);
     }
 
     public static void RaiseOnPickCollectible(Collectible collectible)

@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using static AxieUpgradeConfig;
 
 [Serializable]
 public class UserData
@@ -11,15 +8,15 @@ public class UserData
     public List<int> ownedAxieIds = new List<int>();
     public List<int> currentPickedAxies;
     public Dictionary<int, Dictionary<Stat, int>> axieStatLevel = new();
-    public int currency1;
+    public int gear;
 
-    public int Currency1
+    public int Gear
     {
-        get => currency1;
+        get => gear;
         set
         {
-            currency1 = value;
-            EventBus.RaiseOnCurrency1Changed(value);
+            gear = value;
+            EventBus.RaiseOnGearChanged(value);
         }
     }
 
@@ -29,7 +26,7 @@ public class UserData
         {
             -1, -1, -1
         };
-        currency1 = 50;
+        gear = 50;
     }
 }
 
@@ -137,19 +134,6 @@ public class UserDataModel : MonoBehaviour
             bombExplosionRadius = axieUpgradeConfig.GetBombExplosionRadiusUpgrade(id, GetAxieStatLevel(axieId, Stat.BombExplosionRadius)),
             bombMagazine = axieUpgradeConfig.GetBombMagazineUpgrade(id, GetAxieStatLevel(axieId, Stat.BombMagazine))
         };
-    }
-
-    public void Collect(Collectible collectible)
-    {
-        if (collectible == null)
-            return;
-
-        switch (collectible.Type)
-        {
-            case CollectibleType.Coin:
-                User.Currency1 += collectible.Amount;
-                break;
-        }
     }
 
     private void Awake()

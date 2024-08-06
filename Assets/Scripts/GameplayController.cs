@@ -42,9 +42,10 @@ public class GameplayController : MonoBehaviour
     [SerializeField] private string testMapId;
 
     private int currentSlot = -1;
-    private int pickedCollectibles = 0;
+
     private MapController mapController;
     private SkillPoolController skillController;
+    public DungeonDataModel DungeonDataModel { get; private set; }
 
     private void Awake()
     {
@@ -54,10 +55,11 @@ public class GameplayController : MonoBehaviour
         EventBus.onOpenSkillPool += OnOpenSkillPool;
         EventBus.onPickSkill += OnPickSkill;
         EventBus.onRoomClear += OnRoomClear;
-        EventBus.onPickCollectible += OnPickCollectible;
 
         mapController = GetComponent<MapController>();
         skillController = GetComponent<SkillPoolController>();
+        DungeonDataModel = GetComponent<DungeonDataModel>();
+        DungeonDataModel.Generate();
     }
 
     private void OnDestroy()
@@ -68,7 +70,6 @@ public class GameplayController : MonoBehaviour
         EventBus.onOpenSkillPool -= OnOpenSkillPool;
         EventBus.onPickSkill -= OnPickSkill;
         EventBus.onRoomClear -= OnRoomClear;
-        EventBus.onPickCollectible -= OnPickCollectible;
     }
 
     private void Start()
@@ -83,7 +84,7 @@ public class GameplayController : MonoBehaviour
         SwitchAxieHero(0);
         mapController.LoadMap();
 
-        collectibleHUD.SetAmount(pickedCollectibles);
+        collectibleHUD.SetAmount(DungeonDataModel.DungeonData.Oil);
 
         AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.IngameBGMType);
     }
@@ -200,6 +201,8 @@ public class GameplayController : MonoBehaviour
         Time.timeScale = 1f;
 
         yield return new WaitForSecondsRealtime(2f);
+
+        AppRoot.Instance.UserDataModel.User.Gear += 10;
         AppRoot.Instance.TransitionToScene(AppRoot.Instance.Config.homeScene, true);
         AppRoot.Instance.SoundManager.PlayAudio(SoundManager.AudioType.MenuBGMType);
     }
@@ -264,11 +267,5 @@ public class GameplayController : MonoBehaviour
     private void OnRoomClear()
     {
         Instantiate(clearBannerHUD, canvas.transform);
-    }
-
-    private void OnPickCollectible(Collectible collectible)
-    {
-        pickedCollectibles += collectible.Amount;
-        collectibleHUD.SetAmount(pickedCollectibles);
     }
 }

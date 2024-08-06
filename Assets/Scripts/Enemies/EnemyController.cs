@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private SkeletonAnimation anim;
 
     [ShowInInspector, HideInEditorMode]
-    public int Coin { get; set; }
+    public int Reward { get; set; }
 
     private new Collider collider;
 

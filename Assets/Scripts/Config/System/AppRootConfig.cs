@@ -29,7 +29,8 @@ public class AppRootConfig : ScriptableObject
     [Header("Upgrades")]
     public AxieUpgradeConfig axieUpgrades;
 
-    public GameObject coinPrefab;
+    [Header("Collectibles")]
+    public GameObject oilPrefab;
     public GameObject floatingText;
 
     private void GenerateIndexedMapConfig()

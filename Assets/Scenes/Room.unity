@@ -2013,6 +2013,7 @@ GameObject:
   - component: {fileID: 1533466145}
   - component: {fileID: 1533466147}
   - component: {fileID: 1533466148}
+  - component: {fileID: 1533466149}
   m_Layer: 0
   m_Name: GameplayController
   m_TagString: Untagged
@@ -2115,6 +2116,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f3737608d950434d96025f97a698977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1533466149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533466144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4fe47a6b4ec904488f21ccc64bb4979, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1549313385
@@ -2279,37 +2292,6 @@ Transform:
   m_Children:
   - {fileID: 640056823}
   m_Father: {fileID: 2068155581}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1976038240
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1976038241}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1976038241
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976038240}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4798331, y: -1.5705009, z: 2.545084}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1983546603
 GameObject:
@@ -2653,4 +2635,3 @@ SceneRoots:
   - {fileID: 104926120}
   - {fileID: 492881546}
   - {fileID: 6176917486079239096}
-  - {fileID: 1976038241}

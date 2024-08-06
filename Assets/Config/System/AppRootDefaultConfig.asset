@@ -64,7 +64,7 @@ MonoBehaviour:
     tilemap: {fileID: 5828305884576650255, guid: 15e16a932298711498d70d90add22198,
       type: 3}
   axieUpgrades: {fileID: 11400000, guid: 7253246006ecb404ea375b3002814674, type: 2}
-  coinPrefab: {fileID: 420350988183878650, guid: ac4809ffaec9f6e469f4de87e38e1782,
+  oilPrefab: {fileID: 2229255117542091080, guid: 09e238bc4a29ad243bb16a596a0e1a48,
     type: 3}
   floatingText: {fileID: 4719816079783705643, guid: 38c51778842e620498b0f0aa7fef847b,
     type: 3}

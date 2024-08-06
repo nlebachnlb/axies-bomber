@@ -38,31 +38,53 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
-  spriteSheet: {fileID: 2800000, guid: c675b071600dc384dbbf3e1ac0d45c7c, type: 3}
+  spriteSheet: {fileID: 2800000, guid: dde9d30d5499ff049a242c7f4d71594a, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 0
     m_Scale: 1
-    m_Name: star
-    m_HashCode: 4088020
+    m_Name: currency_0
+    m_HashCode: -28619672
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 1
+    m_Scale: 1
+    m_Name: currency_1
+    m_HashCode: -28619671
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
-      m_Width: 512
-      m_Height: 512
-      m_HorizontalBearingX: 0
-      m_HorizontalBearingY: 450
-      m_HorizontalAdvance: 512
+      m_Width: 371
+      m_Height: 374
+      m_HorizontalBearingX: 2.7
+      m_HorizontalBearingY: 319.6
+      m_HorizontalAdvance: 371
     m_GlyphRect:
       m_X: 0
       m_Y: 0
-      m_Width: 512
-      m_Height: 512
+      m_Width: 371
+      m_Height: 374
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-    sprite: {fileID: 21300000, guid: c675b071600dc384dbbf3e1ac0d45c7c, type: 3}
+    sprite: {fileID: -326193695, guid: dde9d30d5499ff049a242c7f4d71594a, type: 3}
+  - m_Index: 1
+    m_Metrics:
+      m_Width: 351
+      m_Height: 362
+      m_HorizontalBearingX: 44.6
+      m_HorizontalBearingY: 333.1
+      m_HorizontalAdvance: 351
+    m_GlyphRect:
+      m_X: 371
+      m_Y: 0
+      m_Width: 351
+      m_Height: 362
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: -100700066, guid: dde9d30d5499ff049a242c7f4d71594a, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []
 --- !u!21 &6067604957827302161
@@ -89,7 +111,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c675b071600dc384dbbf3e1ac0d45c7c, type: 3}
+        m_Texture: {fileID: 2800000, guid: dde9d30d5499ff049a242c7f4d71594a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
