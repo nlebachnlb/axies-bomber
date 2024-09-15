@@ -2573,16 +2573,16 @@ MonoBehaviour:
   generationConfig:
     roomTypeConfigs:
     - roomType: 4
-      minQuantity: 0
-      maxQuantity: 0
-      minDistance: 0
+      minQuantity: 1
+      maxQuantity: 1
+      minDistance: 5
     - roomType: 2
       minQuantity: 0
       maxQuantity: 0
       minDistance: 4
-    - roomType: 5
-      minQuantity: 0
-      maxQuantity: 0
+    - roomType: 6
+      minQuantity: 1
+      maxQuantity: 2
       minDistance: 3
     - roomType: 1
       minQuantity: 1
@@ -2605,6 +2605,12 @@ MonoBehaviour:
       - {fileID: 7936532511103908301, guid: 52ab363f0741e0f4a95b28659d6d0d17, type: 3}
       - {fileID: 7936532511103908301, guid: d32f2303a7d82d94ab9a5abe90251183, type: 3}
       - {fileID: 7936532511103908301, guid: 34d86f87111e714469c7c198c2022b12, type: 3}
+    - roomType: 4
+      prefab:
+      - {fileID: 7936532511103908301, guid: b55f7c929db4acc459736068f920d85d, type: 3}
+    - roomType: 6
+      prefab:
+      - {fileID: 7936532511103908301, guid: 1258f21acefa70945ab998414874370d, type: 3}
 --- !u!1 &7757064705139603883
 GameObject:
   m_ObjectHideFlags: 0
